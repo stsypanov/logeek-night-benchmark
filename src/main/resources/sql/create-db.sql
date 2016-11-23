@@ -1,0 +1,20 @@
+DROP TABLE IF EXISTS USERS;
+CREATE TABLE USERS
+(
+  id       INTEGER PRIMARY KEY NOT NULL,
+  name     VARCHAR(32)         NOT NULL,
+  password VARCHAR(32)         NOT NULL,
+  email    VARCHAR(254),
+  role     VARCHAR(254)
+);
+
+
+DROP TABLE IF EXISTS LOAN_CONTRACT;
+CREATE TABLE LOAN_CONTRACT
+(
+  id           INTEGER PRIMARY KEY NOT NULL,
+  facility     INTEGER,
+  compensation INTEGER,
+  deposit      INTEGER,
+  outstanding  INTEGER
+);
