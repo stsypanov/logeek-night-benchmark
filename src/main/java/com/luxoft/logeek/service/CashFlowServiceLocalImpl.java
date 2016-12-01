@@ -6,13 +6,19 @@ import com.luxoft.logeek.entity.CashFlowEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Random;
+
 @Component
-@Transactional
 public class CashFlowServiceLocalImpl implements CashFlowServiceLocal {
-	
+	private final Random random;
+
+	public CashFlowServiceLocalImpl() {
+		random=new Random(System.currentTimeMillis());
+	}
+
 	@Override
 	public Long createLtavCashFlow(LtavCashFlowDetailsDTO detailsDTO, LtavCalculationModelDTO ltavCalculationModelDTO) {
-		return null;
+		return random.nextLong();
 	}
 
 	@Override

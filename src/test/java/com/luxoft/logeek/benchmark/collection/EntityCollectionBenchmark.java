@@ -4,7 +4,7 @@ import com.luxoft.logeek.AppConfig;
 import com.luxoft.logeek.JpaConfig;
 import com.luxoft.logeek.entity.User;
 import com.luxoft.logeek.repository.UserRepository;
-import com.luxoft.logeek.service.UserService;
+import com.luxoft.logeek.service.ltav.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.ArrayList;

@@ -1,8 +1,20 @@
 package com.luxoft.logeek.dto;
 
-public interface LtavCashFlowDetailsDTO {
+public class LtavCashFlowDetailsDTO {
+	private final int imoNumber;
+	private final long id;
 
-	Integer getImoNumber();
+	public LtavCashFlowDetailsDTO(int imoNumber, long id) {
+		this.imoNumber = imoNumber;
+		this.id = id;
+	}
 
-	Long getId();
+
+	public int getImoNumber() {
+		return imoNumber;
+	}
+
+	public long getId() {
+		return id;
+	}
 }

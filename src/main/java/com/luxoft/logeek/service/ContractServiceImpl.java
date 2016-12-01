@@ -28,11 +28,11 @@ public class ContractServiceImpl implements ContractService {
 		boolean hasOutstanding = outstanding.signum() > 0;
 
 		if (hasDeposit || hasCompensation) {
-			return System.currentTimeMillis() * 2 - 5;//method should return randomised data to prevent possible optimisation
+			return System.currentTimeMillis();
 		} else if (hasOutstanding) {
-			return System.currentTimeMillis() * 3 - 6;
+			return System.currentTimeMillis();
 		} else {
-			return System.currentTimeMillis() * 4 - 7;
+			return System.currentTimeMillis();
 		}
 	}
 
