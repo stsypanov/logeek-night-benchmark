@@ -1,15 +1,10 @@
 package com.luxoft.logeek.service.ltav;
 
-import com.luxoft.logeek.dto.LtavCalculationModelDTO;
-import com.luxoft.logeek.dto.LtavCashFlowDetailsDTO;
-import com.luxoft.logeek.exception.ServerCodeException;
-import com.luxoft.logeek.repository.CashFlowRepository;
+import com.luxoft.logeek.dto.CashFlowDTO;
 import com.luxoft.logeek.service.CashFlowServiceLocal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Component("eager")
 public class LtavEagerServiceImpl implements LtavService {
@@ -22,25 +17,25 @@ public class LtavEagerServiceImpl implements LtavService {
 
 	@Override
 	@Transactional
-	public Long createLtavCashFlow(LtavCashFlowDetailsDTO detailsDTO, Optional<LtavCalculationModelDTO> calculationModel) {
+	public Long createLtavCashFlow(CashFlowDTO detailsDTO) {
 		validate(detailsDTO);
 
-		Long cashFlowId = cashFlowServiceLocal.createLtavCashFlow(detailsDTO, calculationModel.orElse(null));
+		Long cashFlowId = cashFlowServiceLocal.createCashFlow(detailsDTO);
 
 		return cashFlowId;
 	}
 
-	private void validate(LtavCashFlowDetailsDTO detailsDTO) throws ServerCodeException {
+	private void validate(CashFlowDTO detailsDTO) throws IllegalArgumentException {
 		Integer imoNumber = detailsDTO.getImoNumber();
 
 		boolean inValidIMO = validateIMO(imoNumber);
 		if (!inValidIMO) {
-			throw new ServerCodeException("IMO number is not valid");
+			throw new IllegalArgumentException("IMO number is not valid");
 		}
 
 		int count = validateLtavCashFlowDetailsCount(imoNumber);
 		if (count > 0) {
-			throw new ServerCodeException("IMO number is not unique");
+			throw new IllegalArgumentException("IMO number is not unique");
 		}
 	}
 

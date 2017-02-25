@@ -1,17 +1,15 @@
 package com.luxoft.logeek.benchmark.collection;
 
-import com.luxoft.logeek.AppConfig;
-import com.luxoft.logeek.JpaConfig;
+import com.luxoft.logeek.benchmark.BenchmarkBase;
 import com.luxoft.logeek.entity.User;
 import com.luxoft.logeek.repository.UserRepository;
 import com.luxoft.logeek.service.ltav.UserService;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class EntityCollectionBenchmark {
+public class EntityCollectionBenchmark extends BenchmarkBase {
 
 	private static final int ENTITY_COUNT = 1000;
 	
@@ -19,10 +17,10 @@ public class EntityCollectionBenchmark {
 	protected UserRepository userRepository;
 	
 	protected void initContext() {
+		super.initContext();
 		if (service == null) {
-			AnnotationConfigApplicationContext appContext = new AnnotationConfigApplicationContext(JpaConfig.class, AppConfig.class);
-			service = appContext.getBean(UserService.class);
-			userRepository = appContext.getBean(UserRepository.class);
+			service = context.getBean(UserService.class);
+			userRepository = context.getBean(UserRepository.class);
 		}
 	}
 	

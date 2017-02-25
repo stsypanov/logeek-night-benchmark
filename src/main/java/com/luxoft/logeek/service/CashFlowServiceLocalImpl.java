@@ -1,10 +1,8 @@
 package com.luxoft.logeek.service;
 
-import com.luxoft.logeek.dto.LtavCalculationModelDTO;
-import com.luxoft.logeek.dto.LtavCashFlowDetailsDTO;
+import com.luxoft.logeek.dto.CashFlowDTO;
 import com.luxoft.logeek.entity.CashFlowEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Random;
 
@@ -17,7 +15,7 @@ public class CashFlowServiceLocalImpl implements CashFlowServiceLocal {
 	}
 
 	@Override
-	public Long createLtavCashFlow(LtavCashFlowDetailsDTO detailsDTO, LtavCalculationModelDTO ltavCalculationModelDTO) {
+	public Long createCashFlow(CashFlowDTO detailsDTO) {
 		return random.nextLong();
 	}
 

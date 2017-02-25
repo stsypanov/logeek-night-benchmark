@@ -1,50 +1,45 @@
 package com.luxoft.logeek.service;
 
-import com.luxoft.logeek.dto.LtavCalculationModelDTO;
-import com.luxoft.logeek.dto.LtavCashFlowDetailsDTO;
-import com.luxoft.logeek.entity.CashFlowEntity;
-import com.luxoft.logeek.exception.ServerCodeException;
+import com.luxoft.logeek.dto.CashFlowDTO;
+import com.luxoft.logeek.entity.AuditEntity;
 import com.luxoft.logeek.repository.CashFlowRepository;
+import com.luxoft.logeek.repository.LoanContractRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import static com.luxoft.logeek.service.LtavCalculatorValidator.isValidDto;
+
+@SuppressWarnings("ALL")
 @Component
 public class LtavServiceImpl implements LtavService {
-	private final CashFlowServiceLocal cashFlowServiceLocal;
+	private final CashFlowServiceLocal localService;
 	private final CashFlowRepository cashFlowRepository;
+	private final LoanContractRepository jpaRepository;
+	private SaveService saveService;
 
 	@Autowired
-	public LtavServiceImpl(CashFlowServiceLocal cashFlowServiceLocal, CashFlowRepository cashFlowRepository) {
-		this.cashFlowServiceLocal = cashFlowServiceLocal;
+	public LtavServiceImpl(CashFlowServiceLocal localService, CashFlowRepository cashFlowRepository, LoanContractRepository jpaRepository) {
+		this.localService = localService;
 		this.cashFlowRepository = cashFlowRepository;
+		this.jpaRepository = jpaRepository;
 	}
 
 	@Override
-	@Transactional
-	public Long createLtavCashFlow(LtavCashFlowDetailsDTO detailsDTO, Optional<LtavCalculationModelDTO> calculationModel) throws ServerCodeException {
-		validate(detailsDTO);
+	public void createCashFlow(CashFlowDTO dto) {
+		validate(dto);
 
-		Long cashFlowId = cashFlowServiceLocal.createLtavCashFlow(detailsDTO, calculationModel.orElse(null));
-		CashFlowEntity cashFlowEntity = cashFlowRepository.findOne(cashFlowId);
-		cashFlowServiceLocal.afterCreateCashFlowProcessing(cashFlowEntity, detailsDTO.getId() != null);
-
-		return cashFlowId;
+		localService.createCashFlow(dto);
 	}
 
-	private void validate(LtavCashFlowDetailsDTO detailsDTO) throws ServerCodeException {
-		Integer imoNumber = detailsDTO.getImoNumber();
+	private void validate(CashFlowDTO dto) {
+		boolean inValidIMO = isValidDto(dto);
 
-		boolean inValidIMO = validateIMO(imoNumber);
 		if (!inValidIMO) {
-			throw new ServerCodeException("IMO number is not valid");
-		}
-
-		int count = validateLtavCashFlowDetailsCount(imoNumber);
-		if (count > 0) {
-			throw new ServerCodeException("IMO number is not unique");
+			throw new IllegalArgumentException("IMO number is not valid");
 		}
 	}
 
@@ -54,6 +49,41 @@ public class LtavServiceImpl implements LtavService {
 
 	private int validateLtavCashFlowDetailsCount(Integer imoNumber) {
 		return imoNumber - 3;
+	}
+
+	public void saveChanges(Set<AuditAware> items) {
+		items.stream().filter(AuditAware::isAuditable).forEach(this::audit);
+	}
+
+	//todo must be in separate benchmark
+	public void audit(AuditAware entity) {
+		List<AuditEntity> entities = splitToAuditTrails(entity);
+
+		saveService.save(entities); //DB accessed here
+
+		entity.getModifiedColumns().clear();
+	}
+
+	private List<AuditEntity> splitToAuditTrails(AuditAware entity) {
+		return null;
+	}
+
+	public void saveChangesEffectively(Set<AuditAware> inserts) {
+		List<AuditEntity> entities = inserts.stream()
+				.filter(AuditAware::isAuditable)
+				.map(this::convertIntoAuditEntities)
+				.flatMap(List::stream)
+				.collect(Collectors.toList());
+
+		saveService.save(entities);
+	}
+
+	public List<AuditEntity> convertIntoAuditEntities(AuditAware entity) {
+		List<AuditEntity> entities = splitToAuditTrails(entity);
+
+		entity.getModifiedColumns().clear();
+
+		return entities;
 	}
 
 

@@ -1,32 +1,21 @@
 package com.luxoft.logeek.benchmark.transaction;
 
-import com.luxoft.logeek.AppConfig;
-import com.luxoft.logeek.dto.LtavCashFlowDetailsDTO;
-import com.luxoft.logeek.service.ltav.LtavLazyServiceImpl;
-import com.luxoft.logeek.service.ltav.LtavService;
+import com.luxoft.logeek.dto.CashFlowDTO;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.Optional;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @State(Scope.Benchmark)
 public class LazyTransactionBenchmark extends TransactionBenchmark {
-	private LtavCashFlowDetailsDTO dto;
+	private CashFlowDTO dto;
 
 	@Setup()
 	public void init() {
-		if (ltavService == null) {
-			ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-			ltavService=context.getBean("remote", LtavService.class);
-
-			random =new Random(System.currentTimeMillis());
-		}
+		super.initContext();
 	}
 
 	@Setup(Level.Iteration)
