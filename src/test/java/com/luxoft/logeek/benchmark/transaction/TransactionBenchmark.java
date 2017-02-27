@@ -2,7 +2,6 @@ package com.luxoft.logeek.benchmark.transaction;
 
 import com.luxoft.logeek.benchmark.BenchmarkBase;
 import com.luxoft.logeek.dto.CashFlowDTO;
-import com.luxoft.logeek.service.ltav.LtavService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,13 +9,9 @@ import java.util.List;
 public class TransactionBenchmark extends BenchmarkBase {
 
 	protected static final int DTO_COUNT = 100;
-	protected LtavService ltavService;
 
 	protected void initContext() {
 		super.initContext();
-		if (ltavService == null) {
-			ltavService = context.getBean(LtavService.class);
-		}
 	}
 
 	protected List<CashFlowDTO> initData() {

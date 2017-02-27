@@ -1,6 +1,5 @@
 package com.luxoft.logeek.benchmark.transaction.runner;
 
-import com.luxoft.logeek.benchmark.sequence.EagerSequenceBenchmark;
 import com.luxoft.logeek.benchmark.transaction.EagerTransactionBenchmark;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;

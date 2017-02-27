@@ -1,21 +1,22 @@
 package com.luxoft.logeek.benchmark.transaction;
 
 import com.luxoft.logeek.dto.CashFlowDTO;
+import com.luxoft.logeek.service.ltav.LazyLtavService;
 import org.openjdk.jmh.annotations.*;
-import org.openjdk.jmh.infra.Blackhole;
 
-import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 @BenchmarkMode(Mode.AverageTime)
-@OutputTimeUnit(TimeUnit.MILLISECONDS)
+@OutputTimeUnit(TimeUnit.MICROSECONDS)
 @State(Scope.Benchmark)
 public class LazyTransactionBenchmark extends TransactionBenchmark {
 	private CashFlowDTO dto;
+	private LazyLtavService service;
 
 	@Setup()
 	public void init() {
 		super.initContext();
+		service = context.getBean(LazyLtavService.class);
 	}
 
 	@Setup(Level.Iteration)
@@ -24,12 +25,11 @@ public class LazyTransactionBenchmark extends TransactionBenchmark {
 	}
 
 	@Benchmark
-	public void execute(Blackhole bh) {
+	public Long execute() {
 		try {
-			Long ltavCashFlow = ltavService.createLtavCashFlow(dto, Optional.empty());
-			bh.consume(ltavCashFlow);
+			return service.createLtavCashFlow(dto);
 		} catch (RuntimeException e) {
-			bh.consume(e);
+			return System.currentTimeMillis() >>> 3;
 		}
 	}
 

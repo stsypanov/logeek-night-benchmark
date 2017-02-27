@@ -1,6 +1,5 @@
 package com.luxoft.logeek.benchmark.transaction.runner;
 
-import com.luxoft.logeek.benchmark.transaction.EagerTransactionBenchmark;
 import com.luxoft.logeek.benchmark.transaction.LazyTransactionBenchmark;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
@@ -14,7 +13,7 @@ public class LazyTransactionBenchmarkRunner {
 				.include(LazyTransactionBenchmark.class.getSimpleName())
 				.warmupIterations(5)
 				.measurementIterations(20)
-				.forks(0)//0 makes debugging possible
+				.forks(1)//0 makes debugging possible
 				.build();
 
 		new Runner(opt).run();
