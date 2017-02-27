@@ -42,7 +42,7 @@ public class AuditBenchmark extends BenchmarkBase {
 
 	@TearDown(Level.Iteration)
 	public void tearDown() {
-		auditTrailRepository.deleteAll();
+		auditTrailRepository.deleteAllInBatch();
 	}
 
 	@Benchmark
