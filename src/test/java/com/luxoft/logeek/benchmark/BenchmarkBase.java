@@ -1,7 +1,6 @@
 package com.luxoft.logeek.benchmark;
 
 import com.luxoft.logeek.AppConfig;
-import com.luxoft.logeek.JpaConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.Random;
@@ -14,7 +13,7 @@ public abstract class BenchmarkBase {
 	protected AnnotationConfigApplicationContext context;
 
 	protected void initContext() {
-		context = new AnnotationConfigApplicationContext(JpaConfig.class, AppConfig.class);
+		context = new AnnotationConfigApplicationContext(AppConfig.class);
 		random = new Random(System.currentTimeMillis());
 	}
 }
