@@ -15,8 +15,8 @@ public class EagerSequenceBenchmark extends SequnceBenchmark {
 	}
 
 	@Benchmark
-	public void execute() {
+	public long execute() {
 		long facility = random.nextInt(facilityBound);
-		service.doCalculation(facility);
+		return service.doCalculationEagerly(facility);
 	}
 }

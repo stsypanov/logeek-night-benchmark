@@ -15,8 +15,8 @@ public class LazySequenceBenchmark extends SequnceBenchmark{
 	}
 
 	@Benchmark
-	public void execute() {
+	public long execute() {
 		long facility = random.nextInt(facilityBound);
-		service.doCalculationLazily(facility);
+		return service.doCalculationLazily(facility);
 	}
 }

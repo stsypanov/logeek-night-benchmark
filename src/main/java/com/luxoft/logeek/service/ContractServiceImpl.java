@@ -18,7 +18,7 @@ public class ContractServiceImpl implements ContractService {
 	}
 
 	@Override
-	public long doCalculation(Long facility) {
+	public long doCalculationEagerly(Long facility) {
 		BigDecimal compensation = jpaRepository.findCompensationByFacility(facility);
 		BigDecimal deposit = jpaRepository.findDepositByFacilityId(facility);
 		BigDecimal outstanding = jpaRepository.findOutstandingByFacility(facility);
@@ -28,9 +28,9 @@ public class ContractServiceImpl implements ContractService {
 		boolean hasOutstanding = outstanding.signum() > 0;
 
 		if (hasDeposit || hasCompensation) {
-			return calculateWihtCompensation();
+			return calculateWithCompensation();
 		} else if (hasOutstanding) {
-			return calculateWihtOutstanding();
+			return calculateWithOutstanding();
 		} else {
 			return calculateDefault();
 		}
@@ -54,19 +54,19 @@ public class ContractServiceImpl implements ContractService {
 	@Override
 	public long doCalculationLazily(Long facility) {
 		if (hasDeposit.or(hasCompensation).test(facility)) {
-			return calculateWihtCompensation();
+			return calculateWithCompensation();
 		} else if (hasOutstanding.test(facility)) {
-			return calculateWihtOutstanding();
+			return calculateWithOutstanding();
 		} else {
 			return calculateDefault();
 		}
 	}
 
-	private long calculateWihtCompensation() {
+	private long calculateWithCompensation() {
 		return System.currentTimeMillis() << 2;
 	}
 
-	private long calculateWihtOutstanding() {
+	private long calculateWithOutstanding() {
 		return System.currentTimeMillis() >> 6;
 	}
 
