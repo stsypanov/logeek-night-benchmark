@@ -1,17 +1,18 @@
 package com.luxoft.logeek.service;
 
 import com.luxoft.logeek.dto.CashFlowDTO;
-import com.luxoft.logeek.entity.CashFlowEntity;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Random;
 
-@Component
+@Service
+@Transactional
 public class CashFlowServiceLocalImpl implements CashFlowServiceLocal {
 	private final Random random;
 
 	public CashFlowServiceLocalImpl() {
-		random=new Random(System.currentTimeMillis());
+		random = new Random(System.currentTimeMillis());
 	}
 
 	@Override
@@ -19,8 +20,4 @@ public class CashFlowServiceLocalImpl implements CashFlowServiceLocal {
 		return random.nextLong();
 	}
 
-	@Override
-	public void afterCreateCashFlowProcessing(CashFlowEntity cashFlowEntity, boolean b) {
-		
-	}
 }
