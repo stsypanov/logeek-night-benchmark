@@ -14,7 +14,7 @@
 			<AppenderRef ref="ASYNC_CONSOLE"/>
 		</Logger>
 
-		<Logger name= "org.springframework.transaction" level="trace" additivity="false">
+		<Logger name= "org.springframework.transaction" level="error" additivity="false">
 			<AppenderRef ref="ASYNC_CONSOLE"/>
 		</Logger>
 
@@ -22,15 +22,15 @@
 			<AppenderRef ref="ASYNC_CONSOLE"/>
 		</Logger>
 
-		<Logger name= "org.hibernate.jpa" level="info" additivity="false">
+		<Logger name= "org.hibernate.jpa" level="error" additivity="false">
 			<AppenderRef ref="ASYNC_CONSOLE"/>
 		</Logger>
 
-		<Logger name= "org.hibernate" level="warn" additivity="false">
+		<Logger name= "org.hibernate" level="error" additivity="false">
 			<AppenderRef ref="ASYNC_CONSOLE"/>
 		</Logger>
 
-		<Root level="all">
+		<Root level="info">
 			<AppenderRef ref="ASYNC_CONSOLE"/>
 		</Root>
 	</Loggers>
