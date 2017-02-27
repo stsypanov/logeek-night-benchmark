@@ -20,7 +20,7 @@
 		<spring.version>4.3.6.RELEASE</spring.version>
 		<hibernate.version>5.2.6.Final</hibernate.version>
 
-		<jmh.version>1.17.4</jmh.version>
+		<jmh.version>1.17.5</jmh.version>
 	</properties>
 
 	<dependencies>
