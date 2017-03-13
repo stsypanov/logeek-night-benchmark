@@ -28,7 +28,7 @@ public class AuditSaveServiceImpl implements AuditSaveService {
         List<AuditTrailEntity> result = new ArrayList<>();
         auditTrails.forEach(auditTrail -> {
             result.add(auditTrail);
-//			result.addAll(auditTrail.getChildren());
+			result.addAll(auditTrail.getChildren());
         });
         auditTrailRepository.save(result);
     }

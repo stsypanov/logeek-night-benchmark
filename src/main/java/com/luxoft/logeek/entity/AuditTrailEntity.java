@@ -30,4 +30,8 @@ public class AuditTrailEntity {
 	public AuditTrailEntity(Long id) {
 		this.id = id;
 	}
+
+	public Collection<? extends AuditTrailEntity> getChildren() {
+		return null;
+	}
 }
