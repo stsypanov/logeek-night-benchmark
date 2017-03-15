@@ -22,6 +22,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 @EnableJpaRepositories("com.luxoft.logeek.repository")
 @ComponentScan(basePackages = "com.luxoft.logeek")
+//@EnableAspectJAutoProxy//uncomment for aspects benchmarking
 public class AppConfig {
 
 	@Bean
