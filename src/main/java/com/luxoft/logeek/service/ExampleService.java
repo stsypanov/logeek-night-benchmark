@@ -4,4 +4,6 @@ public interface ExampleService {
 	long doIneffectively();
 
 	long doEffectively();
+
+	long doEvenMoreEffectively();
 }
