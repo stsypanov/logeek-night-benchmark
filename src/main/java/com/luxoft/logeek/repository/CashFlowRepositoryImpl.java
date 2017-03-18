@@ -16,7 +16,7 @@ public class CashFlowRepositoryImpl extends BaseDao implements CashFlowRepositor
 
 		if (checkedIds.isEmpty()) return Collections.emptyList();
 
-		String query = "select e from SomeEntity e " +
+		String query = "select e from ContractEntity c " +
 					   " where e.property = true " +
 					   "   and e.id in :checkedIds";
 
@@ -27,7 +27,7 @@ public class CashFlowRepositoryImpl extends BaseDao implements CashFlowRepositor
 
 	@Override
 	public List<ContractEntity> findIneffectively(Collection<Long> checkedIds) {
-		String query = "select e from SomeEntity e " +
+		String query = "select e from ContractEntity e " +
 					   " where e.property = true ";
 
 		List<ContractEntity> entities = em
