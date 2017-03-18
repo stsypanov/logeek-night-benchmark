@@ -1,10 +1,19 @@
 package com.luxoft.logeek.entity;
 
-/**
- * Created by Наталя on 13.03.2017.
- */
+import lombok.Getter;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class RatingEntity {
+    @Id
+    private Long id;
+    @Column
+    private boolean hasGoodRating;
+
     public boolean hasGoodRating() {
-        return false;
+        return hasGoodRating;
     }
 }

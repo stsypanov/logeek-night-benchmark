@@ -1,12 +1,17 @@
 package com.luxoft.logeek.entity;
 
-/**
- * Created by Наталя on 13.03.2017.
- */
+import lombok.Getter;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Getter
+@Entity
 public class ChildEntity {
+    @Id
+    private Long id;
+    @ManyToOne
     private RatingEntity ratingEnity;
 
-    public RatingEntity getRatingEnity() {
-        return ratingEnity;
-    }
 }
