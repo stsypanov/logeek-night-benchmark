@@ -1,7 +1,6 @@
 package com.luxoft.logeek.benchmark.equals.runner;
 
 import com.luxoft.logeek.benchmark.equals.EqualsBenchmark;
-import com.luxoft.logeek.benchmark.sequence.EagerSequenceBenchmark;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;

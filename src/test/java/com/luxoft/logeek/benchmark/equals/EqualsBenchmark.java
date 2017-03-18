@@ -8,10 +8,8 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
-/**
- * Created by Сергей on 16.01.2017.
- */
 @BenchmarkMode({Mode.AverageTime})
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @State(Scope.Benchmark)
@@ -109,7 +107,7 @@ public class EqualsBenchmark {
 	}
 
 	private List<Integer> createRandomCollectionOf10() {
-		return random.ints(10).map(Integer::valueOf).collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+		return random.ints(10).boxed().collect(Collectors.toList());
 	}
 
 	@Benchmark
