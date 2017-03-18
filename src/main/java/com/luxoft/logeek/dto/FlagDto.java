@@ -1,15 +1,11 @@
 package com.luxoft.logeek.dto;
 
-/**
- * Created by Наталя on 13.03.2017.
- */
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public class FlagDto {
-
-    public boolean isValid() {
-        return false;
-    }
-
-    public boolean isActive() {
-        return false;
-    }
+    private boolean isValid;
 }
+
