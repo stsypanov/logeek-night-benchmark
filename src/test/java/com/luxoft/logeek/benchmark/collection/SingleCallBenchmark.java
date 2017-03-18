@@ -2,7 +2,6 @@ package com.luxoft.logeek.benchmark.collection;
 
 import com.luxoft.logeek.dto.UserDto;
 import com.luxoft.logeek.entity.User;
-import org.junit.After;
 import org.openjdk.jmh.annotations.*;
 
 import java.util.List;
@@ -31,7 +30,7 @@ public class SingleCallBenchmark extends EntityCollectionBenchmark {
 				.collect(Collectors.toList());
 	}
 
-	@After
+	@TearDown
 	public void tearDown() throws Exception {
 		repository.deleteAllInBatch();
 	}
