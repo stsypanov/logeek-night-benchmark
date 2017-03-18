@@ -8,10 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 
-@Entity
-@Table(name = "LOAN_CONTRACT")
 @Getter
-public class LoanContractEntity {
+@Entity
+@Table(name = "CONTRACT")
+public class ContractEntity {
 	@Id
 	private long id;
 
@@ -27,10 +27,10 @@ public class LoanContractEntity {
 	@Column
 	BigDecimal outstanding;
 
-	LoanContractEntity() {
+	ContractEntity() {
 	}
 
-	public LoanContractEntity(long id, long facility, double compensation, double deposit, double outstanding) {
+	public ContractEntity(long id, long facility, double compensation, double deposit, double outstanding) {
 		this.id = id;
 		this.facility = facility;
 		this.compensation = new BigDecimal(compensation);

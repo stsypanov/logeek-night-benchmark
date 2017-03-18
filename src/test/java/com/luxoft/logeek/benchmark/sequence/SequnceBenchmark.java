@@ -1,7 +1,7 @@
 package com.luxoft.logeek.benchmark.sequence;
 
 import com.luxoft.logeek.benchmark.BenchmarkBase;
-import com.luxoft.logeek.entity.LoanContractEntity;
+import com.luxoft.logeek.entity.ContractEntity;
 import com.luxoft.logeek.repository.LoanContractRepository;
 import com.luxoft.logeek.service.ContractService;
 
@@ -30,10 +30,10 @@ public class SequnceBenchmark extends BenchmarkBase {
 
 	protected void populateTable() {
 		int count = 100000;//number of rows in table
-		List<LoanContractEntity> items = new ArrayList<>(count);
+		List<ContractEntity> items = new ArrayList<>(count);
 		for (long i = 0; i < count; i++) {
 			int sign = i % 2 == 0 ? 1 : -1;//should value be positive / negative
-			LoanContractEntity entity = new LoanContractEntity(
+			ContractEntity entity = new ContractEntity(
 					i,
 					random.nextInt(facilityBound),// facility [0...3] used in 'where'-clause
 					random.nextInt(10000)*sign,

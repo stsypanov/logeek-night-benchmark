@@ -1,7 +1,13 @@
 package com.luxoft.logeek.repository;
 
-import com.luxoft.logeek.entity.CashFlowEntity;
+import com.luxoft.logeek.entity.ContractEntity;
+
+import java.util.Collection;
+import java.util.List;
 
 public interface CashFlowRepository {
-	CashFlowEntity findOne(Long cashFlowId);
+
+	List<ContractEntity> findEffectively(Collection<Long> checkedIds);
+
+	List<ContractEntity> findIneffectively(Collection<Long> checkedIds);
 }
