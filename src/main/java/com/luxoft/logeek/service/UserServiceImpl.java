@@ -5,7 +5,6 @@ import com.luxoft.logeek.entity.User;
 import com.luxoft.logeek.repository.UserRepository;
 import com.luxoft.logeek.service.ltav.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +15,7 @@ import java.util.stream.Collectors;
 @Service
 @Transactional(readOnly = true)
 public class UserServiceImpl implements UserService {
-	
+
 	private final UserRepository userRepository;
 
 	@Autowired

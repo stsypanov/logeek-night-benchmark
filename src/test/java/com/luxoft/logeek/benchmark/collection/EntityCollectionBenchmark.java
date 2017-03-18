@@ -14,13 +14,13 @@ public class EntityCollectionBenchmark extends BenchmarkBase {
 	private static final int ENTITY_COUNT = 1000;
 	
 	protected UserService service;
-	protected UserRepository userRepository;
+	protected UserRepository repository;
 	
 	protected void initContext() {
 		super.initContext();
 		if (service == null) {
 			service = context.getBean(UserService.class);
-			userRepository = context.getBean(UserRepository.class);
+			repository = context.getBean(UserRepository.class);
 		}
 	}
 	
@@ -41,7 +41,7 @@ public class EntityCollectionBenchmark extends BenchmarkBase {
 			users.add(user);
 		}
 		
-		userRepository.save(users);
+		repository.save(users);
 		
 		Collections.shuffle(userIds);//different id sequence for every iteration
 		
