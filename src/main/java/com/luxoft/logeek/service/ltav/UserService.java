@@ -1,12 +1,14 @@
 package com.luxoft.logeek.service.ltav;
 
+import com.luxoft.logeek.dto.UserDto;
 import com.luxoft.logeek.entity.User;
 
 import java.util.List;
+import java.util.Set;
 
 public interface UserService {
 
-	List<User> findInLoop(List<Long> ids);
+	Set<User> findInLoop(List<UserDto> ids);
 
-	List<User> findWithSingleCall(List<Long> ids);
+	List<User> findWithSingleCall(List<UserDto> ids);
 }

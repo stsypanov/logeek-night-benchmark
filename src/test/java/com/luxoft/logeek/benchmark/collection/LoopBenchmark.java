@@ -1,11 +1,13 @@
 package com.luxoft.logeek.benchmark.collection;
 
+import com.luxoft.logeek.dto.UserDto;
 import com.luxoft.logeek.entity.User;
 import org.openjdk.jmh.annotations.*;
-import org.openjdk.jmh.infra.Blackhole;
 
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * Measure retrieving collection of entities in loop one by one
@@ -15,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 @State(Scope.Benchmark)
 public class LoopBenchmark extends EntityCollectionBenchmark {
 
-	private List<Long> ids;
+	private List<UserDto> userDtos;
 
 	@Setup()
 	public void init() {
@@ -24,13 +26,13 @@ public class LoopBenchmark extends EntityCollectionBenchmark {
 
 	@Setup(Level.Iteration)
 	public void initIds() {
-		ids = populateTable();
+		userDtos = populateTable().stream()
+				.map(UserDto::new)
+				.collect(Collectors.toList());
 	}
 
 	@Benchmark
-	public List<User> execute(Blackhole bh) {
-		List<User> users = service.findInLoop(ids);
-		bh.consume(users);
-		return users;
+	public Set<User> execute() {
+		return service.findInLoop(userDtos);
 	}
 }
