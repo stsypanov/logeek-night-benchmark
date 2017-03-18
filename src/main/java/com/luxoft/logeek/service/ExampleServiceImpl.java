@@ -3,7 +3,7 @@ package com.luxoft.logeek.service;
 import com.luxoft.logeek.dto.Dto;
 import com.luxoft.logeek.dto.FlagDto;
 import com.luxoft.logeek.entity.SomeEntity;
-import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
+import com.luxoft.logeek.repository.SomeJpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -12,10 +12,10 @@ import java.util.function.Predicate;
 @Service
 public class ExampleServiceImpl implements ExampleService {
 
-    private final SimpleJpaRepository<SomeEntity, Long> jpaRepository;
+    private final SomeJpaRepository jpaRepository;
     private final Predicate<Long> hasGoodRatingPredicate;
 
-    public ExampleServiceImpl(SimpleJpaRepository<SomeEntity, Long> jpaRepository) {
+    public ExampleServiceImpl(SomeJpaRepository jpaRepository) {
         this.jpaRepository = jpaRepository;
 
         this.hasGoodRatingPredicate = id -> {
