@@ -1,12 +1,11 @@
 package com.luxoft.logeek.dto;
 
-import java.util.Optional;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-/**
- * Created by Наталя on 13.03.2017.
- */
+@Getter
+@AllArgsConstructor
 public class Dto {
-    public Optional<FlagDto> getValue() {
-        return null;
-    }
+    private boolean isValid;
 }
+

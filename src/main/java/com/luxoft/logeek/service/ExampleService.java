@@ -1,9 +1,11 @@
 package com.luxoft.logeek.service;
 
+import com.luxoft.logeek.dto.Dto;
+
 public interface ExampleService {
-	long doIneffectively();
+	long doIneffectively(Long id, Dto Dto);
 
-	long doEffectively();
+	long doEffectively(Long id, Dto Dto);
 
-	long doEvenMoreEffectively();
+	long doMostEffectively(Long id, Dto Dto);
 }
