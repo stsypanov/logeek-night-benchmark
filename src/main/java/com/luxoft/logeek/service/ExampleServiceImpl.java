@@ -22,7 +22,7 @@ public class ExampleServiceImpl implements ExampleService {
 
         this.hasGoodRatingPredicate = id -> {
 			SomeEntity entity = jpaRepository.findOne(id);
-			return entity.getChildEntity().getRatingEnity().hasGoodRating();
+			return entity.getChildEntity().getRating().hasGoodRating();
 		};
         this.moreEffectiveRatingPredicate = id -> {
 			RatingEntity ratingEntity = jpaRepository.findRating(id);
@@ -41,7 +41,7 @@ public class ExampleServiceImpl implements ExampleService {
         Optional<FlagDto> optionalDto = dto.getValue();
         SomeEntity entity = jpaRepository.findOne(id);
 
-        boolean hasGoodRating = entity.getChildEntity().getRatingEnity().hasGoodRating();
+        boolean hasGoodRating = entity.getChildEntity().getRating().hasGoodRating();
         boolean hasValidFlags = optionalDto.map(FlagDto::isValid).orElse(false);
 
         if (hasGoodRating && hasValidFlags) {

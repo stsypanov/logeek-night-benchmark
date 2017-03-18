@@ -12,6 +12,6 @@ public class ChildEntity {
     @Id
     private Long id;
     @ManyToOne
-    private RatingEntity ratingEnity;
+    private RatingEntity rating;
 
 }
