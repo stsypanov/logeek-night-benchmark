@@ -13,6 +13,6 @@ public class ChildEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private RatingEntity rating;
+    private RatingEntity ratingEntity;
 
 }

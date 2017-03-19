@@ -30,7 +30,7 @@ public class ExampleBenchmark extends BenchmarkBase {
 		RatingEntity rating = new RatingEntity();
 
 		ChildEntity child = new ChildEntity();
-		child.setRating(rating);
+		child.setRatingEntity(rating);
 
 		SomeEntity someEntity = new SomeEntity();
 		someEntity.setId(id);

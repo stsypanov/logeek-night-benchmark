@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.function.Predicate;
 
+@SuppressWarnings("ALL")
 @Service
 @Transactional(readOnly = true)
 public class ExampleServiceImpl implements ExampleService {
@@ -22,7 +23,7 @@ public class ExampleServiceImpl implements ExampleService {
 
 		this.hasGoodRatingPredicate = id -> {
 			SomeEntity entity = jpaRepository.findOne(id);
-			return entity.getChildEntity().getRating().hasGoodRating();
+			return entity.getChildEntity().getRatingEntity().hasGoodRating();
 		};
 		this.moreEffectiveRatingPredicate = id -> {
 			RatingEntity ratingEntity = jpaRepository.findRating(id);
@@ -37,10 +38,10 @@ public class ExampleServiceImpl implements ExampleService {
 	public long doIneffectively(Long id, Dto dto) {
 		SomeEntity entity = jpaRepository.findOne(id);
 
-		boolean hasGoodRating = entity.getChildEntity().getRating().hasGoodRating();
-		boolean hasValidFlags = dto.isValid();
+		boolean hasGoodRating = entity.getChildEntity().getRatingEntity().hasGoodRating();
+		boolean isValid = dto.isValid();
 
-		if (hasGoodRating && hasValidFlags) {
+		if (hasGoodRating && isValid) {
 			return System.currentTimeMillis() >> 2;
 		} else {
 			return System.currentTimeMillis() << 3;
@@ -49,9 +50,9 @@ public class ExampleServiceImpl implements ExampleService {
 
 	@Override
 	public long doEffectively(Long id, Dto dto) {
-		boolean valid = dto.isValid();
+		boolean isValid = dto.isValid();
 
-		if (valid && hasGoodRatingPredicate.test(id)) {
+		if (isValid && hasGoodRatingPredicate.test(id)) {
 			return System.currentTimeMillis() >> 2;
 		} else {
 			return System.currentTimeMillis() << 3;
