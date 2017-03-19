@@ -6,9 +6,6 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
-/**
- * Created by Сергей on 12.02.2017.
- */
 @Getter
 @Entity
 @Table(name = "ATE")
