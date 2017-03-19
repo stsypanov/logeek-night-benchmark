@@ -11,8 +11,8 @@ public class AuditBenchmarkRunner {
 	public static void main(String[] args) throws RunnerException {
 		Options opt = new OptionsBuilder()
 				.include(AuditBenchmark.class.getSimpleName())
-				.warmupIterations(2)
-				.measurementIterations(2)
+				.warmupIterations(10)
+				.measurementIterations(10)
 				.forks(1)//0 makes debugging possible
 				.build();
 

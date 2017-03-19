@@ -1,7 +1,7 @@
 package com.luxoft.logeek.service;
 
 import com.luxoft.logeek.AppConfig;
-import com.luxoft.logeek.entity.AuditEntity;
+import com.luxoft.logeek.dto.AuditDto;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,9 +23,9 @@ public class AuditLocalServiceImplTest {
 
 	@Autowired AuditLocalService service;
 
-	private Set<AuditAware> inserts;
-	private Set<AuditAware> updates;
-	private Set<AuditAware> deletes;
+	private Set<AuditDto> inserts;
+	private Set<AuditDto> updates;
+	private Set<AuditDto> deletes;
 
 	@Before
 	public void setUp() throws Exception {
@@ -33,8 +33,8 @@ public class AuditLocalServiceImplTest {
 		updates = new HashSet<>();
 		deletes = new HashSet<>();
 
-		for (int i = 0; i < 100; i++) {
-			inserts.add(new AuditEntity());
+		for (long i = 0; i < 100; i++) {
+			inserts.add(new AuditDto(i));
 		}
 	}
 

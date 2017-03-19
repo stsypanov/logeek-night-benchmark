@@ -1,7 +1,7 @@
 package com.luxoft.logeek.service;
 
-import com.luxoft.logeek.entity.AuditTrailEntity;
-import com.luxoft.logeek.repository.AuditTrailRepository;
+import com.luxoft.logeek.entity.AuditEntity;
+import com.luxoft.logeek.repository.AuditRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
@@ -12,25 +12,24 @@ import java.util.Collection;
 import java.util.List;
 
 @Component
-public class AuditSaveServiceImpl implements AuditSaveService {
+public class SaverImpl implements Saver {
 
-    private final AuditTrailRepository auditTrailRepository;
+    private final AuditRepository repository;
 
     @Autowired
-    public AuditSaveServiceImpl(AuditTrailRepository auditTrailRepository) {
-        this.auditTrailRepository = auditTrailRepository;
+    public SaverImpl(AuditRepository repository) {
+        this.repository = repository;
     }
-
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void save(Collection<AuditTrailEntity> auditTrails) {
-        List<AuditTrailEntity> result = new ArrayList<>();
+    public void save(Collection<AuditEntity> auditTrails) {
+        List<AuditEntity> result = new ArrayList<>();
         auditTrails.forEach(auditTrail -> {
             result.add(auditTrail);
 			result.addAll(auditTrail.getChildren());
         });
-        auditTrailRepository.save(result);
+        repository.save(result);
     }
 
 }

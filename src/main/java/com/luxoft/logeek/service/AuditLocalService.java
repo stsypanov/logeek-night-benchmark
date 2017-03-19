@@ -1,16 +1,11 @@
 package com.luxoft.logeek.service;
 
-import com.luxoft.logeek.entity.AuditAction;
+import com.luxoft.logeek.dto.AuditDto;
 
-import java.util.Set;
+import java.util.Collection;
 
-/**
- * Created by Сергей on 12.02.2017.
- */
 public interface AuditLocalService {
+	void auditChanges(Collection<AuditDto> inserts, Collection<AuditDto> updates, Collection<AuditDto> deletes);
 
-	void auditChanges(Set<AuditAware> inserts, Set<AuditAware> updates, Set<AuditAware> deletes);
-
-	void audit(AuditAware auditAware, AuditAction action);
-
+	void auditChangesEffectively(Collection<AuditDto> inserts, Collection<AuditDto> updates, Collection<AuditDto> deletes);
 }

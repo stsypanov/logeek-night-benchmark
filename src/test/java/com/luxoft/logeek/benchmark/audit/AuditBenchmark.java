@@ -1,32 +1,30 @@
 package com.luxoft.logeek.benchmark.audit;
 
 import com.luxoft.logeek.benchmark.BenchmarkBase;
-import com.luxoft.logeek.entity.AuditEntity;
-import com.luxoft.logeek.repository.AuditTrailRepository;
-import com.luxoft.logeek.service.AuditAware;
+import com.luxoft.logeek.dto.AuditDto;
+import com.luxoft.logeek.repository.AuditRepository;
 import com.luxoft.logeek.service.AuditLocalService;
 import org.openjdk.jmh.annotations.*;
-import org.openjdk.jmh.infra.Blackhole;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-@BenchmarkMode(Mode.AverageTime)
+@BenchmarkMode({Mode.AverageTime, Mode.Throughput})
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @State(Scope.Benchmark)
 public class AuditBenchmark extends BenchmarkBase {
 	private AuditLocalService service;
-	private AuditTrailRepository auditTrailRepository;
-	private Set<AuditAware> inserts;
-	private Set<AuditAware> updates;
-	private Set<AuditAware> deletes;
+	private AuditRepository auditRepository;
+	private Set<AuditDto> inserts;
+	private Set<AuditDto> updates;
+	private Set<AuditDto> deletes;
 
 	@Setup()
 	public void init() {
 		super.initContext();
 		service = context.getBean(AuditLocalService.class);
-		auditTrailRepository = context.getBean(AuditTrailRepository.class);
+		auditRepository = context.getBean(AuditRepository.class);
 	}
 
 	@Setup(Level.Iteration)
@@ -35,23 +33,25 @@ public class AuditBenchmark extends BenchmarkBase {
 		updates = new HashSet<>();
 		deletes = new HashSet<>();
 
-		for (int i = 0; i < 100; i++) {
-			inserts.add(new AuditEntity());
+		for (long i = 0; i < 100; i++) {
+			inserts.add(new AuditDto(i));
+			updates.add(new AuditDto(i * 2));
+			deletes.add(new AuditDto(i * 3));
 		}
 	}
 
 	@TearDown(Level.Iteration)
 	public void tearDown() {
-		auditTrailRepository.deleteAllInBatch();
+		auditRepository.deleteAllInBatch();
 	}
 
 	@Benchmark
-	public void execute(Blackhole bh) {
-		try {
-			service.auditChanges(inserts, updates, deletes);
-		} catch (RuntimeException e) {
-			bh.consume(e);
-		}
+	public void auditChanges() {
+		service.auditChanges(inserts, updates, deletes);
 	}
 
+	@Benchmark
+	public void auditChangesEffectively() {
+		service.auditChangesEffectively(inserts, updates, deletes);
+	}
 }
