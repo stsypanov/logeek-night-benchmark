@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface SomeJpaRepository extends JpaRepository<SomeEntity, Long> {
 
-	@Query("select child.rating from SomeEntity se " +
+	@Query("select child.ratingEntity from SomeEntity se " +
 			" join se.childEntity child " +
 			"where se.id = :id")
 	RatingEntity findRating(@Param("id") Long id);
