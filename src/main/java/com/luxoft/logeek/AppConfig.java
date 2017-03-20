@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
-import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
@@ -47,19 +46,11 @@ public class AppConfig {
 		em.setDataSource(dataSource());
 		em.setJpaVendorAdapter(jpaVendorAdapter());
 		em.setPackagesToScan("com.luxoft.logeek.entity");
-		em.setJpaProperties(additionalProperties());
 		return em;
 	}
 
 	@Bean
 	public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
 		return new JpaTransactionManager(entityManagerFactory);
-	}
-
-	private Properties additionalProperties() {
-		Properties properties = new Properties();
-		properties.setProperty("hibernate.show_sql", "false");
-		properties.setProperty("hibernate.format_sql", "false");
-		return properties;
 	}
 }
