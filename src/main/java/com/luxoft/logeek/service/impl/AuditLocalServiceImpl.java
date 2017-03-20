@@ -1,8 +1,10 @@
-package com.luxoft.logeek.service;
+package com.luxoft.logeek.service.impl;
 
 import com.luxoft.logeek.dto.AuditDto;
 import com.luxoft.logeek.entity.AuditAction;
 import com.luxoft.logeek.entity.AuditEntity;
+import com.luxoft.logeek.service.AuditLocalService;
+import com.luxoft.logeek.service.Saver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,7 +1,8 @@
-package com.luxoft.logeek.service;
+package com.luxoft.logeek.service.impl;
 
 import com.luxoft.logeek.entity.AuditEntity;
 import com.luxoft.logeek.repository.AuditRepository;
+import com.luxoft.logeek.service.Saver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;

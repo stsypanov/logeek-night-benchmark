@@ -1,6 +1,7 @@
-package com.luxoft.logeek.service;
+package com.luxoft.logeek.service.impl;
 
 import com.luxoft.logeek.dto.CashFlowDTO;
+import com.luxoft.logeek.service.CashFlowServiceLocal;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

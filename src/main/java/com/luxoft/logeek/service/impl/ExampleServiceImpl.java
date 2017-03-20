@@ -1,9 +1,10 @@
-package com.luxoft.logeek.service;
+package com.luxoft.logeek.service.impl;
 
 import com.luxoft.logeek.dto.Dto;
 import com.luxoft.logeek.entity.RatingEntity;
 import com.luxoft.logeek.entity.SomeEntity;
 import com.luxoft.logeek.repository.SomeJpaRepository;
+import com.luxoft.logeek.service.ExampleService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

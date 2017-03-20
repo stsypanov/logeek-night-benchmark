@@ -1,4 +1,4 @@
-package com.luxoft.logeek.service;
+package com.luxoft.logeek.service.impl;
 
 import com.luxoft.logeek.dto.UserDto;
 import com.luxoft.logeek.entity.User;
