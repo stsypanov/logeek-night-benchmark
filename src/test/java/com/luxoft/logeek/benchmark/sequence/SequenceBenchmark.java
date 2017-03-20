@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @State(Scope.Benchmark)
-public class LazySequenceBenchmark extends BenchmarkBase {
+public class SequenceBenchmark extends BenchmarkBase {
 	private static final int facilityBound = 3;
 
 	private ContractService service;
