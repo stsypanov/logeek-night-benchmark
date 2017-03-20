@@ -12,7 +12,4 @@ public class RefBookingBranchEntity {
 		return usBookingEntity;
 	}
 
-	public void setUsBookingEntity(boolean usBookingEntity) {
-		this.usBookingEntity = usBookingEntity;
-	}
 }
