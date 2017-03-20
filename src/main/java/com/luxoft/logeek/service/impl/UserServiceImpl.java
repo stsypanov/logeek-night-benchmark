@@ -39,4 +39,49 @@ public class UserServiceImpl implements UserService {
 
 		return userRepository.findAll(ids);  //todo check if it returns unique values
 	}
+
+	@SuppressWarnings("ALL")
+	public void foo(){
+		boolean first = getFirst();
+		boolean second = getSecond();
+		boolean third = getThird();
+
+		if (first && second) {
+			//two methods (first() and second()) must be called in any case
+		} else if (third) {
+			//two methods (first() and third()) must be called in the best case
+			//all three methods must be called in the worst case
+		} else {
+			//two methods (first() and third()) must be called in the best case
+			//all three methods must be called in worst case
+		}
+	}
+
+	@SuppressWarnings("ALL")
+	public void bar(){
+		boolean first = getFirst();
+		boolean second = getSecond();
+		boolean third = getThird();
+
+		if (first || second) {
+			//two methods (first() and second()) must be called in the worst case
+			//only first() method must be called in the best case
+		} else if (third) {
+			//all three methods must be called in any case
+		} else {
+			//all three methods must be called in any case
+		}
+	}
+
+	private boolean getThird() {
+		return false;
+	}
+
+	private boolean getSecond() {
+		return false;
+	}
+
+	private boolean getFirst() {
+		return false;
+	}
 }

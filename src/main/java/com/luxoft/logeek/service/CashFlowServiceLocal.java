@@ -1,7 +1,7 @@
 package com.luxoft.logeek.service;
 
-import com.luxoft.logeek.dto.CashFlowDTO;
+import com.luxoft.logeek.dto.CashFlowDto;
 
 public interface CashFlowServiceLocal {
-	Long createCashFlow(CashFlowDTO detailsDTO);
+	Long createCashFlow(CashFlowDto dto);
 }

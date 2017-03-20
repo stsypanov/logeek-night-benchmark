@@ -5,7 +5,6 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class CashFlowDTO {
-	private final int imoNumber;
-	private final Long id;
+public class CashFlowDto {
+	private final int number;
 }

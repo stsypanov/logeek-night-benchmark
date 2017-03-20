@@ -1,6 +1,6 @@
 package com.luxoft.logeek.service.ltav;
 
-import com.luxoft.logeek.dto.CashFlowDTO;
+import com.luxoft.logeek.dto.CashFlowDto;
 import com.luxoft.logeek.service.CashFlowServiceLocal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,10 +19,10 @@ public class EagerLtavServiceImpl implements EagerLtavService {
 
 	@Override
 	@Transactional
-	public Long createLtavCashFlow(CashFlowDTO detailsDTO) {
-		validator.validate(detailsDTO);
+	public Long createCashFlow(CashFlowDto dto) {
+		validator.validate(dto);
 
-		return cashFlowServiceLocal.createCashFlow(detailsDTO);
+		return cashFlowServiceLocal.createCashFlow(dto);
 	}
 
 }

@@ -1,7 +1,7 @@
 package com.luxoft.logeek.service.ltav;
 
-import com.luxoft.logeek.dto.CashFlowDTO;
+import com.luxoft.logeek.dto.CashFlowDto;
 
 public interface Validator {
-	void validate(CashFlowDTO detailsDTO);
+	void validate(CashFlowDto dto);
 }
