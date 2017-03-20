@@ -16,6 +16,5 @@ public class LazySequenceBenchmarkRunner {
 				.build();
 
 		new Runner(opt).run();
-
 	}
 }
