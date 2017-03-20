@@ -7,25 +7,57 @@ import com.luxoft.logeek.entity.RatingEntity;
 import com.luxoft.logeek.entity.SomeEntity;
 import com.luxoft.logeek.repository.SomeJpaRepository;
 import com.luxoft.logeek.service.ExampleService;
-import org.openjdk.jmh.annotations.Scope;
-import org.openjdk.jmh.annotations.Setup;
-import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.annotations.*;
 
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+
+@BenchmarkMode({Mode.AverageTime, Mode.Throughput})
+@OutputTimeUnit(TimeUnit.MILLISECONDS)
 @State(Scope.Benchmark)
 public class ExampleBenchmark extends BenchmarkBase {
-	protected ExampleService exampleService;
-	protected SomeJpaRepository repository;
-	
-	protected Long id;
-	protected Dto dto;
+	private ExampleService exampleService;
+	private SomeJpaRepository repository;
+
+	private static final int ITEMS_COUNT = 50;
+	private List<Long> ids;
+	private Long id;
+	private Dto dto;
 
 	@Setup
 	public void init() {
 		super.initContext();
 		exampleService = context.getBean(ExampleService.class);
 		repository = context.getBean(SomeJpaRepository.class);
+
+		ids = random.longs(ITEMS_COUNT, 1, 50)
+				.boxed()
+				.peek(this::prepareDataInDb)
+				.collect(Collectors.toList());
 	}
-	
+
+	@Setup(value = Level.Iteration)
+	public void setUp() throws Exception {
+		dto = new Dto(false);
+		id = ids.get(random.nextInt(ITEMS_COUNT));
+	}
+
+	@TearDown
+	public void after() {
+		repository.deleteAll();
+	}
+
+	@Benchmark
+	public long doEffectively() {
+		return exampleService.doEffectively(id, dto);
+	}
+
+	@Benchmark
+	public long doIneffectively() {
+		return exampleService.doIneffectively(id, dto);
+	}
+
 	protected void prepareDataInDb(Long id) {
 		RatingEntity rating = new RatingEntity();
 
@@ -38,5 +70,4 @@ public class ExampleBenchmark extends BenchmarkBase {
 
 		repository.save(someEntity);
 	}
-
 }
