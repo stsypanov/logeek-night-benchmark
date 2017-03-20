@@ -1,6 +1,6 @@
 package com.luxoft.logeek.service;
 
-import com.luxoft.logeek.repository.LoanContractRepository;
+import com.luxoft.logeek.repository.ContractRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,10 +10,10 @@ import java.util.function.Predicate;
 @Component
 public class ContractServiceImpl implements ContractService {
 
-	private LoanContractRepository jpaRepository;
+	private ContractRepository jpaRepository;
 
 	@Autowired
-	public ContractServiceImpl(LoanContractRepository jpaRepository) {
+	public ContractServiceImpl(ContractRepository jpaRepository) {
 		this.jpaRepository = jpaRepository;
 	}
 

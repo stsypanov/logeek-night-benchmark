@@ -16,7 +16,7 @@ public class CashFlowRepositoryImpl extends BaseDao implements CashFlowRepositor
 
 		if (checkedIds.isEmpty()) return Collections.emptyList();
 
-		String query = "select e from ContractEntity c " +
+		String query = "select e from ContractEntity e " +
 					   " where e.property = true " +
 					   "   and e.id in :checkedIds";
 

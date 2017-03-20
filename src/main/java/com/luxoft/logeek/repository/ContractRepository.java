@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import java.math.BigDecimal;
 
 @SuppressWarnings("SpringDataJpaMethodInconsistencyInspection")
-public interface LoanContractRepository extends JpaRepository<ContractEntity, Long> {
+public interface ContractRepository extends JpaRepository<ContractEntity, Long> {
 
 	@Query("select sum(lc.compensation) from ContractEntity lc where lc.facility = :facility")
 	BigDecimal findCompensationByFacility(@Param("facility") Long facility);

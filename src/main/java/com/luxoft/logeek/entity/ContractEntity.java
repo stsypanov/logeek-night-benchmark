@@ -27,7 +27,10 @@ public class ContractEntity {
 	@Column
 	BigDecimal outstanding;
 
-	ContractEntity() {
+	@Column
+	boolean property;
+
+	protected ContractEntity() {
 	}
 
 	public ContractEntity(long id, long facility, double compensation, double deposit, double outstanding) {
