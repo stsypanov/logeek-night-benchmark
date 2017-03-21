@@ -12,9 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static java.util.function.Function.identity;
+import static java.util.stream.Collectors.toList;
 
 @Component
 @Transactional
@@ -27,6 +28,7 @@ public class AuditLocalServiceImpl implements AuditLocalService {
 	}
 
 	@Override
+	@Transactional
 	public void auditChanges(Collection<AuditDto> inserts, Collection<AuditDto> updates, Collection<AuditDto> deletes) {
 		inserts.forEach(insert -> audit(insert, AuditAction.INSERT));
 		updates.forEach(update -> audit(update, AuditAction.UPDATE));
@@ -35,25 +37,29 @@ public class AuditLocalServiceImpl implements AuditLocalService {
 
 	@Override
 	public void auditChangesEffectively(Collection<AuditDto> inserts, Collection<AuditDto> updates, Collection<AuditDto> deletes) {
-		Stream<AuditDto> insertStream = inserts.stream();
-		Stream<AuditDto> updatesStream = updates.stream();
-		Stream<AuditDto> deleteStream = deletes.stream();
+		Stream<AuditEntity> insertStream = inserts.stream()
+				.map(auditDto -> toAuditEntity(auditDto, AuditAction.INSERT))
+				.flatMap(Collection::stream);
 
-		List<AuditEntity> allItems = Stream.of(insertStream, updatesStream, deleteStream)
-				.flatMap(Function.identity())
-				.map(this::splitToAuditTrails)
-				.flatMap(Collection::stream)
-				.collect(Collectors.toList());
+		Stream<AuditEntity> updatesStream = updates.stream()
+				.map(auditDto -> toAuditEntity(auditDto, AuditAction.UPDATE))
+				.flatMap(Collection::stream);
+
+		Stream<AuditEntity> deleteStream = deletes.stream()
+				.map(auditDto -> toAuditEntity(auditDto, AuditAction.DELETE))
+				.flatMap(Collection::stream);
+
+		List<AuditEntity> allItems = Stream.of(insertStream, updatesStream, deleteStream).flatMap(identity()).collect(toList());
 
 		saver.save(allItems);
 	}
 
 	private void audit(AuditDto auditAware, AuditAction action) {
-		Collection<AuditEntity> auditTrails = splitToAuditTrails(auditAware);
+		Collection<AuditEntity> auditTrails = toAuditEntity(auditAware, action);
 		saver.save(auditTrails);
 	}
 
-	private Collection<AuditEntity> splitToAuditTrails(AuditDto auditDto) {
+	private Collection<AuditEntity> toAuditEntity(AuditDto auditDto, AuditAction action) {
 		return Collections.singletonList(new AuditEntity(auditDto.getId()));
 	}
 }
