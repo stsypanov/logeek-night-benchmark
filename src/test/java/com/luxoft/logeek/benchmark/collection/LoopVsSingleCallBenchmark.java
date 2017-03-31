@@ -31,7 +31,7 @@ public class LoopVsSingleCallBenchmark extends BenchmarkWithAppContext {
 
 	@Setup()
 	public void init() {
-		super.initContext();
+		super.init();
 		service = context.getBean(UserService.class);
 		repository = context.getBean(UserRepository.class);
 	}

@@ -27,7 +27,7 @@ public class ExampleBenchmark extends BenchmarkWithAppContext {
 
 	@Setup
 	public void init() {
-		super.initContext();
+		super.init();
 		exampleService = context.getBean(ExampleService.class);
 		repository = context.getBean(SomeJpaRepository.class);
 

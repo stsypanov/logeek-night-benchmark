@@ -18,7 +18,7 @@ public class LazyTransactionBenchmark extends BenchmarkWithAppContext {
 
 	@Setup()
 	public void init() {
-		super.initContext();
+		super.init();
 		lazyService = context.getBean(LazyLtavService.class);
 		eagerService = context.getBean(EagerLtavService.class);
 	}

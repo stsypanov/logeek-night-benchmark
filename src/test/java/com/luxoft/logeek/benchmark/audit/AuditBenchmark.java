@@ -22,7 +22,7 @@ public class AuditBenchmark extends BenchmarkWithAppContext {
 
 	@Setup()
 	public void init() {
-		super.initContext();
+		super.init();
 		service = context.getBean(AuditLocalService.class);
 		auditRepository = context.getBean(AuditRepository.class);
 	}

@@ -14,7 +14,7 @@ public class AspectBenchmark extends BenchmarkWithAppContext {
 
 	@Setup()
 	public void init() {
-		super.initContext();
+		super.init();
 		aspectedService = context.getBean(AspectedService.class);
 	}
 

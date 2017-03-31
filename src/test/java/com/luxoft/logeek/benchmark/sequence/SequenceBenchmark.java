@@ -23,7 +23,7 @@ public class SequenceBenchmark extends BenchmarkWithAppContext {
 
 	@Setup()
 	public void init() {
-		super.initContext();
+		super.init();
 		service = context.getBean(ContractService.class);
 		contractRepository = context.getBean(ContractRepository.class);
 		populateTable();
