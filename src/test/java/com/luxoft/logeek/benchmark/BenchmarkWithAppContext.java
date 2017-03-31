@@ -5,7 +5,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public abstract class BenchmarkBase {
+public abstract class BenchmarkWithAppContext {
 	protected ThreadLocalRandom random;
 	protected AnnotationConfigApplicationContext context;
 

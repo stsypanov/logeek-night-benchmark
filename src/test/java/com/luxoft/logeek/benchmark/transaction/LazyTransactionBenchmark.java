@@ -1,6 +1,6 @@
 package com.luxoft.logeek.benchmark.transaction;
 
-import com.luxoft.logeek.benchmark.BenchmarkBase;
+import com.luxoft.logeek.benchmark.BenchmarkWithAppContext;
 import com.luxoft.logeek.dto.CashFlowDto;
 import com.luxoft.logeek.service.ltav.EagerLtavService;
 import com.luxoft.logeek.service.ltav.LazyLtavService;
@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 @BenchmarkMode({Mode.AverageTime, Mode.Throughput})
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
 @State(Scope.Benchmark)
-public class LazyTransactionBenchmark extends BenchmarkBase {
+public class LazyTransactionBenchmark extends BenchmarkWithAppContext {
 	private CashFlowDto dto;
 	private LazyLtavService lazyService;
 	private EagerLtavService eagerService;
