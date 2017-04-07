@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 //@BenchmarkMode({Mode.AverageTime, Mode.Throughput})
 @BenchmarkMode(Mode.AverageTime)
-@OutputTimeUnit(TimeUnit.MICROSECONDS)
+@OutputTimeUnit(TimeUnit.NANOSECONDS)
 @State(Scope.Benchmark)
 public class PatchedArrayListBenchmark extends BenchmarkBase {
 	
@@ -20,7 +20,7 @@ public class PatchedArrayListBenchmark extends BenchmarkBase {
 	private List<Long> patchedArrayList3;
 	private List<Long> patchedArrayList4;
 
-	@Setup()
+	@Setup
 	public void init() {
 		super.init();
 	}
