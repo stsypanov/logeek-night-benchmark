@@ -4,7 +4,10 @@ import com.luxoft.logeek.benchmark.BenchmarkBase;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import static java.util.stream.Collectors.toList;
@@ -24,7 +27,7 @@ public class IteratorFromStreamBenchmark extends BenchmarkBase {
     @Setup(value = Level.Iteration)
     public void init() {
         super.init();
-        itemList = new Random().ints(size).boxed().collect(toList());
+        itemList = random.ints(size).boxed().collect(toList());
         itemSet = new HashSet<>(itemList);
     }
 
