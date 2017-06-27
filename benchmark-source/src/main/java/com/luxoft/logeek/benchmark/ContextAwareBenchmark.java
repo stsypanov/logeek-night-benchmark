@@ -3,7 +3,7 @@ package com.luxoft.logeek.benchmark;
 import com.luxoft.logeek.AppConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public abstract class BenchmarkWithAppContext extends BenchmarkBase {
+public abstract class ContextAwareBenchmark extends BaseBenchmark {
 	protected AnnotationConfigApplicationContext context;
 
 	protected void init() {

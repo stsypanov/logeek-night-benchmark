@@ -1,6 +1,6 @@
 package com.luxoft.logeek.benchmark.iterator;
 
-import com.luxoft.logeek.benchmark.BenchmarkBase;
+import com.luxoft.logeek.benchmark.BaseBenchmark;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 
@@ -16,7 +16,7 @@ import static java.util.stream.Collectors.toSet;
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
 @State(Scope.Benchmark)
-public class IteratorFromStreamBenchmark extends BenchmarkBase {
+public class IteratorFromStreamBenchmark extends BaseBenchmark {
 
     private List<Integer> itemList;
     private Set<Integer> itemSet;

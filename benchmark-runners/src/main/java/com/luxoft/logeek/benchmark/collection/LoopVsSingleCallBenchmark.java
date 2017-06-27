@@ -1,6 +1,6 @@
 package com.luxoft.logeek.benchmark.collection;
 
-import com.luxoft.logeek.benchmark.BenchmarkWithAppContext;
+import com.luxoft.logeek.benchmark.ContextAwareBenchmark;
 import com.luxoft.logeek.dto.UserDto;
 import com.luxoft.logeek.entity.User;
 import com.luxoft.logeek.repository.UserRepository;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @BenchmarkMode({Mode.AverageTime, Mode.Throughput})
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @State(Scope.Benchmark)
-public class LoopVsSingleCallBenchmark extends BenchmarkWithAppContext {
+public class LoopVsSingleCallBenchmark extends ContextAwareBenchmark {
 	private static final int ENTITY_COUNT = 1000;
 
 	private UserService service;

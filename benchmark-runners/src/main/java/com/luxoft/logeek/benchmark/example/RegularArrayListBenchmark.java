@@ -1,6 +1,6 @@
 package com.luxoft.logeek.benchmark.example;
 
-import com.luxoft.logeek.benchmark.BenchmarkBase;
+import com.luxoft.logeek.benchmark.BaseBenchmark;
 import org.openjdk.jmh.annotations.*;
 
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @State(Scope.Benchmark)
-public class RegularArrayListBenchmark extends BenchmarkBase {
+public class RegularArrayListBenchmark extends BaseBenchmark {
 
 	private List<Long> regularArrayList1;
 	private List<Long> regularArrayList2;

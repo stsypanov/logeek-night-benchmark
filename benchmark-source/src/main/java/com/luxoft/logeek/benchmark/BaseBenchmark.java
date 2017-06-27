@@ -2,7 +2,7 @@ package com.luxoft.logeek.benchmark;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public abstract class BenchmarkBase {
+public abstract class BaseBenchmark {
 	protected ThreadLocalRandom random;
 	
 	protected void init() {

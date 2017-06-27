@@ -1,6 +1,6 @@
 package com.luxoft.logeek.benchmark.copy;
 
-import com.luxoft.logeek.benchmark.BenchmarkBase;
+import com.luxoft.logeek.benchmark.BaseBenchmark;
 import org.openjdk.jmh.annotations.*;
 
 import java.util.HashSet;
@@ -14,7 +14,7 @@ import static java.util.stream.Collectors.toSet;
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
 @State(Scope.Benchmark)
-public class CollectToHashSetBenchmark extends BenchmarkBase {
+public class CollectToHashSetBenchmark extends BaseBenchmark {
 
 	private List<Integer> items;
 

@@ -1,6 +1,6 @@
 package com.luxoft.logeek.benchmark.example;
 
-import com.luxoft.logeek.benchmark.BenchmarkWithAppContext;
+import com.luxoft.logeek.benchmark.ContextAwareBenchmark;
 import com.luxoft.logeek.dto.Dto;
 import com.luxoft.logeek.entity.ChildEntity;
 import com.luxoft.logeek.entity.RatingEntity;
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @BenchmarkMode({Mode.AverageTime, Mode.Throughput})
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @State(Scope.Benchmark)
-public class ExampleBenchmark extends BenchmarkWithAppContext {
+public class ExampleBenchmark extends ContextAwareBenchmark {
 	private ExampleService exampleService;
 	private SomeJpaRepository repository;
 

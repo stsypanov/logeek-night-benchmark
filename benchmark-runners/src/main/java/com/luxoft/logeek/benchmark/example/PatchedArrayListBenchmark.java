@@ -1,6 +1,6 @@
 package com.luxoft.logeek.benchmark.example;
 
-import com.luxoft.logeek.benchmark.BenchmarkBase;
+import com.luxoft.logeek.benchmark.BaseBenchmark;
 import com.luxoft.logeek.example.PatchedArrayList;
 import org.openjdk.jmh.annotations.*;
 
@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @State(Scope.Benchmark)
-public class PatchedArrayListBenchmark extends BenchmarkBase {
+public class PatchedArrayListBenchmark extends BaseBenchmark {
 	
 	private List<Long> patchedArrayList1;
 	private List<Long> patchedArrayList2;

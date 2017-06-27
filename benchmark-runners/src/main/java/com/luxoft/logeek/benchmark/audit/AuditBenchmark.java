@@ -1,6 +1,6 @@
 package com.luxoft.logeek.benchmark.audit;
 
-import com.luxoft.logeek.benchmark.BenchmarkWithAppContext;
+import com.luxoft.logeek.benchmark.ContextAwareBenchmark;
 import com.luxoft.logeek.dto.AuditDto;
 import com.luxoft.logeek.repository.AuditRepository;
 import com.luxoft.logeek.service.AuditLocalService;
@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 @BenchmarkMode({Mode.AverageTime, Mode.Throughput})
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @State(Scope.Benchmark)
-public class AuditBenchmark extends BenchmarkWithAppContext {
+public class AuditBenchmark extends ContextAwareBenchmark {
 	private AuditLocalService service;
 	private AuditRepository auditRepository;
 	private Set<AuditDto> inserts;

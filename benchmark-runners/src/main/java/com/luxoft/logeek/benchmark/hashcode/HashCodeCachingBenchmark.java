@@ -1,6 +1,6 @@
 package com.luxoft.logeek.benchmark.hashcode;
 
-import com.luxoft.logeek.benchmark.BenchmarkBase;
+import com.luxoft.logeek.benchmark.BaseBenchmark;
 import com.luxoft.logeek.hashcode.HashCodeCachingVO;
 import com.luxoft.logeek.hashcode.SomeVO;
 import org.openjdk.jmh.annotations.*;
@@ -15,7 +15,7 @@ import static java.util.stream.Collectors.toSet;
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @State(Scope.Benchmark)
-public class HashCodeCachingBenchmark extends BenchmarkBase {
+public class HashCodeCachingBenchmark extends BaseBenchmark {
 
 	private Set<SomeVO> conventionalVOs;
 	private Set<HashCodeCachingVO> enhancedVOs;
