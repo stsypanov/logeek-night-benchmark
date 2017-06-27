@@ -1,20 +1,15 @@
 package com.luxoft.logeek.benchmark.formatter;
 
-import com.luxoft.logeek.benchmark.BaseBenchmark;
-import org.openjdk.jmh.annotations.*;
+import com.luxoft.logeek.benchmark.BenchmarkBase;
+import org.openjdk.jmh.annotations.Benchmark;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
-//@BenchmarkMode({Mode.AverageTime, Mode.Throughput})
-@BenchmarkMode(Mode.AverageTime)
-@OutputTimeUnit(TimeUnit.NANOSECONDS)
-@State(Scope.Benchmark)
-public class FormatterBenchmark extends BaseBenchmark {
+public class FormatterBenchmark extends BenchmarkBase {
 
     @Benchmark
     public String measureSimpleDateTimeFormatter() {

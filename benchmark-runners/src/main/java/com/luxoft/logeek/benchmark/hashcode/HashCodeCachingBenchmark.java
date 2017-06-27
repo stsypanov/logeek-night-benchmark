@@ -1,21 +1,19 @@
 package com.luxoft.logeek.benchmark.hashcode;
 
-import com.luxoft.logeek.benchmark.BaseBenchmark;
+import com.luxoft.logeek.benchmark.BenchmarkBase;
 import com.luxoft.logeek.hashcode.HashCodeCachingVO;
 import com.luxoft.logeek.hashcode.SomeVO;
-import org.openjdk.jmh.annotations.*;
+import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.Level;
+import org.openjdk.jmh.annotations.Param;
+import org.openjdk.jmh.annotations.Setup;
 
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toSet;
 
-//@BenchmarkMode({Mode.AverageTime, Mode.Throughput})
-@BenchmarkMode(Mode.AverageTime)
-@OutputTimeUnit(TimeUnit.NANOSECONDS)
-@State(Scope.Benchmark)
-public class HashCodeCachingBenchmark extends BaseBenchmark {
+public class HashCodeCachingBenchmark extends BenchmarkBase {
 
 	private Set<SomeVO> conventionalVOs;
 	private Set<HashCodeCachingVO> enhancedVOs;
@@ -23,13 +21,16 @@ public class HashCodeCachingBenchmark extends BaseBenchmark {
 	private SomeVO presentConventionalVo;
 	private HashCodeCachingVO presentEnhancedVo;
 
-
 	@Param({"10", "100", "1000", "10000", "100000"})
 	private int size;
 
+	@Setup
+	public void initTrial() {
+		super.init();
+	}
+
 	@Setup(value = Level.Iteration)
 	public void init() {
-		super.init();
 		conventionalVOs = random.longs(size).boxed()
 				.map(aLong -> new SomeVO(
 								aLong,

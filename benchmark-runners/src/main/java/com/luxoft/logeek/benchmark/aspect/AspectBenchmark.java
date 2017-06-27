@@ -1,18 +1,13 @@
 package com.luxoft.logeek.benchmark.aspect;
 
-import com.luxoft.logeek.benchmark.ContextAwareBenchmark;
+import com.luxoft.logeek.benchmark.ContextAwareBenchmarkBase;
 import com.luxoft.logeek.service.AspectedService;
 import org.openjdk.jmh.annotations.*;
 
-import java.util.concurrent.TimeUnit;
-
-@BenchmarkMode(Mode.AverageTime)
-@OutputTimeUnit(TimeUnit.MICROSECONDS)
-@State(Scope.Benchmark)
-public class AspectBenchmark extends ContextAwareBenchmark {
+public class AspectBenchmark extends ContextAwareBenchmarkBase {
 	private AspectedService aspectedService;
 
-	@Setup()
+	@Setup
 	public void init() {
 		super.init();
 		aspectedService = getBean(AspectedService.class);

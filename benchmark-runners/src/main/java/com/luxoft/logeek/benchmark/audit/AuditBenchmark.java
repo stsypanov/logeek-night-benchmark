@@ -1,26 +1,25 @@
 package com.luxoft.logeek.benchmark.audit;
 
-import com.luxoft.logeek.benchmark.ContextAwareBenchmark;
+import com.luxoft.logeek.benchmark.ContextAwareBenchmarkBase;
 import com.luxoft.logeek.dto.AuditDto;
 import com.luxoft.logeek.repository.AuditRepository;
 import com.luxoft.logeek.service.AuditLocalService;
-import org.openjdk.jmh.annotations.*;
+import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.Level;
+import org.openjdk.jmh.annotations.Setup;
+import org.openjdk.jmh.annotations.TearDown;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
-@BenchmarkMode({Mode.AverageTime, Mode.Throughput})
-@OutputTimeUnit(TimeUnit.MILLISECONDS)
-@State(Scope.Benchmark)
-public class AuditBenchmark extends ContextAwareBenchmark {
+public class AuditBenchmark extends ContextAwareBenchmarkBase {
 	private AuditLocalService service;
 	private AuditRepository auditRepository;
 	private Set<AuditDto> inserts;
 	private Set<AuditDto> updates;
 	private Set<AuditDto> deletes;
 
-	@Setup()
+	@Setup
 	public void init() {
 		super.init();
 		service = context.getBean(AuditLocalService.class);

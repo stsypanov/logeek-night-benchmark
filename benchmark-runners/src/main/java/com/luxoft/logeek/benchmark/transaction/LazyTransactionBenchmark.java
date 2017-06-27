@@ -1,6 +1,6 @@
 package com.luxoft.logeek.benchmark.transaction;
 
-import com.luxoft.logeek.benchmark.ContextAwareBenchmark;
+import com.luxoft.logeek.benchmark.ContextAwareBenchmarkBase;
 import com.luxoft.logeek.dto.CashFlowDto;
 import com.luxoft.logeek.service.ltav.EagerLtavService;
 import com.luxoft.logeek.service.ltav.LazyLtavService;
@@ -8,15 +8,13 @@ import org.openjdk.jmh.annotations.*;
 
 import java.util.concurrent.TimeUnit;
 
-@BenchmarkMode({Mode.AverageTime, Mode.Throughput})
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
-@State(Scope.Benchmark)
-public class LazyTransactionBenchmark extends ContextAwareBenchmark {
+public class LazyTransactionBenchmark extends ContextAwareBenchmarkBase {
 	private CashFlowDto dto;
 	private LazyLtavService lazyService;
 	private EagerLtavService eagerService;
 
-	@Setup()
+	@Setup
 	public void init() {
 		super.init();
 		lazyService = context.getBean(LazyLtavService.class);

@@ -1,20 +1,23 @@
 package com.luxoft.logeek.benchmark.equals;
 
-import org.openjdk.jmh.annotations.*;
+import com.luxoft.logeek.benchmark.BenchmarkBase;
+import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.Level;
+import org.openjdk.jmh.annotations.OutputTimeUnit;
+import org.openjdk.jmh.annotations.Setup;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-@BenchmarkMode({Mode.AverageTime})
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
-@State(Scope.Benchmark)
-public class EqualsBenchmark {
-	private ThreadLocalRandom random = ThreadLocalRandom.current();
+public class EqualsBenchmark extends BenchmarkBase {
 
 	private boolean booleanField1;
 	private boolean booleanField2;
@@ -54,6 +57,11 @@ public class EqualsBenchmark {
 
 	private Collection<Integer> intCollection1;
 	private Collection<Integer> intCollection2;
+
+	@Setup
+	public void initTrial() {
+		super.init();
+	}
 
 	@Setup(Level.Iteration)
 	public void setup() {

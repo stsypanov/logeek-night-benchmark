@@ -1,26 +1,22 @@
 package com.luxoft.logeek.benchmark.contains;
 
+import com.luxoft.logeek.benchmark.BenchmarkBase;
 import com.luxoft.logeek.entity.BranchEntity;
 import com.luxoft.logeek.example.ContainsExample;
 import com.luxoft.logeek.service.Service;
-import org.openjdk.jmh.annotations.*;
+import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.Level;
+import org.openjdk.jmh.annotations.Setup;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
  * Created by Сергей on 10.02.2017.
  */
-@BenchmarkMode({Mode.AverageTime})
-@OutputTimeUnit(TimeUnit.MILLISECONDS)
-@State(Scope.Benchmark)
-public class ContainsBenchmark {
-	private ThreadLocalRandom random = ThreadLocalRandom.current();
-
+public class ContainsBenchmark extends BenchmarkBase{
 	private ContainsExample example;
 	private Service service;
 	private List<String> usItems;
@@ -28,6 +24,11 @@ public class ContainsBenchmark {
 
 	private Set<String> usItemsSet;
 	private Set<String> nonUsItemsSet;
+
+	@Setup
+	public void init() {
+		super.init();
+	}
 
 	@Setup(Level.Iteration)
 	public void setup() {

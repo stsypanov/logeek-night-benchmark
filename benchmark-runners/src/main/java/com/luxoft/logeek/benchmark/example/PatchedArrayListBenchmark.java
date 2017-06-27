@@ -8,10 +8,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-//@BenchmarkMode({Mode.AverageTime, Mode.Throughput})
-@BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
-@State(Scope.Benchmark)
 public class PatchedArrayListBenchmark extends BaseBenchmark {
 	
 	private List<Long> patchedArrayList1;

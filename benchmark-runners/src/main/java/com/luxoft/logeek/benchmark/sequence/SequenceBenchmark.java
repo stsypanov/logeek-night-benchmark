@@ -1,6 +1,6 @@
 package com.luxoft.logeek.benchmark.sequence;
 
-import com.luxoft.logeek.benchmark.ContextAwareBenchmark;
+import com.luxoft.logeek.benchmark.ContextAwareBenchmarkBase;
 import com.luxoft.logeek.entity.ContractEntity;
 import com.luxoft.logeek.repository.ContractRepository;
 import com.luxoft.logeek.service.ContractService;
@@ -10,10 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-@BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
-@State(Scope.Benchmark)
-public class SequenceBenchmark extends ContextAwareBenchmark {
+public class SequenceBenchmark extends ContextAwareBenchmarkBase {
 	private static final int facilityBound = 3;
 
 	private ContractService service;
@@ -21,7 +19,7 @@ public class SequenceBenchmark extends ContextAwareBenchmark {
 
 	private long facility;
 
-	@Setup()
+	@Setup
 	public void init() {
 		super.init();
 		service = context.getBean(ContractService.class);

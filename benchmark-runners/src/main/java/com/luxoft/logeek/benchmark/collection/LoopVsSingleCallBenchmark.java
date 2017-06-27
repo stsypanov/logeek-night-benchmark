@@ -1,26 +1,25 @@
 package com.luxoft.logeek.benchmark.collection;
 
-import com.luxoft.logeek.benchmark.ContextAwareBenchmark;
+import com.luxoft.logeek.benchmark.ContextAwareBenchmarkBase;
 import com.luxoft.logeek.dto.UserDto;
 import com.luxoft.logeek.entity.User;
 import com.luxoft.logeek.repository.UserRepository;
 import com.luxoft.logeek.service.ltav.UserService;
-import org.openjdk.jmh.annotations.*;
+import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.Level;
+import org.openjdk.jmh.annotations.Setup;
+import org.openjdk.jmh.annotations.TearDown;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
  * Measure retrieving collection of entities in loop one by one
  */
-@BenchmarkMode({Mode.AverageTime, Mode.Throughput})
-@OutputTimeUnit(TimeUnit.MILLISECONDS)
-@State(Scope.Benchmark)
-public class LoopVsSingleCallBenchmark extends ContextAwareBenchmark {
+public class LoopVsSingleCallBenchmark extends ContextAwareBenchmarkBase {
 	private static final int ENTITY_COUNT = 1000;
 
 	private UserService service;
@@ -28,7 +27,7 @@ public class LoopVsSingleCallBenchmark extends ContextAwareBenchmark {
 
 	private List<UserDto> userDtos;
 
-	@Setup()
+	@Setup
 	public void init() {
 		super.init();
 		service = context.getBean(UserService.class);

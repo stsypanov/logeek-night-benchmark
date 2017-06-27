@@ -1,6 +1,6 @@
 package com.luxoft.logeek.benchmark.copy;
 
-import com.luxoft.logeek.benchmark.BaseBenchmark;
+import com.luxoft.logeek.benchmark.BenchmarkBase;
 import org.openjdk.jmh.annotations.*;
 
 import java.util.HashSet;
@@ -11,19 +11,21 @@ import java.util.concurrent.TimeUnit;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
-@BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
-@State(Scope.Benchmark)
-public class CollectToHashSetBenchmark extends BaseBenchmark {
+public class CollectToHashSetBenchmark extends BenchmarkBase {
 
 	private List<Integer> items;
 
 	@Param({"10", "100", "1000", "10000", "100000"})
 	private int size;
 
+	@Setup
+	public void initTrial() {
+		super.init();
+	}
+
 	@Setup(value = Level.Iteration)
 	public void init() {
-		super.init();
 		items = random.ints(size).boxed().collect(toList());
 	}
 
