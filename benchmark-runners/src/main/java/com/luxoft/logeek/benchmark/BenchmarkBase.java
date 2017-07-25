@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 @State(Scope.Thread)
 @Warmup(iterations = 10)
-@Measurement(iterations = 10)
+@Measurement(iterations = 100)
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 public class BenchmarkBase extends BaseBenchmark{
