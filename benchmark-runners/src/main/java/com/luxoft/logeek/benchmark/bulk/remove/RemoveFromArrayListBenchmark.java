@@ -11,6 +11,7 @@ import static java.util.stream.Collectors.toCollection;
 
 @Warmup(batchSize = 1000)
 @Measurement(batchSize = 1000)
+@BenchmarkMode(Mode.SingleShotTime)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 public class RemoveFromArrayListBenchmark extends BenchmarkBase {
 
@@ -42,9 +43,17 @@ public class RemoveFromArrayListBenchmark extends BenchmarkBase {
 	}
 
 	@Benchmark
-	public List<Long> measureRemoveFromArrayListOneByOne() {
-		for (int i = from; i < to; i++) {
+	public List<Long> measureRemoveFromArrayListOneByOne_reverseOrder() {
+		for (int i = to - 1; i >= from; i--) {
 			arrayList.remove(i);
+		}
+		return arrayList;
+	}
+
+	@Benchmark
+	public List<Long> measureRemoveFromArrayListOneByOne_directOrder() {
+		for (int i = from; i < to; i++) {
+			arrayList.remove(from);
 		}
 		return arrayList;
 	}

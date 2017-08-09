@@ -43,9 +43,17 @@ public class RemoveFromLinkedListBenchmark extends BenchmarkBase {
 	}
 
 	@Benchmark
-	public List<Long> measureRemoveFromLinkedListOneByOne() {
-		for (int i = from; i < to; i++) {
+	public List<Long> measureRemoveFromLinkedListOneByOne_reverseOrder() {
+		for (int i = to - 1; i >= from; i--) {
 			linkedList.remove(i);
+		}
+		return linkedList;
+	}
+
+	@Benchmark
+	public List<Long> measureRemoveFromLinkedListOneByOne_directOrder() {
+		for (int i = from; i < to; i++) {
+			linkedList.remove(from);
 		}
 		return linkedList;
 	}
