@@ -3,14 +3,14 @@ package com.luxoft.logeek.benchmark.bulk;
 import com.luxoft.logeek.benchmark.BenchmarkBase;
 import org.openjdk.jmh.annotations.*;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 import static java.util.stream.Collectors.toList;
 
+@Warmup(batchSize = 100, iterations = 100)
+@Measurement(batchSize = 100, iterations = 100)
+@BenchmarkMode(Mode.SingleShotTime)
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
 public class BulkOperationBenchmark extends BenchmarkBase {
 	
@@ -18,7 +18,8 @@ public class BulkOperationBenchmark extends BenchmarkBase {
 	private int itemsCount;
 	
 	private List<Long> initialItems;
-	
+	private Long[] initialItemsArray;
+
 	@Setup
 	public void init() {
 		super.init();
@@ -27,6 +28,7 @@ public class BulkOperationBenchmark extends BenchmarkBase {
 	@Setup(Level.Iteration)
 	public void initIteration() {
 		initialItems = random.longs(itemsCount).boxed().collect(toList());
+		initialItemsArray = initialItems.toArray(new Long[initialItems.size()]);
 	}
 
 	@Benchmark
@@ -71,5 +73,31 @@ public class BulkOperationBenchmark extends BenchmarkBase {
 	public Set<Long> measureAddAllViaConstructorArg_HashSet() {
 		Set<Long> newList = new HashSet<>(initialItems);
 		return newList;
+	}
+
+	@Benchmark
+	public Set<Long> measureAddAllVarArgViaAsList_HashSet() {
+		Set<Long> set = new HashSet<>(Arrays.asList(initialItemsArray));
+		return set;
+	}
+
+	@Benchmark
+	public Set<Long> measureAddAllVarArgViaCollectionsAddAll_HashSet() {
+		Set<Long> set = new HashSet<>(initialItemsArray.length);
+		Collections.addAll(set, initialItemsArray);
+		return set;
+	}
+
+	@Benchmark
+	public List<Long> measureAddAllVarArgViaAsList_ArrayList() {
+		List<Long> set = new ArrayList<>(Arrays.asList(initialItemsArray));
+		return set;
+	}
+
+	@Benchmark
+	public List<Long> measureAddAllVarArgViaCollectionsAddAll_ArrayList() {
+		List<Long> set = new ArrayList<>(initialItemsArray.length);
+		Collections.addAll(set, initialItemsArray);
+		return set;
 	}
 }
