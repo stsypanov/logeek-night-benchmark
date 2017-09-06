@@ -55,24 +55,24 @@ public class BulkOperationBenchmark extends BenchmarkBase {
 
 	@Benchmark
 	public Set<Long> measureAddOneByOne_HashSet() {
-		Set<Long> newList = new HashSet<>();
+		Set<Long> newSet = new HashSet<>();
 		for (Long item : initialItems) {
-			newList.add(item);
+			newSet.add(item);
 		}
-		return newList;
+		return newSet;
 	}
 
 	@Benchmark
 	public Set<Long> measureAddAll_HashSet() {
-		Set<Long> newList = new HashSet<>();
-		newList.addAll(initialItems);
-		return newList;
+		Set<Long> newSet = new HashSet<>();
+		newSet.addAll(initialItems);
+		return newSet;
 	}
 
 	@Benchmark
 	public Set<Long> measureAddAllViaConstructorArg_HashSet() {
-		Set<Long> newList = new HashSet<>(initialItems);
-		return newList;
+		Set<Long> newSet = new HashSet<>(initialItems);
+		return newSet;
 	}
 
 	@Benchmark
