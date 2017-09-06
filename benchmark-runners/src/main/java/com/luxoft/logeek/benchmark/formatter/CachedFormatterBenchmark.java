@@ -11,11 +11,14 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
-public class FormatterBenchmark extends BenchmarkBase {
+public class CachedFormatterBenchmark extends BenchmarkBase {
 
+    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    private static final ThreadLocal<SimpleDateFormat> simpleDateFormat = ThreadLocal.withInitial(() -> new SimpleDateFormat("dd.MM.yyyy"));
+    
     private Date date;
     private LocalDate localDate;
-
+    
     @Setup(Level.Iteration)
     public void setup() {
         date = new Date();
@@ -23,18 +26,18 @@ public class FormatterBenchmark extends BenchmarkBase {
     }
 
     @Benchmark
-	public String measureSimpleDateTimeFormatter() {
-        return new SimpleDateFormat("dd").format(date);
+    public String measureSimpleDateTimeFormatter() {
+        return simpleDateFormat.get().format(date);
     }
 
     @Benchmark
     public String measureDateTimeFormatter() {
-        return DateTimeFormatter.ofPattern("dd").format(localDate);
+        return dateTimeFormatter.format(localDate);
     }
 
     @Benchmark
     public String measureDateTimeFormatterWhenDateConverted() {
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        return DateTimeFormatter.ofPattern("dd").format(localDate);
+        return dateTimeFormatter.format(localDate);
     }
 }
