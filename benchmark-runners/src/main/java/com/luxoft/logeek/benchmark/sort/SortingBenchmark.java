@@ -1,12 +1,16 @@
 package com.luxoft.logeek.benchmark.sort;
 
-import com.luxoft.logeek.benchmark.BenchmarkBase;
+import com.luxoft.logeek.benchmark.BaseBenchmark;
 import com.luxoft.logeek.sort.ArraysStub;
 import org.openjdk.jmh.annotations.*;
 
 import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 
-public class SortingBenchmark extends BenchmarkBase {
+@State(Scope.Thread)
+@BenchmarkMode(Mode.Throughput)
+@OutputTimeUnit(TimeUnit.MICROSECONDS)
+public class SortingBenchmark extends BaseBenchmark {
 
     private Long[] longs;
 
