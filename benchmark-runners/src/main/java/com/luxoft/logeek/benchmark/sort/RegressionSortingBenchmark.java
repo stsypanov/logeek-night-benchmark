@@ -25,13 +25,12 @@ public class RegressionSortingBenchmark extends BaseBenchmark {
 	private Long[] notSortedInitialArray;
 
 	@Setup
-	public void setup() {
-		super.init();
-	}
-
-	@Setup(Level.Invocation)
 	public void createNewArray() {
-		sortedArray = random.longs(Long.MIN_VALUE, Long.MAX_VALUE).limit(100).boxed().toArray(value -> new Long[100]);
+		super.init();
+		sortedArray = random.longs(Long.MIN_VALUE, Long.MAX_VALUE)
+				.limit(arrayLength)
+				.boxed()
+				.toArray(value -> new Long[arrayLength]);
 		notSortedInitialArray = sortedArray.clone();
 	}
 
