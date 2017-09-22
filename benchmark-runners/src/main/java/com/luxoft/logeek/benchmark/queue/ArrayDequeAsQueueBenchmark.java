@@ -12,7 +12,7 @@ import java.util.stream.LongStream;
 
 public class ArrayDequeAsQueueBenchmark extends BenchmarkBase {
 
-	@Param({"10", "100"})
+	@Param({"10", "100", "1000"})
 	private int size;
 
 	private Queue<Long> queue;

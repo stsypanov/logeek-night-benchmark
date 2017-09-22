@@ -12,8 +12,8 @@ import java.util.Queue;
 import java.util.stream.LongStream;
 
 public class LinkedListAsQueueBenchmark extends BenchmarkBase {
-	
-	@Param({"10", "100"})
+
+	@Param({"10", "100", "1000"})
 	private int size;
 	
 	private Queue<Long> queue;
