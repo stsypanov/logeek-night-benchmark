@@ -3,7 +3,7 @@ package com.luxoft.logeek.sort;
 import java.util.Comparator;
 
 /**
- * Substitutes standrad implementation of java.util.Arrays
+ * Substitutes standard implementation of java.util.Arrays
  */
 public class ArraysStub {
 
