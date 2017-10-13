@@ -26,7 +26,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>LATEST</version>
+			<version>1.16.18</version>
 		</dependency>
 
 		<dependency>
@@ -142,7 +142,7 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
+				<version>3.5.1</version>
 				<configuration>
 					<compilerVersion>${javac.target}</compilerVersion>
 					<source>${javac.target}</source>
