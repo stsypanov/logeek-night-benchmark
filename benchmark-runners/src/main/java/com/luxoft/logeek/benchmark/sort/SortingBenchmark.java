@@ -1,15 +1,18 @@
 package com.luxoft.logeek.benchmark.sort;
 
 import com.luxoft.logeek.benchmark.BaseBenchmark;
-import com.luxoft.logeek.sort.ArraysStub;
+import com.luxoft.logeek.sort.ComparableTimSort;
 import org.openjdk.jmh.annotations.*;
 
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
-@State(Scope.Thread)
-@BenchmarkMode(Mode.Throughput)
-@OutputTimeUnit(TimeUnit.MICROSECONDS)
+@Fork(5)
+@State(Scope.Benchmark)
+@Warmup(iterations = 10)
+@Measurement(iterations = 100)
+@BenchmarkMode(Mode.AverageTime)
+@OutputTimeUnit(TimeUnit.NANOSECONDS)
 public class SortingBenchmark extends BaseBenchmark {
 
     private Long[] longs;
@@ -21,7 +24,10 @@ public class SortingBenchmark extends BaseBenchmark {
 
     @Setup(Level.Invocation)
     public void createNewArray() {
-        longs = new Long[]{random.nextLong(), random.nextLong()};
+        long positive = Math.abs(random.nextLong());
+        long negative = random.nextLong();
+        negative = negative < 0 ? negative : negative * -1;
+        longs = new Long[]{positive, negative};
     }
 
     @TearDown(Level.Invocation)
@@ -35,13 +41,19 @@ public class SortingBenchmark extends BaseBenchmark {
 
     @Benchmark
     public Long[] measureEnhancedSortWithoutComparator() {
-        ArraysStub.sort(longs);
+        ComparableTimSort.sort(longs, 0, longs.length, null, 0, 0);
+        return longs;
+    }
+
+    @Benchmark
+    public Long[] _measureEnhancedSortWithoutComparator() {
+        ComparableTimSort._sort(longs, 0, longs.length, null, 0, 0);
         return longs;
     }
 
     @Benchmark
     public Long[] measureConventionalSortWithoutComparator() {
-        Arrays.sort(longs);
+        ComparableTimSort.sortOriginal(longs, 0, longs.length, null, 0, 0);
         return longs;
     }
 }

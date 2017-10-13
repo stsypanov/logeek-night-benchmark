@@ -1,6 +1,6 @@
 package com.luxoft.logeek.sort;
 
-class ComparableTimSort {
+public class ComparableTimSort {
     /**
      * This is the minimum sized sequence that will be merged.  Shorter
      * sequences will be lengthened by calling binarySort.  If the entire
@@ -154,6 +154,112 @@ class ComparableTimSort {
             }
             return;
         }
+
+        // If array is small, do a "mini-TimSort" with no merges
+        if (nRemaining < MIN_MERGE) {
+            int initRunLen = countRunAndMakeAscending(a, lo, hi);
+            binarySort(a, lo, hi, lo + initRunLen);
+            return;
+        }
+
+        /**
+         * March over the array once, left to right, finding natural runs,
+         * extending short natural runs to minRun elements, and merging runs
+         * to maintain stack invariant.
+         */
+        ComparableTimSort ts = new ComparableTimSort(a, work, workBase, workLen);
+        int minRun = minRunLength(nRemaining);
+        do {
+            // Identify next run
+            int runLen = countRunAndMakeAscending(a, lo, hi);
+
+            // If run is short, extend to min(minRun, nRemaining)
+            if (runLen < minRun) {
+                int force = nRemaining <= minRun ? nRemaining : minRun;
+                binarySort(a, lo, lo + force, lo + runLen);
+                runLen = force;
+            }
+
+            // Push run onto pending-run stack, and maybe merge
+            ts.pushRun(lo, runLen);
+            ts.mergeCollapse();
+
+            // Advance to find next run
+            lo += runLen;
+            nRemaining -= runLen;
+        } while (nRemaining != 0);
+
+        // Merge all remaining runs to complete sort
+        assert lo == hi;
+        ts.mergeForceCollapse();
+        assert ts.stackSize == 1;
+    }
+
+    public static void _sort(Object[] a, int lo, int hi, Object[] work, int workBase, int workLen) {
+        assert a != null && lo >= 0 && lo <= hi && hi <= a.length;
+
+        int nRemaining  = hi - lo;
+        if (nRemaining <= 2) {
+            if (nRemaining == 2) {
+                Comparable o0 = (Comparable) a[0];
+                Object o1 = a[1];
+
+                if (o0.compareTo(o1) > 0) {
+                    a[0] = o1;
+                    a[1] = o0;
+                }
+                return;
+            } else {
+                return;  // Arrays of size 0 and 1 are always sorted
+            }
+        }
+
+        // If array is small, do a "mini-TimSort" with no merges
+        if (nRemaining < MIN_MERGE) {
+            int initRunLen = countRunAndMakeAscending(a, lo, hi);
+            binarySort(a, lo, hi, lo + initRunLen);
+            return;
+        }
+
+        /**
+         * March over the array once, left to right, finding natural runs,
+         * extending short natural runs to minRun elements, and merging runs
+         * to maintain stack invariant.
+         */
+        ComparableTimSort ts = new ComparableTimSort(a, work, workBase, workLen);
+        int minRun = minRunLength(nRemaining);
+        do {
+            // Identify next run
+            int runLen = countRunAndMakeAscending(a, lo, hi);
+
+            // If run is short, extend to min(minRun, nRemaining)
+            if (runLen < minRun) {
+                int force = nRemaining <= minRun ? nRemaining : minRun;
+                binarySort(a, lo, lo + force, lo + runLen);
+                runLen = force;
+            }
+
+            // Push run onto pending-run stack, and maybe merge
+            ts.pushRun(lo, runLen);
+            ts.mergeCollapse();
+
+            // Advance to find next run
+            lo += runLen;
+            nRemaining -= runLen;
+        } while (nRemaining != 0);
+
+        // Merge all remaining runs to complete sort
+        assert lo == hi;
+        ts.mergeForceCollapse();
+        assert ts.stackSize == 1;
+    }
+
+    public static void sortOriginal(Object[] a, int lo, int hi, Object[] work, int workBase, int workLen) {
+        assert a != null && lo >= 0 && lo <= hi && hi <= a.length;
+
+        int nRemaining  = hi - lo;
+        if (nRemaining < 2)
+            return;  // Arrays of size 0 and 1 are always sorted
 
         // If array is small, do a "mini-TimSort" with no merges
         if (nRemaining < MIN_MERGE) {

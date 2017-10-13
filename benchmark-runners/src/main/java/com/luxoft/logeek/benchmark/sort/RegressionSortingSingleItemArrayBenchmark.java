@@ -1,10 +1,9 @@
 package com.luxoft.logeek.benchmark.sort;
 
 import com.luxoft.logeek.benchmark.BaseBenchmark;
-import com.luxoft.logeek.sort.ArraysStub;
+import com.luxoft.logeek.sort.ComparableTimSort;
 import org.openjdk.jmh.annotations.*;
 
-import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -12,12 +11,15 @@ import java.util.concurrent.TimeUnit;
  * 1) array.length=2
  * 1) array.length>2
  */
-@State(Scope.Thread)
-@BenchmarkMode(Mode.Throughput)
-@OutputTimeUnit(TimeUnit.MILLISECONDS)
+@Fork(5)
+@State(Scope.Benchmark)
+@Warmup(iterations = 10)
+@Measurement(iterations = 100)
+@BenchmarkMode(Mode.AverageTime)
+@OutputTimeUnit(TimeUnit.NANOSECONDS)
 public class RegressionSortingSingleItemArrayBenchmark extends BaseBenchmark {
 
-    private Long[] singleItemArray;
+    private Long[] singletonArray;
 
     @Setup
     public void setup() {
@@ -26,19 +28,25 @@ public class RegressionSortingSingleItemArrayBenchmark extends BaseBenchmark {
 
     @Setup(Level.Invocation)
     public void createNewArray() {
-		singleItemArray = new Long[]{random.nextLong()};
+        singletonArray = new Long[]{random.nextLong()};
     }
 
-	@Benchmark
-	public Long[] measureEnhancedSort_singleItemArray() {
-		ArraysStub.sort(singleItemArray);
-		return singleItemArray;
-	}
+    @Benchmark
+    public Long[] measureEnhancedSortWithoutComparator() {
+        ComparableTimSort.sort(singletonArray, 0, singletonArray.length, null, 0, 0);
+        return singletonArray;
+    }
 
-	@Benchmark
-	public Long[] measureConventionalSort_singleItemArray() {
-		Arrays.sort(singleItemArray);
-		return singleItemArray;
-	}
+    @Benchmark
+    public Long[] _measureEnhancedSortWithoutComparator() {
+        ComparableTimSort._sort(singletonArray, 0, singletonArray.length, null, 0, 0);
+        return singletonArray;
+    }
+
+    @Benchmark
+    public Long[] measureConventionalSortWithoutComparator() {
+        ComparableTimSort.sortOriginal(singletonArray, 0, singletonArray.length, null, 0, 0);
+        return singletonArray;
+    }
 
 }
