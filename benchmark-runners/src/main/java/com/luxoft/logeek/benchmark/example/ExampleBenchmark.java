@@ -13,7 +13,12 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-@OutputTimeUnit(TimeUnit.MILLISECONDS)
+@Fork(5)
+@State(Scope.Benchmark)
+@Warmup(iterations = 10)
+@Measurement(iterations = 10)
+@BenchmarkMode(Mode.AverageTime)
+@OutputTimeUnit(TimeUnit.NANOSECONDS)
 public class ExampleBenchmark extends ContextAwareBenchmarkBase {
 	private ExampleService exampleService;
 	private SomeJpaRepository repository;
@@ -36,7 +41,7 @@ public class ExampleBenchmark extends ContextAwareBenchmarkBase {
 	}
 
 	@Setup(value = Level.Iteration)
-	public void setUp() throws Exception {
+	public void setUp() {
 		dto = new Dto(false);
 		id = ids.get(random.nextInt(ITEMS_COUNT));
 	}
@@ -46,17 +51,22 @@ public class ExampleBenchmark extends ContextAwareBenchmarkBase {
 		repository.deleteAll();
 	}
 
+    @Benchmark
+    public long doIneffectively() {
+        return exampleService.doIneffectively(id, dto);
+    }
+
 	@Benchmark
 	public long doEffectively() {
 		return exampleService.doEffectively(id, dto);
 	}
 
 	@Benchmark
-	public long doIneffectively() {
-		return exampleService.doIneffectively(id, dto);
+	public long doMostEffectively() {
+		return exampleService.doMostEffectively(id, dto);
 	}
 
-	protected void prepareDataInDb(Long id) {
+	private void prepareDataInDb(Long id) {
 		RatingEntity rating = new RatingEntity();
 
 		ChildEntity child = new ChildEntity();
