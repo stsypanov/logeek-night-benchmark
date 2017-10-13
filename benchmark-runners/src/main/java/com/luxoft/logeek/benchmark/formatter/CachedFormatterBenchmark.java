@@ -1,25 +1,33 @@
 package com.luxoft.logeek.benchmark.formatter;
 
-import com.luxoft.logeek.benchmark.BenchmarkBase;
-import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.Level;
-import org.openjdk.jmh.annotations.Setup;
+import org.openjdk.jmh.annotations.*;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
-public class CachedFormatterBenchmark extends BenchmarkBase {
+@Fork(10)
+@State(Scope.Benchmark)
+@Warmup(iterations = 10)
+@Measurement(iterations = 100)
+@BenchmarkMode(Mode.Throughput)
+@OutputTimeUnit(TimeUnit.MICROSECONDS)
+public class CachedFormatterBenchmark {
 
-    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-    private static final ThreadLocal<SimpleDateFormat> simpleDateFormat = ThreadLocal.withInitial(() -> new SimpleDateFormat("dd.MM.yyyy"));
-    
+    private static final String pattern = "dd.MM.yyyy";
+
+    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(pattern);
+    private static final ThreadLocal<SimpleDateFormat> simpleDateFormat = ThreadLocal.withInitial(
+            () -> new SimpleDateFormat(pattern)
+    );
+
     private Date date;
     private LocalDate localDate;
-    
-    @Setup(Level.Iteration)
+
+    @Setup
     public void setup() {
         date = new Date();
         localDate = LocalDate.now();
