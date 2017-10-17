@@ -3,6 +3,8 @@ package com.luxoft.logeek.benchmark.misc;
 import com.luxoft.logeek.benchmark.BaseBenchmark;
 import org.openjdk.jmh.annotations.*;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 @Fork(10)
@@ -16,10 +18,18 @@ public class MiscBenchmark extends BaseBenchmark {
     private ValueHolder holder;
     private Object nullable;
 
+    private Integer value;
+    private Integer value2;
+    private Set<Integer> integerSet;
+
     @Setup
     public void setupTrial() {
         super.init();
         holder = new ValueHolder();
+        value = 42;
+        value2 = 43;
+        integerSet = new HashSet<>();
+        integerSet.add(value);
     }
 
 
@@ -43,6 +53,16 @@ public class MiscBenchmark extends BaseBenchmark {
     @Benchmark
     public boolean measureInverseNullabilityCheck() {
         return nullable != null;
+    }
+
+    @Benchmark
+    public boolean measureContains() {
+        return integerSet.contains(value);
+    }
+
+    @Benchmark
+    public boolean measureDoesNotContain() {
+        return integerSet.contains(value2);
     }
 
 
