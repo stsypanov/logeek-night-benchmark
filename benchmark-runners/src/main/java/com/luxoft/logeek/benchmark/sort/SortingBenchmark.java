@@ -4,13 +4,10 @@ import com.luxoft.logeek.benchmark.BaseBenchmark;
 import com.luxoft.logeek.sort.ComparableTimSort;
 import org.openjdk.jmh.annotations.*;
 
-import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
-@Fork(5)
+@Fork(jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms2g", "-Xmx2g"})
 @State(Scope.Benchmark)
-@Warmup(iterations = 10)
-@Measurement(iterations = 100)
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 public class SortingBenchmark extends BaseBenchmark {
@@ -22,7 +19,7 @@ public class SortingBenchmark extends BaseBenchmark {
         super.init();
     }
 
-    @Setup(Level.Invocation)
+    @Setup(Level.Iteration)
     public void createNewArray() {
         long positive = Math.abs(random.nextLong());
         long negative = random.nextLong();
@@ -30,7 +27,7 @@ public class SortingBenchmark extends BaseBenchmark {
         longs = new Long[]{positive, negative};
     }
 
-    @TearDown(Level.Invocation)
+    @TearDown(Level.Iteration)
     public void afterEachInvocation() {
         Long long0 = longs[0];
         Long long1 = longs[1];

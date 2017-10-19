@@ -13,16 +13,13 @@ import java.util.stream.LongStream;
  * 1) array.length=2
  * 1) array.length>2
  */
-@Fork(5)
+@Fork(jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms2g", "-Xmx2g"})
 @State(Scope.Benchmark)
-@Warmup(iterations = 10)
-@Measurement(iterations = 10)
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 public class RegressionSortingBenchmark extends BaseBenchmark {
 
-    @Param({"5", "10", "100"})
-    private int arrayLength;
+    private int arrayLength = 3;
 
     private Long[] array1;
     private Long[] array2;
@@ -33,7 +30,7 @@ public class RegressionSortingBenchmark extends BaseBenchmark {
         super.init();
     }
 
-    @Setup(Level.Invocation)
+    @Setup(Level.Iteration)
     public void createNewArray() {
         Long[] reversedArray = LongStream.range(0, arrayLength)
                 .boxed()

@@ -11,10 +11,8 @@ import java.util.concurrent.TimeUnit;
  * 1) array.length=2
  * 1) array.length>2
  */
-@Fork(5)
+@Fork(jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms2g", "-Xmx2g"})
 @State(Scope.Benchmark)
-@Warmup(iterations = 10)
-@Measurement(iterations = 100)
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 public class RegressionSortingSingleItemArrayBenchmark extends BaseBenchmark {
@@ -26,7 +24,7 @@ public class RegressionSortingSingleItemArrayBenchmark extends BaseBenchmark {
         super.init();
     }
 
-    @Setup(Level.Invocation)
+    @Setup(Level.Iteration)
     public void createNewArray() {
         singletonArray = new Long[]{random.nextLong()};
     }
