@@ -13,15 +13,18 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-@Fork(5)
+@Fork(10)
 @State(Scope.Benchmark)
 @Warmup(iterations = 10)
-@Measurement(iterations = 10)
+@Measurement(iterations = 20)
 @BenchmarkMode(Mode.AverageTime)
-@OutputTimeUnit(TimeUnit.NANOSECONDS)
+@OutputTimeUnit(TimeUnit.MICROSECONDS)
 public class ExampleBenchmark extends ContextAwareBenchmarkBase {
 	private ExampleService exampleService;
 	private SomeJpaRepository repository;
+
+	@Param({"true", "false"})
+	private String valid;
 
 	private static final int ITEMS_COUNT = 50;
 	private List<Long> ids;
@@ -42,13 +45,14 @@ public class ExampleBenchmark extends ContextAwareBenchmarkBase {
 
 	@Setup(value = Level.Iteration)
 	public void setUp() {
-		dto = new Dto(false);
+        boolean isValid = "true".equals(valid);
+        dto = new Dto(isValid);
 		id = ids.get(random.nextInt(ITEMS_COUNT));
 	}
 
 	@TearDown
 	public void after() {
-		repository.deleteAll();
+		repository.deleteAllInBatch();
 	}
 
     @Benchmark
