@@ -30,6 +30,10 @@
 			<AppenderRef ref="ASYNC_CONSOLE"/>
 		</Logger>
 
+		<Logger name="org.dbunit" level="warn" additivity="false">
+			<AppenderRef ref="ASYNC_CONSOLE"/>
+		</Logger>
+
 		<Root level="error">
 			<AppenderRef ref="ASYNC_CONSOLE"/>
 		</Root>
