@@ -1,0 +1,60 @@
+25.10.2017
+
+JDK 8
+
+Benchmark                                       								Mode  Cnt    Score     Error   Units
+MergeBenchmark.measureModifyCallingSave         								avgt  500  150,972 	 ± 2,859   us/op
+MergeBenchmark.measureModifyWithoutCallingSave  								avgt  500  139,684 	 ± 1,320   us/op
+
+MergeBenchmark.measureModifyCallingSave:·gc.alloc.rate.norm                     avgt  500  45530,392 ± 20,149  B/op
+MergeBenchmark.measureModifyWithoutCallingSave:·gc.alloc.rate.norm              avgt  500  43245,317 ± 13,598  B/op
+
+JDK 8
+
+-f 10 -wi 20 -m 50
+
+Benchmark                                          (count)  Mode  Cnt     Score    Error  Units
+ArrayCopyBenchmark.measureArraysCopyOf                   1  avgt  500    10,609 ±  0,107  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForEach        1  avgt  500    18,774 ±  0,115  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForI           1  avgt  500    18,828 ±  0,131  ns/op
+ArrayCopyBenchmark.measureClone                          1  avgt  500    11,342 ±  0,088  ns/op
+
+ArrayCopyBenchmark.measureArraysCopyOf                   5  avgt  500    10,767 ±  0,095  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForEach        5  avgt  500    23,968 ±  0,155  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForI           5  avgt  500    22,832 ±  0,133  ns/op
+ArrayCopyBenchmark.measureClone                          5  avgt  500    11,277 ±  0,088  ns/op
+
+ArrayCopyBenchmark.measureArraysCopyOf                  10  avgt  500    11,974 ±  0,182  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForEach       10  avgt  500    25,223 ±  0,175  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForI          10  avgt  500    24,131 ±  0,173  ns/op
+ArrayCopyBenchmark.measureClone                         10  avgt  500    12,142 ±  0,098  ns/op
+
+ArrayCopyBenchmark.measureArraysCopyOf                  20  avgt  500    14,316 ±  0,708  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForEach       20  avgt  500    26,220 ±  0,176  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForI          20  avgt  500    25,691 ±  0,176  ns/op
+ArrayCopyBenchmark.measureClone                         20  avgt  500    13,041 ±  0,117  ns/op
+
+ArrayCopyBenchmark.measureArraysCopyOf                  50  avgt  500    19,393 ±  0,154  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForEach       50  avgt  500    33,719 ±  0,256  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForI          50  avgt  500    34,939 ±  0,279  ns/op
+ArrayCopyBenchmark.measureClone                         50  avgt  500    17,747 ±  0,125  ns/op
+
+ArrayCopyBenchmark.measureArraysCopyOf                 100  avgt  500    32,051 ±  0,223  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForEach      100  avgt  500    38,919 ±  0,337  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForI         100  avgt  500    41,394 ±  0,328  ns/op
+ArrayCopyBenchmark.measureClone                        100  avgt  500    29,454 ±  0,149  ns/op
+
+ArrayCopyBenchmark.measureArraysCopyOfWithForEach     1000  avgt  500   273,581 ±  1,805  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForI        1000  avgt  500   273,114 ±  1,772  ns/op
+ArrayCopyBenchmark.measureArraysCopyOf                1000  avgt  500   255,063 ±  4,361  ns/op
+ArrayCopyBenchmark.measureClone                       1000  avgt  500   253,063 ±  2,115  ns/op
+
+ArrayCopyBenchmark.measureArraysCopyOf               10000  avgt  500  2455,143 ± 13,380  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForEach    10000  avgt  500  1891,878 ± 14,537  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForI       10000  avgt  500  1888,779 ± 13,804  ns/op
+ArrayCopyBenchmark.measureClone                      10000  avgt  500  2480,795 ± 15,583  ns/op
+
+
+
+
+
