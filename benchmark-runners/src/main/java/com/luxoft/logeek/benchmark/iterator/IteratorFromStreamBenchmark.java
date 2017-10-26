@@ -4,38 +4,37 @@ import com.luxoft.logeek.benchmark.BenchmarkBase;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+import static java.util.stream.Collectors.toCollection;
 import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toSet;
 
-@OutputTimeUnit(TimeUnit.MICROSECONDS)
+@BenchmarkMode(Mode.AverageTime)
+@OutputTimeUnit(TimeUnit.NANOSECONDS)
 public class IteratorFromStreamBenchmark extends BenchmarkBase {
 
-    private List<Integer> itemList;
-    private Set<Integer> itemSet;
+    private Collection<Integer> items;
 
-    @Param({"10", "100", "1000", "10000", "100000"})
+    @Param({"10", "100", "1000"})
     private int size;
 
-    @Setup
-    public void initTrial() {
-        super.init();
-    }
+    @Param({"list", "set"})
+    private String collectionType;
 
-    @Setup(value = Level.Iteration)
+    @Setup
     public void init() {
-        itemList = random.ints(size).boxed().collect(toList());
-        itemSet = new HashSet<>(itemList);
+        super.init();
+        if ("list".equals(collectionType)) {
+            items = random.ints(size).boxed().collect(toCollection(ArrayList::new));
+        } else {
+            items = random.ints(size).boxed().collect(toCollection(HashSet::new));
+        }
     }
 
     @Benchmark
     public void measureIteratorFromCollectedList(Blackhole bh) {
-        Iterator<String> iterator = itemList.stream()
+        Iterator<String> iterator = items.stream()
                 .map(Object::toString)
                 .collect(toList())
                 .iterator();
@@ -46,7 +45,7 @@ public class IteratorFromStreamBenchmark extends BenchmarkBase {
 
     @Benchmark
     public void measureIteratorFromStream(Blackhole bh) {
-        Iterator<String> iterator = itemList.stream()
+        Iterator<String> iterator = items.stream()
                 .map(Object::toString)
                 .iterator();
 
@@ -55,25 +54,9 @@ public class IteratorFromStreamBenchmark extends BenchmarkBase {
     }
 
     @Benchmark
-    public void measureIteratorFromHashSet(Blackhole bh) {
-        Iterator<String> iterator = itemSet
-                .stream()
+    public void measureForEach(Blackhole bh) {
+        items.stream()
                 .map(Object::toString)
-                .collect(toSet())
-                .iterator();
-        
-        while (iterator.hasNext())
-            bh.consume(iterator.next());
-    }
-
-    @Benchmark
-    public void measureIteratorFromSetStream(Blackhole bh) {
-        Iterator<String> iterator = itemSet
-                .stream()
-                .map(Object::toString)
-                .iterator();
-
-        while (iterator.hasNext())
-            bh.consume(iterator.next());
+                .forEach(bh::consume);
     }
 }
