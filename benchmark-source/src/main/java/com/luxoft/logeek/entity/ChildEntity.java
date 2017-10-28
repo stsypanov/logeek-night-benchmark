@@ -9,9 +9,11 @@ import javax.persistence.*;
 @Setter
 @Entity
 public class ChildEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private RatingEntity ratingEntity;
 

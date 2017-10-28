@@ -9,8 +9,10 @@ import javax.persistence.*;
 @Getter
 @Entity
 public class SomeEntity {
+
     @Id
     private Long id;
+
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private ChildEntity childEntity;
 

@@ -11,7 +11,8 @@ import org.openjdk.jmh.annotations.*;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 @Fork(10)
 @State(Scope.Benchmark)
@@ -40,7 +41,7 @@ public class ExampleBenchmark extends ContextAwareBenchmarkBase {
 		ids = random.longs(ITEMS_COUNT, 1, 50)
 				.boxed()
 				.peek(this::prepareDataInDb)
-				.collect(Collectors.toList());
+				.collect(toList());
 	}
 
 	@Setup(value = Level.Iteration)

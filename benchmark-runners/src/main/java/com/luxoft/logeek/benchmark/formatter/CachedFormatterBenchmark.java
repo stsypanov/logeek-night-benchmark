@@ -20,7 +20,7 @@ public class CachedFormatterBenchmark {
     private static final String pattern = "dd.MM.yyyy";
 
     private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(pattern);
-    private static final ThreadLocal<SimpleDateFormat> simpleDateFormat = ThreadLocal.withInitial(
+    private static final ThreadLocal<SimpleDateFormat> simpleFormatter = ThreadLocal.withInitial(
             () -> new SimpleDateFormat(pattern)
     );
 
@@ -35,7 +35,7 @@ public class CachedFormatterBenchmark {
 
     @Benchmark
     public String measureSimpleDateTimeFormatter() {
-        return simpleDateFormat.get().format(date);
+        return simpleFormatter.get().format(date);
     }
 
     @Benchmark
