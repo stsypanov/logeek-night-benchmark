@@ -31,12 +31,13 @@ import static org.junit.Assert.assertThat;
 })
 @DatabaseSetup("/SavingServiceImplTest.xml")
 public class SavingServiceImplTest {
+
     @Autowired
     private SavingService savingService;
     @Autowired
     private SimpleRepository repository;
 
-    private Long id = 1L;
+    private final Long id = 1L;
     private final String newName = "ololo";
 
     @Test
@@ -46,7 +47,7 @@ public class SavingServiceImplTest {
 
     @Test
     public void modifyCallingSave() {
-        savingService.modifyWithoutCallingSave(id, newName);
+        savingService.modifyCallingSave(id, newName);
     }
 
     @AfterTransaction
