@@ -9,51 +9,47 @@ import org.openjdk.jmh.annotations.*;
 import java.util.concurrent.TimeUnit;
 
 
-@Fork(value = 5, jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms4g", "-Xmx4g"})
-@State(Scope.Benchmark)
-@Warmup(iterations = 15)
-@Measurement(iterations = 100)
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
-public class MergeBenchmark extends ContextAwareBenchmark {
-    private SavingService service;
+public class MergeBenchmark {
 
-    private Long id = 123L;
-    private int i;
+    @Benchmark
+    public SimpleEntity measureModifyWithoutCallingSave(BmState state) {
+        int i = state.i++;
+        String newName = i + "";
 
-    @Setup
-    public void setup() {
-        super.init();
-        SimpleRepository repository = getBean(SimpleRepository.class);
-        service = getBean(SavingService.class);
-
-        SimpleEntity entity = new SimpleEntity();
-        entity.setId(id);
-        entity.setName("azaza");
-
-        repository.save(entity);
-
-        i = random.nextInt();
+        return state.service.modifyWithoutCallingSave(state.id, newName);
     }
 
     @Benchmark
-    public SimpleEntity measureModifyWithoutCallingSave() {
-        int i = this.i++;
+    public SimpleEntity measureModifyCallingSave(BmState state) {
+        int i = state.i++;
         String newName = i + "";
 
-        return service.modifyWithoutCallingSave(id, newName);
+        return state.service.modifyCallingSave(state.id, newName);
     }
 
-    @Benchmark
-    public SimpleEntity measureModifyCallingSave() {
-        int i = this.i++;
-        String newName = i + "";
+    @State(Scope.Thread)
+    public static class BmState extends ContextAwareBenchmark {
+        SavingService service;
 
-        return service.modifyCallingSave(id, newName);
-    }
+        Long id = 123L;
+        int i;
 
-    @TearDown
-    public void tearDown() {
-        context.close();
+        @Setup
+        public void setup() {
+            super.init();
+            service = getBean(SavingService.class);
+
+            SimpleEntity entity = new SimpleEntity(id, "azaza");
+            getBean(SimpleRepository.class).save(entity);
+
+            i = random.nextInt();
+        }
+
+        @TearDown
+        public void tearDown() {
+            context.close();
+        }
     }
 }
