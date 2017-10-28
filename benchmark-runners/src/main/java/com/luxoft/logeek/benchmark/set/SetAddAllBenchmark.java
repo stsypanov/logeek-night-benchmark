@@ -2,50 +2,44 @@ package com.luxoft.logeek.benchmark.set;
 
 import com.luxoft.logeek.benchmark.BenchmarkBase;
 import com.luxoft.logeek.utils.ContainerUtils;
-import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.Level;
-import org.openjdk.jmh.annotations.Param;
-import org.openjdk.jmh.annotations.Setup;
+import org.openjdk.jmh.annotations.*;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
+@BenchmarkMode(Mode.AverageTime)
+@OutputTimeUnit(TimeUnit.NANOSECONDS)
 public class SetAddAllBenchmark extends BenchmarkBase {
-	@Param({"10", "1000", "10000"})
-	private int count;
 
-	private Integer[] integers;
-	private Set<Integer> integerSet1;
-	private Set<Integer> integerSet2;
-	private Set<Integer> integerSet3;
+    @Benchmark
+    public boolean measureAddAllViaMethod(Data data) {
+        return new HashSet<>().addAll(Arrays.asList(data.integers));
+    }
 
-	@Setup
-	public void setup() {
-		integers = IntStream.range(0, count).boxed().toArray(value -> new Integer[count]);
-	}
+    @Benchmark
+    public boolean measureAddAllViaCollectionsAddAll(Data data) {
+        return Collections.addAll(new HashSet<>(), data.integers);
+    }
 
-	@Setup(Level.Invocation)
-	public void prepareFreshSet() {
-		integerSet1 = new HashSet<>();
-		integerSet2 = new HashSet<>();
-		integerSet3 = new HashSet<>();
-	}
+    @Benchmark
+    public Set<Integer> measureAddAllViaUtilsAddAll(Data data) {
+        return ContainerUtils.addAll(new HashSet<>(), data.integers);
+    }
 
-	@Benchmark
-	public boolean measureAddAllViaMethod() {
-		return integerSet1.addAll(Arrays.asList(integers));
-	}
+    @State(Scope.Thread)
+    public static class Data {
+        @Param({"10", "100", "1000"})
+        private int count;
 
-	@Benchmark
-	public boolean measureAddAllViaCollectionsAddAll() {
-		return Collections.addAll(integerSet2, integers);
-	}
+        Integer[] integers;
 
-	@Benchmark
-	public Set<Integer> measureAddAllViaUtilsAddAll() {
-		return ContainerUtils.addAll(integerSet3, integers);
-	}
+        @Setup
+        public void setup() {
+            integers = IntStream.range(0, count).boxed().toArray(i -> new Integer[count]);
+        }
+    }
 }
