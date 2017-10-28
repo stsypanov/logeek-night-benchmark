@@ -1,6 +1,6 @@
 25.10.2017
 
-JDK 8
+JDK 8 / JRE 8
 
 Benchmark                                       								Mode  Cnt    Score     Error   Units
 MergeBenchmark.measureModifyCallingSave         								avgt  500  150,972 	 ± 2,859   us/op
@@ -9,7 +9,7 @@ MergeBenchmark.measureModifyWithoutCallingSave  								avgt  500  139,684 	 ± 
 MergeBenchmark.measureModifyCallingSave:·gc.alloc.rate.norm                     avgt  500  45530,392 ± 20,149  B/op
 MergeBenchmark.measureModifyWithoutCallingSave:·gc.alloc.rate.norm              avgt  500  43245,317 ± 13,598  B/op
 
-JDK 8
+JDK 8 / JRE 8
 
 -f 10 -wi 20 -m 50
 
@@ -58,47 +58,121 @@ ArrayCopyBenchmark.measureClone                      10000  avgt  500  2480,795 
 -------------------------------------------------------------------------------------------------------------
 
 
-JDK 9
+JDK 8 / JRE 9
 
 -f 10 -wi 20 -m 50
 
 Benchmark                                          (count)  Mode  Cnt     Score    Error  Units
-ArrayCopyBenchmark.measureArraysCopyOf                   1  avgt  500    11,166 ?  0,224  ns/op
-ArrayCopyBenchmark.measureArraysCopyOfWithForEach        1  avgt  500    12,671 ?  1,516  ns/op
-ArrayCopyBenchmark.measureArraysCopyOfWithForI           1  avgt  500     9,074 ?  0,106  ns/op
-ArrayCopyBenchmark.measureClone                          1  avgt  500    11,601 ?  0,099  ns/op
+ArrayCopyBenchmark.measureArraysCopyOf                   1  avgt  500    11,166 ±  0,224  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForEach        1  avgt  500    12,671 ±  1,516  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForI           1  avgt  500     9,074 ±  0,106  ns/op
+ArrayCopyBenchmark.measureClone                          1  avgt  500    11,601 ±  0,099  ns/op
 
-ArrayCopyBenchmark.measureArraysCopyOf                   5  avgt  500    10,876 ?  0,207  ns/op
-ArrayCopyBenchmark.measureArraysCopyOfWithForEach        5  avgt  500    13,592 ?  0,269  ns/op
-ArrayCopyBenchmark.measureArraysCopyOfWithForI           5  avgt  500    12,439 ?  0,126  ns/op
-ArrayCopyBenchmark.measureClone                          5  avgt  500    11,734 ?  0,113  ns/op
+ArrayCopyBenchmark.measureArraysCopyOf                   5  avgt  500    10,876 ±  0,207  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForEach        5  avgt  500    13,592 ±  0,269  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForI           5  avgt  500    12,439 ±  0,126  ns/op
+ArrayCopyBenchmark.measureClone                          5  avgt  500    11,734 ±  0,113  ns/op
 
-ArrayCopyBenchmark.measureArraysCopyOf                  10  avgt  500    11,844 ?  0,126  ns/op
-ArrayCopyBenchmark.measureArraysCopyOfWithForEach       10  avgt  500    14,695 ?  0,185  ns/op
-ArrayCopyBenchmark.measureArraysCopyOfWithForI          10  avgt  500    14,418 ?  0,159  ns/op
-ArrayCopyBenchmark.measureClone                         10  avgt  500    12,421 ?  0,107  ns/op
+ArrayCopyBenchmark.measureArraysCopyOf                  10  avgt  500    11,844 ±  0,126  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForEach       10  avgt  500    14,695 ±  0,185  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForI          10  avgt  500    14,418 ±  0,159  ns/op
+ArrayCopyBenchmark.measureClone                         10  avgt  500    12,421 ±  0,107  ns/op
 
-ArrayCopyBenchmark.measureArraysCopyOf                  20  avgt  500    13,419 ?  0,451  ns/op
-ArrayCopyBenchmark.measureArraysCopyOfWithForEach       20  avgt  500    19,882 ?  0,403  ns/op
-ArrayCopyBenchmark.measureArraysCopyOfWithForI          20  avgt  500    18,855 ?  0,172  ns/op
-ArrayCopyBenchmark.measureClone                         20  avgt  500    13,237 ?  0,108  ns/op
+ArrayCopyBenchmark.measureArraysCopyOf                  20  avgt  500    13,419 ±  0,451  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForEach       20  avgt  500    19,882 ±  0,403  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForI          20  avgt  500    18,855 ±  0,172  ns/op
+ArrayCopyBenchmark.measureClone                         20  avgt  500    13,237 ±  0,108  ns/op
 
-ArrayCopyBenchmark.measureArraysCopyOf                  50  avgt  500    20,792 ?  0,560  ns/op
-ArrayCopyBenchmark.measureArraysCopyOfWithForEach       50  avgt  500    34,059 ?  0,948  ns/op
-ArrayCopyBenchmark.measureArraysCopyOfWithForI          50  avgt  500    29,314 ?  0,251  ns/op
-ArrayCopyBenchmark.measureClone                         50  avgt  500    18,576 ?  0,142  ns/op
+ArrayCopyBenchmark.measureArraysCopyOf                  50  avgt  500    20,792 ±  0,560  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForEach       50  avgt  500    34,059 ±  0,948  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForI          50  avgt  500    29,314 ±  0,251  ns/op
+ArrayCopyBenchmark.measureClone                         50  avgt  500    18,576 ±  0,142  ns/op
 
-ArrayCopyBenchmark.measureArraysCopyOf                 100  avgt  500    33,330 ?  0,848  ns/op
-ArrayCopyBenchmark.measureArraysCopyOfWithForEach      100  avgt  500    43,862 ?  0,394  ns/op
-ArrayCopyBenchmark.measureArraysCopyOfWithForI         100  avgt  500    42,662 ?  0,338  ns/op
-ArrayCopyBenchmark.measureClone                        100  avgt  500    30,661 ?  0,157  ns/op
+ArrayCopyBenchmark.measureArraysCopyOf                 100  avgt  500    33,330 ±  0,848  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForEach      100  avgt  500    43,862 ±  0,394  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForI         100  avgt  500    42,662 ±  0,338  ns/op
+ArrayCopyBenchmark.measureClone                        100  avgt  500    30,661 ±  0,157  ns/op
 
-ArrayCopyBenchmark.measureArraysCopyOf                1000  avgt  500   299,060 ? 10,566  ns/op
-ArrayCopyBenchmark.measureArraysCopyOfWithForEach     1000  avgt  500   275,257 ?  4,603  ns/op
-ArrayCopyBenchmark.measureArraysCopyOfWithForI        1000  avgt  500   261,016 ?  1,976  ns/op
-ArrayCopyBenchmark.measureClone                       1000  avgt  500   256,199 ?  1,160  ns/op
+ArrayCopyBenchmark.measureArraysCopyOf                1000  avgt  500   299,060 ± 10,566  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForEach     1000  avgt  500   275,257 ±  4,603  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForI        1000  avgt  500   261,016 ±  1,976  ns/op
+ArrayCopyBenchmark.measureClone                       1000  avgt  500   256,199 ±  1,160  ns/op
 
-ArrayCopyBenchmark.measureArraysCopyOf               10000  avgt  500  2939,384 ? 73,870  ns/op
-ArrayCopyBenchmark.measureArraysCopyOfWithForEach    10000  avgt  500  1512,567 ? 34,683  ns/op
-ArrayCopyBenchmark.measureArraysCopyOfWithForI       10000  avgt  500  1419,036 ? 13,950  ns/op
-ArrayCopyBenchmark.measureClone                      10000  avgt  500  2564,621 ? 15,126  ns/op
+ArrayCopyBenchmark.measureArraysCopyOf               10000  avgt  500  2939,384 ± 73,870  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForEach    10000  avgt  500  1512,567 ± 34,683  ns/op
+ArrayCopyBenchmark.measureArraysCopyOfWithForI       10000  avgt  500  1419,036 ± 13,950  ns/op
+ArrayCopyBenchmark.measureClone                      10000  avgt  500  2564,621 ± 15,126  ns/op
+
+-------------------------------------------------------------------------------------------------------------
+
+27.10.2017
+
+JDK 8 / JRE 9
+
+-f 10 -wi 20 -m 50
+
+Benchmark                                                     (collectionType)  (size)  Mode  Cnt      Score     Error  Units
+IteratorFromStreamBenchmark.measureForEach                                list      10  avgt  500    397,899 ±   3,742  ns/op
+IteratorFromStreamBenchmark.measureIteratorFromStream                     list      10  avgt  500    618,878 ±   6,864  ns/op
+IteratorFromStreamBenchmark.measureIteratorFromCollectedList              list      10  avgt  500    479,987 ±   6,310  ns/op
+
+IteratorFromStreamBenchmark.measureForEach                                list     100  avgt  500   3333,892 ±  33,167  ns/op
+IteratorFromStreamBenchmark.measureIteratorFromStream                     list     100  avgt  500   5819,927 ± 160,011  ns/op
+IteratorFromStreamBenchmark.measureIteratorFromCollectedList              list     100  avgt  500   4123,159 ±  57,694  ns/op
+
+IteratorFromStreamBenchmark.measureForEach                                list    1000  avgt  500  35905,929 ± 358,069  ns/op
+IteratorFromStreamBenchmark.measureIteratorFromStream                     list    1000  avgt  500  54665,916 ± 877,024  ns/op
+IteratorFromStreamBenchmark.measureIteratorFromCollectedList              list    1000  avgt  500  45274,905 ± 927,043  ns/op
+
+IteratorFromStreamBenchmark.measureForEach                                 set      10  avgt  500    492,351 ±  26,488  ns/op
+IteratorFromStreamBenchmark.measureIteratorFromStream                      set      10  avgt  500    714,031 ±  11,948  ns/op
+IteratorFromStreamBenchmark.measureIteratorFromCollectedList               set      10  avgt  500    556,542 ±   5,880  ns/op
+
+IteratorFromStreamBenchmark.measureForEach                                 set     100  avgt  500   4555,108 ±  61,825  ns/op
+IteratorFromStreamBenchmark.measureIteratorFromStream                      set     100  avgt  500   6156,478 ±  71,377  ns/op
+IteratorFromStreamBenchmark.measureIteratorFromCollectedList               set     100  avgt  500   4860,118 ±  54,824  ns/op
+
+IteratorFromStreamBenchmark.measureForEach                                 set    1000  avgt  500  54001,405 ± 955,434  ns/op
+IteratorFromStreamBenchmark.measureIteratorFromStream                      set    1000  avgt  500  71602,788 ± 805,289  ns/op
+IteratorFromStreamBenchmark.measureIteratorFromCollectedList               set    1000  avgt  500  57125,771 ± 586,272  ns/op
+
+-------------------------------------------------------------------------------------------------------------
+
+27.10.2017
+
+JDK 8 / JRE 8
+
+-f 10 -wi 20 -m 50
+
+Benchmark                                             (count)  Mode  Cnt      Score     Error  Units
+SetAddAllBenchmark.measureAddAllViaMethod                  10  avgt  500    230,978 ±   2,528  ns/op
+SetAddAllBenchmark.measureAddAllViaUtilsAddAll             10  avgt  500    157,242 ±   2,069  ns/op
+SetAddAllBenchmark.measureAddAllViaCollectionsAddAll       10  avgt  500    141,383 ±   2,125  ns/op
+
+SetAddAllBenchmark.measureAddAllViaMethod                 100  avgt  500   2515,255 ±  22,154  ns/op
+SetAddAllBenchmark.measureAddAllViaUtilsAddAll            100  avgt  500   1917,693 ±  20,533  ns/op
+SetAddAllBenchmark.measureAddAllViaCollectionsAddAll      100  avgt  500   1837,411 ±  22,111  ns/op
+
+SetAddAllBenchmark.measureAddAllViaMethod                1000  avgt  500  23647,743 ± 208,480  ns/op
+SetAddAllBenchmark.measureAddAllViaUtilsAddAll           1000  avgt  500  17434,137 ± 256,017  ns/op
+SetAddAllBenchmark.measureAddAllViaCollectionsAddAll     1000  avgt  500  17283,939 ± 181,051  ns/op
+
+Каждый метод выполняется как отдельный БМ:
+
+Benchmark                                             (count)  Mode  Cnt      Score     Error  Units
+SetAddAllBenchmark.measureAddAllViaMethod                  10  avgt  500    282,224 ±   7,747  ns/op
+SetAddAllBenchmark.measureAddAllViaMethod                 100  avgt  500   2973,791 ±  37,126  ns/op
+SetAddAllBenchmark.measureAddAllViaMethod                1000  avgt  500  29377,079 ± 356,668  ns/op
+
+Benchmark                                             (count)  Mode  Cnt      Score     Error  Units
+SetAddAllBenchmark.measureAddAllViaCollectionsAddAll       10  avgt  500    172,077 ±   2,957  ns/op
+SetAddAllBenchmark.measureAddAllViaCollectionsAddAll      100  avgt  500   1996,182 ±  18,654  ns/op
+SetAddAllBenchmark.measureAddAllViaCollectionsAddAll     1000  avgt  500  18015,272 ± 156,627  ns/op
+
+Benchmark                                             (count)  Mode  Cnt      Score     Error  Units
+SetAddAllBenchmark.measureAddAllViaUtilsAddAll             10  avgt  500    177,535 ±   1,748  ns/op
+SetAddAllBenchmark.measureAddAllViaUtilsAddAll            100  avgt  500   2115,596 ±  21,019  ns/op
+SetAddAllBenchmark.measureAddAllViaUtilsAddAll           1000  avgt  500  18983,598 ± 183,482  ns/op
+
+-------------------------------------------------------------------------------------------------------------
+
