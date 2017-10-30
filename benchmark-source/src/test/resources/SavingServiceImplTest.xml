@@ -1,3 +1,5 @@
 <dataset>
-    <SimpleEntity id="1" name="azaza"/>
+    <ChildEntity id="11"/>
+
+    <SimpleEntity id="1" name="azaza" child_id="11"/>
 </dataset>

@@ -1,7 +1,9 @@
 package com.luxoft.logeek.benchmark.merge;
 
 import com.luxoft.logeek.benchmark.ContextAwareBenchmark;
+import com.luxoft.logeek.entity.ChildEntity;
 import com.luxoft.logeek.entity.SimpleEntity;
+import com.luxoft.logeek.repository.ChildRepository;
 import com.luxoft.logeek.repository.SimpleRepository;
 import com.luxoft.logeek.service.SavingService;
 import org.openjdk.jmh.annotations.*;
@@ -41,10 +43,14 @@ public class MergeBenchmark {
             super.init();
             service = getBean(SavingService.class);
 
-            SimpleEntity entity = new SimpleEntity(id, "azaza");
+            ChildEntity child = new ChildEntity();
+            child.setId(11L);
+            getBean(ChildRepository.class).save(child);
+
+            SimpleEntity entity = new SimpleEntity(id, "azaza", child);
             getBean(SimpleRepository.class).save(entity);
 
-            i = random.nextInt();
+            i = 100000;
         }
 
         @TearDown

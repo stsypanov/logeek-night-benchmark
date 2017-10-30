@@ -5,8 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Setter
 @Getter
@@ -18,4 +17,8 @@ public class SimpleEntity {
     private Long id;
 
     private String name;
+
+    @JoinColumn(name = "CHILD_ID")
+    @ManyToOne(cascade = CascadeType.ALL)
+    private ChildEntity childEntity;
 }
