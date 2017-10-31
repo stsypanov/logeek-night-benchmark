@@ -44,7 +44,7 @@ public class MergeBenchmark {
             SimpleEntity entity = new SimpleEntity(id, "azaza");
             getBean(SimpleRepository.class).save(entity);
 
-            i = random.nextInt();
+            i = 10000000;
         }
 
         @TearDown
