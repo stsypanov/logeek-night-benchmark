@@ -9,43 +9,35 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-@Fork(10)
-@State(Scope.Benchmark)
-@Warmup(iterations = 10)
-@Measurement(iterations = 100)
-@BenchmarkMode(Mode.Throughput)
-@OutputTimeUnit(TimeUnit.MICROSECONDS)
+@BenchmarkMode(Mode.AverageTime)
+@OutputTimeUnit(TimeUnit.NANOSECONDS)
 public class CachedFormatterBenchmark {
 
-    private static final String pattern = "dd.MM.yyyy";
-
-    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(pattern);
-    private static final ThreadLocal<SimpleDateFormat> simpleFormatter = ThreadLocal.withInitial(
-            () -> new SimpleDateFormat(pattern)
-    );
-
-    private Date date;
-    private LocalDate localDate;
-
-    @Setup
-    public void setup() {
-        date = new Date();
-        localDate = LocalDate.now();
+    @Benchmark
+    public String measureSimpleDateTimeFormatter(Data data) {
+        return data.simpleFormatter.get().format(data.date);
     }
 
     @Benchmark
-    public String measureSimpleDateTimeFormatter() {
-        return simpleFormatter.get().format(date);
+    public String measureDateTimeFormatterWhenDateConverted(Data data) {
+        LocalDate localDate = data.date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        return data.dateTimeFormatter.format(localDate);
     }
 
-    @Benchmark
-    public String measureDateTimeFormatter() {
-        return dateTimeFormatter.format(localDate);
-    }
+    @State(Scope.Thread)
+    public static class Data {
+        private static final String pattern = "dd.MM.yyyy";
 
-    @Benchmark
-    public String measureDateTimeFormatterWhenDateConverted() {
-        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        return dateTimeFormatter.format(localDate);
+        DateTimeFormatter dateTimeFormatter;
+        ThreadLocal<SimpleDateFormat> simpleFormatter;
+
+        Date date;
+
+        @Setup
+        public void setup() {
+            date = new Date();
+            dateTimeFormatter = DateTimeFormatter.ofPattern(pattern);
+            simpleFormatter = ThreadLocal.withInitial(() -> new SimpleDateFormat(pattern));
+        }
     }
 }
