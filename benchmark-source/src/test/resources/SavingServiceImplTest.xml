@@ -1,5 +1,15 @@
 <dataset>
-    <ChildEntity id="11"/>
+    <SimpleEntity simple_entity_id="1" name="azaza"/>
 
-    <SimpleEntity id="1" name="azaza" child_id="11"/>
+    <ChildEntity id="11" simple_entity_id="1"/>
+    <ChildEntity id="12" simple_entity_id="1"/>
+    <ChildEntity id="13" simple_entity_id="1"/>
+    <ChildEntity id="14" simple_entity_id="1"/>
+    <ChildEntity id="15" simple_entity_id="1"/>
+    <ChildEntity id="16" simple_entity_id="1"/>
+    <ChildEntity id="17" simple_entity_id="1"/>
+    <ChildEntity id="18" simple_entity_id="1"/>
+    <ChildEntity id="19" simple_entity_id="1"/>
+    <ChildEntity id="20" simple_entity_id="1"/>
+
 </dataset>

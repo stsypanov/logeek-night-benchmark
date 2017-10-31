@@ -3,11 +3,11 @@ package com.luxoft.logeek.benchmark.merge;
 import com.luxoft.logeek.benchmark.ContextAwareBenchmark;
 import com.luxoft.logeek.entity.ChildEntity;
 import com.luxoft.logeek.entity.SimpleEntity;
-import com.luxoft.logeek.repository.ChildRepository;
 import com.luxoft.logeek.repository.SimpleRepository;
 import com.luxoft.logeek.service.SavingService;
 import org.openjdk.jmh.annotations.*;
 
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 
@@ -43,12 +43,22 @@ public class MergeBenchmark {
             super.init();
             service = getBean(SavingService.class);
 
-            ChildEntity child = new ChildEntity();
-            child.setId(11L);
-            getBean(ChildRepository.class).save(child);
+            SimpleEntity parent = new SimpleEntity(id, "azaza");
 
-            SimpleEntity entity = new SimpleEntity(id, "azaza", child);
-            getBean(SimpleRepository.class).save(entity);
+            Arrays.asList(
+                    new ChildEntity(11L),
+                    new ChildEntity(12L),
+                    new ChildEntity(13L),
+                    new ChildEntity(14L),
+                    new ChildEntity(15L),
+                    new ChildEntity(16L),
+                    new ChildEntity(17L),
+                    new ChildEntity(18L),
+                    new ChildEntity(19L),
+                    new ChildEntity(20L)
+            ).forEach(parent::addChild);
+
+            getBean(SimpleRepository.class).save(parent);
 
             i = 100000;
         }
