@@ -26,4 +26,11 @@ public class SavingServiceImpl implements SavingService {
         entity.setName(newName);
         return simpleRepository.save(entity);
     }
+
+    @Override
+    public SimpleEntity modifyWithoutCallingSaveFindByName(String name, String newName) {
+        SimpleEntity entity = simpleRepository.findByName(name);
+        entity.setName(newName);
+        return entity;
+    }
 }

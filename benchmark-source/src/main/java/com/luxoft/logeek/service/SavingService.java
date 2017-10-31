@@ -7,4 +7,6 @@ public interface SavingService {
     SimpleEntity modifyWithoutCallingSave(Long id, String newName);
 
     SimpleEntity modifyCallingSave(Long id, String newName);
+
+    SimpleEntity modifyWithoutCallingSaveFindByName(String name, String newName);
 }

@@ -50,6 +50,11 @@ public class SavingServiceImplTest {
         savingService.modifyCallingSave(id, newName);
     }
 
+    @Test
+    public void modifyWithoutCallingSaveFindByName() {
+        savingService.modifyWithoutCallingSaveFindByName("azaza", newName);
+    }
+
     @AfterTransaction
     public void afterTransaction() {
         assertThat(repository.findOne(id).getName(), is(newName));
