@@ -176,3 +176,126 @@ SetAddAllBenchmark.measureAddAllViaUtilsAddAll           1000  avgt  500  18983,
 
 -------------------------------------------------------------------------------------------------------------
 
+28.10.2017
+
+JDK 8 / JRE 8
+
+Дочерних сущностей нет. Каждый метод выполняется как отдельный БМ:
+
+Benchmark                                                                 Mode  Cnt      Score       Error   Units
+MergeBenchmark.measureModifyCallingSave                                   avgt   75    218,158 ±     7,144   us/op
+MergeBenchmark.measureModifyCallingSave:·gc.alloc.rate.norm               avgt   75  56390,906 ±    40,427    B/op
+
+Benchmark                                                                 Mode  Cnt      Score       Error   Units
+MergeBenchmark.measureModifyWithoutCallingSave                            avgt   75    194,664 ±     6,843   us/op
+MergeBenchmark.measureModifyWithoutCallingSave:·gc.alloc.rate.norm        avgt   75  53909,289 ±    42,828    B/op
+
+Есть дочерняя сущность (@ManyToOne). Выполняем всё вместе:
+
+-f 10 -wi 25 -m 100
+
+Benchmark                                                                 Mode  Cnt      Score       Error   Units
+MergeBenchmark.measureModifyCallingSave                                   avgt  1000    169,879 ?    0,799   us/op
+MergeBenchmark.measureModifyCallingSave:·gc.alloc.rate.norm               avgt  1000  56310,147 ?   15,525    B/op
+
+MergeBenchmark.measureModifyWithoutCallingSave                            avgt  1000    157,791 ?    0,367   us/op
+MergeBenchmark.measureModifyWithoutCallingSave:·gc.alloc.rate.norm        avgt  1000  53843,984 ?    7,365    B/op
+
+Есть дочерняя сущность (@ManyToOne). Каждый метод выполняется как отдельный БМ:
+
+-f 10 -wi 25 -m 100
+
+Benchmark                                                                 Mode   Cnt      Score      Error   Units
+MergeBenchmark.measureModifyCallingSave                                   avgt  1000    192,661 ?    6,563   us/op
+MergeBenchmark.measureModifyCallingSave:·gc.alloc.rate.norm               avgt  1000  56405,205 ?   15,219    B/op
+
+Benchmark                                                                 Mode   Cnt      Score      Error   Units
+MergeBenchmark.measureModifyWithoutCallingSave                            avgt  1000    166,671 ?    1,645   us/op
+MergeBenchmark.measureModifyWithoutCallingSave:·gc.alloc.rate.norm        avgt  1000  53950,038 ?    9,270    B/op
+
+
+
+Single entity (no associated entities)
+
+Benchmark                                                                        Mode  Cnt     Score    Error  Units
+MergeBenchmark.measureModifyCallingSave                                         thrpt  250  6685,743 ? 59,933  ops/s
+MergeBenchmark.measureModifyWithoutCallingSave                                  thrpt  250  7174,665 ? 46,339  ops/s
+
+MergeBenchmark.measureModifyCallingSave:·gc.alloc.rate.norm                      avgt  250  45662,979 ?   34,722    B/op
+MergeBenchmark.measureModifyWithoutCallingSave:·gc.alloc.rate.norm               avgt  250  43389,307 ?   24,978    B/op
+
+
+---------------------------------------------------------------------------------------------------------------------------
+
+Many-To-One (1 child)
+
+Benchmark                                                                        Mode  Cnt     Score       Error  Units
+MergeBenchmark.measureModifyCallingSave                                         thrpt  250  6196,420  ?  227,393  ops/s
+MergeBenchmark.measureModifyWithoutCallingSave                                  thrpt  250  7167,608  ?   51,598  ops/s
+
+MergeBenchmark.measureModifyCallingSave:·gc.alloc.rate.norm                      avgt  250  45710,406 ?   31,620  B/op
+MergeBenchmark.measureModifyWithoutCallingSave:·gc.alloc.rate.norm               avgt  250  43470,006 ?   33,582  B/op
+
+----------------------------------------------------------------------------------------------------------------------------
+
+One-to-Many (10 children)
+
+Benchmark                                                                        Mode  Cnt     Score    Error  Units
+MergeBenchmark.measureModifyCallingSave                                         thrpt  250  3806,259 ? 54,749  ops/s
+MergeBenchmark.measureModifyWithoutCallingSave                                  thrpt  250  4161,794 ? 35,645  ops/s
+
+MergeBenchmark.measureModifyCallingSave:·gc.alloc.rate.norm                      avgt  250  73141,790 ?    55,812    B/op
+MergeBenchmark.measureModifyWithoutCallingSave:·gc.alloc.rate.norm               avgt  250  68077,917 ?    67,530    B/op
+
+
+
+
+--------------------- для доклада
+
+
+# Run complete. Total time: 00:59:42
+
+Benchmark                                                         (entityCount)  Mode  Cnt        Score         Error   Units
+LoopVsSingleCallBenchmark.findInLoop                                         10  avgt  250      482,838 ±       8,242   us/op
+LoopVsSingleCallBenchmark.findWithSingleCall                                 10  avgt  250      206,817 ±       1,622   us/op
+
+LoopVsSingleCallBenchmark.findInLoop                                        100  avgt  250     1821,789 ±      29,594   us/op
+LoopVsSingleCallBenchmark.findWithSingleCall                                100  avgt  250      484,816 ±       2,411   us/op
+
+LoopVsSingleCallBenchmark.findInLoop                                       1000  avgt  250    18405,569 ±     341,172   us/op
+LoopVsSingleCallBenchmark.findWithSingleCall                               1000  avgt  250    14257,609 ±     157,939   us/op
+
+LoopVsSingleCallBenchmark.findInLoop:·gc.alloc.rate.norm                     10  avgt  250   159757,489 ±     564,696    B/op
+LoopVsSingleCallBenchmark.findWithSingleCall:·gc.alloc.rate.norm             10  avgt  250    83399,058 ±      70,414    B/op
+
+LoopVsSingleCallBenchmark.findInLoop:·gc.alloc.rate.norm                    100  avgt  250   649154,209 ±     571,325    B/op
+LoopVsSingleCallBenchmark.findWithSingleCall:·gc.alloc.rate.norm            100  avgt  250   239406,450 ±      18,958    B/op
+
+LoopVsSingleCallBenchmark.findInLoop:·gc.alloc.rate.norm                   1000  avgt  250  6247215,835 ±    4014,127    B/op
+LoopVsSingleCallBenchmark.findWithSingleCall:·gc.alloc.rate.norm           1000  avgt  250  8092149,046 ±   14124,061    B/op
+
+
+Benchmark                                                                          Mode  Cnt      Score      Error   Units
+LazyTransactionBenchmark.measureEagerTransaction                                   avgt  250     32,533 ±    0,323   us/op
+LazyTransactionBenchmark.measureLazyTransaction                                    avgt  250      1,392 ±    0,022   us/op
+
+LazyTransactionBenchmark.measureEagerTransaction:·gc.alloc.rate.norm               avgt  250  11889,645 ±    7,003    B/op
+LazyTransactionBenchmark.measureLazyTransaction:·gc.alloc.rate.norm                avgt  250    520,001 ±    0,001    B/op
+
+
+Benchmark                                                                                  Mode  Cnt     Score    Error   Units
+CachedFormatterBenchmark.measureDateTimeFormatterWhenDateConverted                         avgt  500   384,858 ?  3,791   ns/op
+CachedFormatterBenchmark.measureSimpleDateTimeFormatter                                    avgt  500  1106,523 ?  5,522   ns/op
+
+CachedFormatterBenchmark.measureDateTimeFormatterWhenDateConverted:·gc.alloc.rate.norm     avgt  500   500,800 ?  0,948    B/op
+CachedFormatterBenchmark.measureSimpleDateTimeFormatter:·gc.alloc.rate.norm                avgt  500  2016,001 ?  0,001    B/op
+
+
+Benchmark                                                                                            Mode  Cnt     Score    Error   Units
+CachedFormatterBenchmark.measureDateTimeFormatter                                                    avgt  250   203,277 ±  3,980   ns/op
+CachedFormatterBenchmark.measureSimpleDateTimeFormatter                                              avgt  250   271,580 ±  4,002   ns/op
+CachedFormatterBenchmark.measureDateTimeFormatterWhenDateConverted                                   avgt  250   323,640 ±  8,563   ns/op
+
+CachedFormatterBenchmark.measureDateTimeFormatter:·gc.alloc.rate.norm                                avgt  250   288,000 ±  0,001    B/op
+CachedFormatterBenchmark.measureSimpleDateTimeFormatter:·gc.alloc.rate.norm                          avgt  250   560,000 ±  0,001    B/op
+CachedFormatterBenchmark.measureDateTimeFormatterWhenDateConverted:·gc.alloc.rate                    avgt  250   834,033 ± 12,614  MB/sec
