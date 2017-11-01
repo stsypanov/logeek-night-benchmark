@@ -1,82 +1,84 @@
 package com.luxoft.logeek.benchmark.collection;
 
-import com.luxoft.logeek.benchmark.ContextAwareBenchmarkBase;
+import com.luxoft.logeek.benchmark.ContextAwareBenchmark;
 import com.luxoft.logeek.dto.UserDto;
 import com.luxoft.logeek.entity.User;
 import com.luxoft.logeek.repository.UserRepository;
 import com.luxoft.logeek.service.ltav.UserService;
-import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.Level;
-import org.openjdk.jmh.annotations.Setup;
-import org.openjdk.jmh.annotations.TearDown;
+import org.openjdk.jmh.annotations.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.concurrent.TimeUnit;
+
+import static java.util.stream.Collectors.toCollection;
 
 /**
  * Measure retrieving collection of entities in loop one by one
  */
-public class LoopVsSingleCallBenchmark extends ContextAwareBenchmarkBase {
-	private static final int ENTITY_COUNT = 1000;
+@BenchmarkMode(Mode.AverageTime)
+@OutputTimeUnit(TimeUnit.MICROSECONDS)
+public class LoopVsSingleCallBenchmark {
 
-	private UserService service;
-	private UserRepository repository;
+    @Benchmark
+    public Set<User> findInLoop(Data data) {
+        return data.service.findInLoop(data.dtos);
+    }
 
-	private List<UserDto> userDtos;
+    @Benchmark
+    public List<User> findWithSingleCall(Data data) {
+        return data.service.findWithSingleCall(data.dtos);
+    }
 
-	@Setup
-	public void init() {
-		super.init();
-		service = context.getBean(UserService.class);
-		repository = context.getBean(UserRepository.class);
-	}
+    @State(Scope.Thread)
+    public static class Data extends ContextAwareBenchmark {
+        @Param({"10", "100", "1000"})
+        private int entityCount;
 
-	@Setup(Level.Iteration)
-	public void initIds() {
-		userDtos = populateTable().stream()
-				.map(UserDto::new)
-				.collect(Collectors.toList());
-	}
+        private UserRepository repository;
+        private UserService service;
 
-	@TearDown
-	public void tearDown() throws Exception {
-		repository.deleteAllInBatch();
-	}
+        private ArrayList<UserDto> dtos;
 
-	@Benchmark
-	public Set<User> findInLoop() {
-		return service.findInLoop(userDtos);
-	}
+        @Setup
+        public void init() {
+            super.init();
+            service = context.getBean(UserService.class);
+            repository = context.getBean(UserRepository.class);
+            populateTable();
+        }
 
-	@Benchmark
-	public List<User> findWithSingleCall() {
-		return service.findWithSingleCall(userDtos);
-	}
+        @Setup(Level.Iteration)
+        public void initIds() {
+            List<Long> ids = repository.findAllIds();
+            Collections.shuffle(ids);//different id sequence for every iteration
 
-	protected List<Long> populateTable() {
-		List<Long> userIds = new ArrayList<>(ENTITY_COUNT);
-		List<User> users = new ArrayList<>(ENTITY_COUNT);
+            dtos = ids.stream().map(UserDto::new).collect(toCollection(ArrayList::new));
+        }
 
-		for (long i = 1; i < ENTITY_COUNT + 1; i++) {
-			userIds.add(i);
+        @TearDown
+        public void tearDown() {
+            repository.deleteAllInBatch();
+            context.close();
+        }
 
-			User user = new User(
-					i,
-					"sergei" + i,
-					i + "sergei",
-					"sergei" + i + "@yandex.ru",
-					"root"
-			);
-			users.add(user);
-		}
+        private void populateTable() {
+            ArrayList<User> users = new ArrayList<>(entityCount);
 
-		repository.save(users);
+            for (long i = 1; i < entityCount + 1; i++) {
+                User user = new User(
+                        i,
+                        "sergei" + i,
+                        i + "sergei",
+                        "sergei" + i + "@yandex.ru",
+                        "root"
+                );
+                users.add(user);
+            }
 
-		Collections.shuffle(userIds);//different id sequence for every iteration
-
-		return userIds;
-	}
+            repository.save(users);
+        }
+    }
 }
