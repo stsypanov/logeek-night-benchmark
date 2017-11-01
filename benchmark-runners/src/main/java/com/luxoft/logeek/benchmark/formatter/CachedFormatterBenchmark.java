@@ -14,13 +14,18 @@ import java.util.concurrent.TimeUnit;
 public class CachedFormatterBenchmark {
 
     @Benchmark
-    public String measureSimpleDateTimeFormatter(Data data) {
+    public String measureSimpleDateTimeFormat(Data data) {
         return data.simpleFormatter.get().format(data.date);
     }
 
     @Benchmark
+    public String measureDateTimeFormatter(Data data) {
+        return data.dateTimeFormatter.format(data.localDate);
+    }
+
+    @Benchmark
     public String measureDateTimeFormatterWhenDateConverted(Data data) {
-        LocalDate localDate = data.date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate localDate = data.date.toInstant().atZone(data.zoneId).toLocalDate();
         return data.dateTimeFormatter.format(localDate);
     }
 
@@ -28,14 +33,19 @@ public class CachedFormatterBenchmark {
     public static class Data {
         private static final String pattern = "dd.MM.yyyy";
 
-        DateTimeFormatter dateTimeFormatter;
-        ThreadLocal<SimpleDateFormat> simpleFormatter;
+        private DateTimeFormatter dateTimeFormatter;
+        private ThreadLocal<SimpleDateFormat> simpleFormatter;
 
-        Date date;
+        private Date date;
+        private LocalDate localDate;
+        private ZoneId zoneId;
 
         @Setup
         public void setup() {
             date = new Date();
+            localDate = LocalDate.now();
+
+            zoneId = ZoneId.systemDefault();
             dateTimeFormatter = DateTimeFormatter.ofPattern(pattern);
             simpleFormatter = ThreadLocal.withInitial(() -> new SimpleDateFormat(pattern));
         }
