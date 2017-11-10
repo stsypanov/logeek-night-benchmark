@@ -299,3 +299,21 @@ CachedFormatterBenchmark.measureDateTimeFormatterWhenDateConverted              
 CachedFormatterBenchmark.measureDateTimeFormatter:·gc.alloc.rate.norm                                avgt  250   288,000 ±  0,001    B/op
 CachedFormatterBenchmark.measureSimpleDateTimeFormatter:·gc.alloc.rate.norm                          avgt  250   560,000 ±  0,001    B/op
 CachedFormatterBenchmark.measureDateTimeFormatterWhenDateConverted:·gc.alloc.rate                    avgt  250   834,033 ± 12,614  MB/sec
+
+
+Benchmark                                                                                 Mode   Cnt     Score    Error   Units
+ContainsInEmptyHashSetBenchmark.measureClearCustomHashSet                                 avgt  1000     3,571 ?  0,009   ns/op
+ContainsInEmptyHashSetBenchmark.measureClearJdkHashSet                                    avgt  1000     4,594 ?  0,029   ns/op
+
+ContainsInEmptyHashSetBenchmark.measureContainsAllInCustomHashSet                         avgt  1000     3,367 ?  0,007   ns/op
+ContainsInEmptyHashSetBenchmark.measureContainsAllInJdkHashSet                            avgt  1000     9,780 ?  0,226   ns/op
+
+ContainsInEmptyHashSetBenchmark.measureContainsInCustomHashSet                            avgt  1000     3,345 ?  0,011   ns/op
+ContainsInEmptyHashSetBenchmark.measureContainsInJdkHashSet                               avgt  1000     4,374 ?  0,014   ns/op
+
+ContainsInEmptyHashSetBenchmark.measureClearCustomHashSet:·gc.alloc.rate.norm             avgt  1000    ? 10??             B/op
+ContainsInEmptyHashSetBenchmark.measureClearJdkHashSet:·gc.alloc.rate.norm                avgt  1000    ? 10??             B/op
+ContainsInEmptyHashSetBenchmark.measureContainsAllInCustomHashSet:·gc.alloc.rate.norm     avgt  1000    ? 10??             B/op
+ContainsInEmptyHashSetBenchmark.measureContainsAllInJdkHashSet:·gc.alloc.rate.norm        avgt  1000    19,200 ?  1,002    B/op
+ContainsInEmptyHashSetBenchmark.measureContainsInCustomHashSet:·gc.alloc.rate.norm        avgt  1000    ? 10??             B/op
+ContainsInEmptyHashSetBenchmark.measureContainsInJdkHashSet:·gc.alloc.rate.norm           avgt  1000    ? 10??             B/op
