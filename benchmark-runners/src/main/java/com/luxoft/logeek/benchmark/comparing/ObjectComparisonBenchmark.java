@@ -1,18 +1,16 @@
 package com.luxoft.logeek.benchmark.comparing;
 
-import com.luxoft.logeek.benchmark.BenchmarkBase;
 import com.luxoft.logeek.instanceOf.Comparing;
-import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.Setup;
+import org.openjdk.jmh.annotations.*;
 
-public class ComparingBenchmark extends BenchmarkBase{
-    private String s1= "abc";
-    private String s2= "abd";
+import java.util.concurrent.TimeUnit;
 
-    @Setup
-    public void setUp(){
-        super.init();
-    }
+@State(Scope.Thread)
+@BenchmarkMode(Mode.AverageTime)
+@OutputTimeUnit(TimeUnit.NANOSECONDS)
+public class ObjectComparisonBenchmark {
+    private String s1 = "abc";
+    private String s2 = "abd";
 
     @Benchmark
     public boolean measureEqualWithInstanceOf() {
