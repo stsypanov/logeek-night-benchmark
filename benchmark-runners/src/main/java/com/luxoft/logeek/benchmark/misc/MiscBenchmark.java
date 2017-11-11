@@ -1,80 +1,74 @@
 package com.luxoft.logeek.benchmark.misc;
 
-import com.luxoft.logeek.benchmark.BaseBenchmark;
 import org.openjdk.jmh.annotations.*;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
-@Fork(10)
-@State(Scope.Benchmark)
-@Warmup(iterations = 10)
-@Measurement(iterations = 100)
+import static java.util.Collections.*;
+
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
-public class MiscBenchmark extends BaseBenchmark {
+public class MiscBenchmark {
 
-    private ValueHolder holder;
-    private Object nullable;
-
-    private Integer value;
-    private Integer value2;
-    private Set<Integer> integerSet;
-
-    @Setup
-    public void setupTrial() {
-        super.init();
-        holder = new ValueHolder();
-        value = 42;
-        value2 = 43;
-        integerSet = new HashSet<>();
-        integerSet.add(value);
-    }
-
-
-    @Setup(Level.Iteration)
-    public void setup() {
-        boolean value = random.nextInt() % 2 == 0;
-        holder.setValue(value);
-        nullable = value ? null : holder;
+    @Benchmark
+    public String measureBooleanGetter(Data data) {
+        return useBoolean(data.getBooleanValue());
     }
 
     @Benchmark
-    public boolean measureBooleanGetter() {
-        return holder.getValue();
+    public String measureNullabilityCheck(Data data) {
+        return useBoolean(data.nullable == null);
     }
 
     @Benchmark
-    public boolean measureNullabilityCheck() {
-        return nullable == null;
+    public String measureContains(Data data) {
+        return useBoolean(data.set.contains(data.value1));
     }
 
     @Benchmark
-    public boolean measureInverseNullabilityCheck() {
-        return nullable != null;
+    public String measureDoesNotContain(Data data) {
+        return useBoolean(data.set.contains(data.value2));
     }
 
-    @Benchmark
-    public boolean measureContains() {
-        return integerSet.contains(value);
+//    @CompilerControl(CompilerControl.Mode.DONT_INLINE)
+    private String useBoolean(boolean b) {
+        if (b) {
+            return "azaza";
+        }
+        return "ololo";
     }
 
-    @Benchmark
-    public boolean measureDoesNotContain() {
-        return integerSet.contains(value2);
-    }
+    @State(Scope.Thread)
+    public static class Data {
+        private ThreadLocalRandom random;
+        boolean booleanValue;
+        Object nullable;
 
+        Integer value1;
+        Integer value2;
+        Set<Integer> set;
 
-    static class ValueHolder {
-        private boolean value;
-
-        public boolean getValue() {
-            return value;
+        @Setup
+        public void setup() {
+            value1 = 42;
+            value2 = 43;
+            set = new HashSet<>(singleton(value1));
+            random = ThreadLocalRandom.current();
+            setupIteration();
         }
 
-        public void setValue(boolean value) {
-            this.value = value;
+
+        @Setup(Level.Iteration)
+        public void setupIteration() {
+            booleanValue = random.nextInt() % 2 == 0;
+            nullable = random.nextInt() % 2 == 0 ? null : new Object();
+        }
+
+        boolean getBooleanValue() {
+            return booleanValue;
         }
     }
 }
