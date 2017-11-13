@@ -334,3 +334,11 @@ ContainsInEmptyHashSetBenchmark.measureContainsAllInJdkHashSet     avgt  1000  8
 
 ContainsInEmptyHashSetBenchmark.measureContainsInCustomHashSet     avgt  1000  3,398 ? 0,009  ns/op
 ContainsInEmptyHashSetBenchmark.measureContainsInJdkHashSet        avgt  1000  3,979 ? 0,012  ns/op
+
+JDK 8
+
+Benchmark                                                                                     Mode  Cnt    Score     Error   Units
+ContainsInEmptyHashSetBenchmark._measureSmartListContainsAll                                  avgt   20    5,434 ±   0,628   ns/op
+ContainsInEmptyHashSetBenchmark.measureSmartListContainsAll                                   avgt   20   10,689 ±   4,140   ns/op
+
+ContainsInEmptyHashSetBenchmark.measureSmartListContainsAll:·gc.alloc.rate.norm               avgt   20   16,000 ±  14,255    B/op
