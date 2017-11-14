@@ -335,10 +335,44 @@ ContainsInEmptyHashSetBenchmark.measureContainsAllInJdkHashSet     avgt  1000  8
 ContainsInEmptyHashSetBenchmark.measureContainsInCustomHashSet     avgt  1000  3,398 ? 0,009  ns/op
 ContainsInEmptyHashSetBenchmark.measureContainsInJdkHashSet        avgt  1000  3,979 ? 0,012  ns/op
 
-JDK 8
+Java 8
 
-Benchmark                                                                                     Mode  Cnt    Score     Error   Units
-ContainsInEmptyHashSetBenchmark._measureSmartListContainsAll                                  avgt   20    5,434 ±   0,628   ns/op
-ContainsInEmptyHashSetBenchmark.measureSmartListContainsAll                                   avgt   20   10,689 ±   4,140   ns/op
+Benchmark                                                                           Mode  Cnt    Score     Error   Units
+ContainsInEmptyHashSetBenchmark._measureSmartListContainsAll                        avgt   20    5,434 ±   0,628   ns/op
+ContainsInEmptyHashSetBenchmark.measureSmartListContainsAll                         avgt   20   10,689 ±   4,140   ns/op
 
-ContainsInEmptyHashSetBenchmark.measureSmartListContainsAll:·gc.alloc.rate.norm               avgt   20   16,000 ±  14,255    B/op
+ContainsInEmptyHashSetBenchmark.measureSmartListContainsAll:·gc.alloc.rate.norm     avgt   20   16,000 ±  14,255    B/op
+
+Java 9
+
+Benchmark                                                                           Mode  Cnt   Score    Error   Units
+ContainsInEmptyHashSetBenchmark._measureSmartListContainsAll                        avgt  200   4,532 ?  0,026   ns/op
+ContainsInEmptyHashSetBenchmark.measureSmartListContainsAll                         avgt  200   5,079 ?  0,049   ns/op
+
+Java 8
+
+ContainsInEmptyHashSetBenchmark.measureContainsKeyIdeaHashMap    avgt  200  3,215 ± 0,022  ns/op
+ContainsInEmptyHashSetBenchmark.measureContainsKeyJdkHashMap     avgt  200  3,545 ± 0,021  ns/op
+
+ContainsInEmptyHashSetBenchmark.measureContainsValueIdeaHashMap  avgt  200  3,210 ± 0,018  ns/op
+ContainsInEmptyHashSetBenchmark.measureContainsValueJdkHashMap   avgt  200  3,679 ± 0,114  ns/op
+
+ContainsInEmptyHashSetBenchmark.measureGetFromIdeaHashMap        avgt  200  3,871 ± 0,041  ns/op
+ContainsInEmptyHashSetBenchmark.measureGetFromJdkHashMap         avgt  200  4,186 ± 0,060  ns/op
+
+ContainsInEmptyHashSetBenchmark.measureRemoveFromIdeaHashMap     avgt  200  3,700 ± 0,017  ns/op
+ContainsInEmptyHashSetBenchmark.measureRemoveFromJdkHashMap      avgt  200  4,246 ± 0,029  ns/op
+
+Java 9
+
+ContainsInEmptyHashSetBenchmark.measureContainsKeyIdeaHashMap    avgt  200   3,049 ?  0,015   ns/op
+ContainsInEmptyHashSetBenchmark.measureContainsKeyJdkHashMap     avgt  200   3,497 ?  0,018   ns/op
+
+ContainsInEmptyHashSetBenchmark.measureContainsValueIdeaHashMap  avgt  200   3,018 ?  0,017   ns/op
+ContainsInEmptyHashSetBenchmark.measureContainsValueJdkHashMap   avgt  200   3,364 ?  0,017   ns/op
+
+ContainsInEmptyHashSetBenchmark.measureGetFromIdeaHashMap        avgt  200   3,524 ?  0,021   ns/op
+ContainsInEmptyHashSetBenchmark.measureGetFromJdkHashMap         avgt  200   4,022 ?  0,029   ns/op
+
+ContainsInEmptyHashSetBenchmark.measureRemoveFromIdeaHashMap     avgt  200   3,552 ?  0,078   ns/op
+ContainsInEmptyHashSetBenchmark.measureRemoveFromJdkHashMap      avgt  200   4,033 ?  0,034   ns/op
