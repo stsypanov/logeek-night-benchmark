@@ -25,7 +25,7 @@ public class HashSet<E> extends java.util.HashSet<E> {
 
   @Override
   public boolean containsAll(Collection<?> c) {
-    if (size() == 0) return false;
+    if (size() == 0) return c.isEmpty();
     return super.containsAll(c);
   }
 
