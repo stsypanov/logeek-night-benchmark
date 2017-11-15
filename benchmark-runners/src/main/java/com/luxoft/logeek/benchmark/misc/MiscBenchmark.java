@@ -2,60 +2,65 @@ package com.luxoft.logeek.benchmark.misc;
 
 import org.openjdk.jmh.annotations.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.IntStream;
 
 import static java.util.Collections.*;
+import static java.util.stream.Collectors.*;
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 public class MiscBenchmark {
 
     @Benchmark
-    public String measureBooleanGetter(Data data) {
-        return useBoolean(data.getBooleanValue());
+    public int measureBooleanGetter(Data data) {
+        return returnIntForBoolean(data.getBooleanValue());
     }
 
     @Benchmark
-    public String measureNullabilityCheck(Data data) {
-        return useBoolean(data.nullable == null);
+    public int measureNullabilityCheck(Data data) {
+        return returnIntForBoolean(data.nullable == null);
     }
 
     @Benchmark
-    public String measureContains(Data data) {
-        return useBoolean(data.set.contains(data.value1));
+    public int measureContainsInHashSet(Data data) {
+        return returnIntForBoolean(data.hashSet.contains(data.value));
     }
 
     @Benchmark
-    public String measureDoesNotContain(Data data) {
-        return useBoolean(data.set.contains(data.value2));
+    public int measureContainsInArrayList(Data data) {
+        return returnIntForBoolean(data.arrayList.contains(data.value));
     }
 
-//    @CompilerControl(CompilerControl.Mode.DONT_INLINE)
-    private String useBoolean(boolean b) {
+    //@CompilerControl(CompilerControl.Mode.DONT_INLINE)
+    private int returnIntForBoolean(boolean b) {
         if (b) {
-            return "azaza";
+            return 1;
         }
-        return "ololo";
+        return 2;
     }
 
     @State(Scope.Thread)
     public static class Data {
         private ThreadLocalRandom random;
+
         boolean booleanValue;
         Object nullable;
+        Integer value;
 
-        Integer value1;
-        Integer value2;
-        Set<Integer> set;
+        Set<Integer> hashSet;
+        List<Integer> arrayList;
 
         @Setup
         public void setup() {
-            value1 = 42;
-            value2 = 43;
-            set = new HashSet<>(singleton(value1));
+            value = 42;
+            hashSet = new HashSet<>(singleton(value));
+            arrayList = IntStream.range(0, 9).boxed().collect(toCollection(ArrayList::new));
             random = ThreadLocalRandom.current();
             setupIteration();
         }
