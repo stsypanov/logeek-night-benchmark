@@ -376,3 +376,44 @@ ContainsInEmptyHashSetBenchmark.measureGetFromJdkHashMap         avgt  200   4,0
 
 ContainsInEmptyHashSetBenchmark.measureRemoveFromIdeaHashMap     avgt  200   3,552 ?  0,078   ns/op
 ContainsInEmptyHashSetBenchmark.measureRemoveFromJdkHashMap      avgt  200   4,033 ?  0,034   ns/op
+
+
+Java 8
+
+Benchmark                                        (size)  Mode  Cnt     Score     Error   Units
+
+SubArrayBenchmark.measureSubArrayViaSubList           5  avgt   20    37,915 ±   0,723   ns/op
+SubArrayBenchmark.measureSubArrayViaArraysCopyOf      5  avgt   20     7,711 ±   0,091   ns/op
+
+SubArrayBenchmark.measureSubArrayViaSubList          10  avgt   20    46,722 ±   1,043   ns/op
+SubArrayBenchmark.measureSubArrayViaArraysCopyOf     10  avgt   20     8,449 ±   0,217   ns/op
+
+SubArrayBenchmark.measureSubArrayViaSubList         100  avgt   20   125,830 ±   1,120   ns/op
+SubArrayBenchmark.measureSubArrayViaArraysCopyOf    100  avgt   20    41,890 ±   2,162   ns/op
+
+SubArrayBenchmark.measureSubArrayViaSubList:·gc.alloc.rate.norm          5  avgt   20   128,000 ±   0,001    B/op
+SubArrayBenchmark.measureSubArrayViaArraysCopyOf:·gc.alloc.rate.norm     5  avgt   20    24,000 ±   0,001    B/op
+
+SubArrayBenchmark.measureSubArrayViaSubList:·gc.alloc.rate.norm         10  avgt   20   144,000 ±   0,001    B/op
+SubArrayBenchmark.measureSubArrayViaArraysCopyOf:·gc.alloc.rate.norm    10  avgt   20    40,000 ±   0,001    B/op
+
+SubArrayBenchmark.measureSubArrayViaSubList:·gc.alloc.rate.norm        100  avgt   20   320,000 ±   0,001    B/op
+SubArrayBenchmark.measureSubArrayViaArraysCopyOf:·gc.alloc.rate.norm   100  avgt   20   216,000 ±   0,001    B/op
+
+SubArrayBenchmark.measureSubListViaArraysAsList     5  avgt   20    10,453 ±   0,249   ns/op
+SubArrayBenchmark.measureSubListViaArraysCopyOf     5  avgt   20    10,401 ±   0,404   ns/op
+
+SubArrayBenchmark.measureSubListViaArraysAsList    10  avgt   20    10,908 ±   0,631   ns/op
+SubArrayBenchmark.measureSubListViaArraysCopyOf    10  avgt   20    12,137 ±   0,577   ns/op
+
+SubArrayBenchmark.measureSubListViaArraysAsList   100  avgt   20    11,572 ±   0,805   ns/op
+SubArrayBenchmark.measureSubListViaArraysCopyOf   100  avgt   20    45,113 ±   0,955   ns/op
+
+SubArrayBenchmark.measureSubListViaArraysAsList:·gc.alloc.rate.norm    5  avgt   20    56,000 ±   0,001    B/op
+SubArrayBenchmark.measureSubListViaArraysCopyOf:·gc.alloc.rate.norm    5  avgt   20    48,000 ±   0,001    B/op
+
+SubArrayBenchmark.measureSubListViaArraysAsList:·gc.alloc.rate.norm   10  avgt   20    56,000 ±   0,001    B/op
+SubArrayBenchmark.measureSubListViaArraysCopyOf:·gc.alloc.rate.norm   10  avgt   20    64,000 ±   0,001    B/op
+
+SubArrayBenchmark.measureSubListViaArraysAsList:·gc.alloc.rate.norm   100  avgt   20    56,000 ±   0,001    B/op
+SubArrayBenchmark.measureSubListViaArraysCopyOf:·gc.alloc.rate.norm   100  avgt   20   240,000 ±   0,001    B/op
