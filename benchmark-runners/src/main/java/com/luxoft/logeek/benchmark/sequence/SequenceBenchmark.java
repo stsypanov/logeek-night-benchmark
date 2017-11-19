@@ -28,7 +28,7 @@ public class SequenceBenchmark extends ContextAwareBenchmarkBase {
 	}
 
 	@Setup(Level.Iteration)
-	public void setUp() throws Exception {
+	public void setUp() {
 		facility = random.nextInt(facilityBound);
 	}
 

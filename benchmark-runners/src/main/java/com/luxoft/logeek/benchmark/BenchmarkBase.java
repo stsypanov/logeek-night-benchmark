@@ -5,9 +5,7 @@ import org.openjdk.jmh.annotations.*;
 import java.util.concurrent.TimeUnit;
 
 @State(Scope.Thread)
-@Warmup(iterations = 10)
-@Measurement(iterations = 100)
 @BenchmarkMode(Mode.AverageTime)
-@OutputTimeUnit(TimeUnit.NANOSECONDS)
+@OutputTimeUnit(TimeUnit.MICROSECONDS)
 public class BenchmarkBase extends BaseBenchmark{
 }
