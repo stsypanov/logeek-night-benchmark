@@ -248,12 +248,7 @@ MergeBenchmark.measureModifyCallingSave:·gc.alloc.rate.norm                    
 MergeBenchmark.measureModifyWithoutCallingSave:·gc.alloc.rate.norm               avgt  250  68077,917 ?    67,530    B/op
 
 
-
-
---------------------- для доклада
-
-
-# Run complete. Total time: 00:59:42
+--------------------- для доклада Enterprise без тормозов
 
 Benchmark                                                         (entityCount)  Mode  Cnt        Score         Error   Units
 LoopVsSingleCallBenchmark.findInLoop                                         10  avgt  250      482,838 ±       8,242   us/op
@@ -284,33 +279,259 @@ LazyTransactionBenchmark.measureLazyTransaction:·gc.alloc.rate.norm            
 
 
 Benchmark                                                                                  Mode  Cnt     Score    Error   Units
-CachedFormatterBenchmark.measureDateTimeFormatterWhenDateConverted                         avgt  500   384,858 ?  3,791   ns/op
-CachedFormatterBenchmark.measureSimpleDateTimeFormatter                                    avgt  500  1106,523 ?  5,522   ns/op
+CachedFormatterBenchmark.measureDateTimeFormatterWhenDateConverted                         avgt  500   384,858 ±  3,791   ns/op
+CachedFormatterBenchmark.measureSimpleDateTimeFormatter                                    avgt  500  1106,523 ±  5,522   ns/op
 
-CachedFormatterBenchmark.measureDateTimeFormatterWhenDateConverted:·gc.alloc.rate.norm     avgt  500   500,800 ?  0,948    B/op
-CachedFormatterBenchmark.measureSimpleDateTimeFormatter:·gc.alloc.rate.norm                avgt  500  2016,001 ?  0,001    B/op
+CachedFormatterBenchmark.measureDateTimeFormatterWhenDateConverted:·gc.alloc.rate.norm     avgt  500   500,800 ±  0,948    B/op
+CachedFormatterBenchmark.measureSimpleDateTimeFormatter:·gc.alloc.rate.norm                avgt  500  2016,001 ±  0,001    B/op
 
 
-Benchmark                                                                                            Mode  Cnt     Score    Error   Units
-CachedFormatterBenchmark.measureDateTimeFormatter                                                    avgt  250   203,277 ±  3,980   ns/op
-CachedFormatterBenchmark.measureSimpleDateTimeFormatter                                              avgt  250   271,580 ±  4,002   ns/op
-CachedFormatterBenchmark.measureDateTimeFormatterWhenDateConverted                                   avgt  250   323,640 ±  8,563   ns/op
+Benchmark                                                                                  Mode  Cnt     Score    Error   Units
+CachedFormatterBenchmark.measureDateTimeFormatter                                          avgt  250   203,277 ±  3,980   ns/op
+CachedFormatterBenchmark.measureSimpleDateTimeFormatter                                    avgt  250   271,580 ±  4,002   ns/op
+CachedFormatterBenchmark.measureDateTimeFormatterWhenDateConverted                         avgt  250   323,640 ±  8,563   ns/op
 
-CachedFormatterBenchmark.measureDateTimeFormatter:·gc.alloc.rate.norm                                avgt  250   288,000 ±  0,001    B/op
-CachedFormatterBenchmark.measureSimpleDateTimeFormatter:·gc.alloc.rate.norm                          avgt  250   560,000 ±  0,001    B/op
-CachedFormatterBenchmark.measureDateTimeFormatterWhenDateConverted:·gc.alloc.rate                    avgt  250   834,033 ± 12,614  MB/sec
+CachedFormatterBenchmark.measureDateTimeFormatter:·gc.alloc.rate.norm                      avgt  250   288,000 ±  0,001    B/op
+CachedFormatterBenchmark.measureSimpleDateTimeFormatter:·gc.alloc.rate.norm                avgt  250   560,000 ±  0,001    B/op
+CachedFormatterBenchmark.measureDateTimeFormatterWhenDateConverted:·gc.alloc.rate          avgt  250   834,033 ± 12,614  MB/sec
+
+BulkOperationBenchmark Java 9 ArrayList
+
+Benchmark                                                                                (count)   Mode  Cnt      Score      Error   Units
+BulkOperationBenchmark.measureAddOneByOne                                                     10  thrpt  100   9903,310 ±   31,690  ops/ms
+BulkOperationBenchmark.measureAddAll_ArrayList                                                10  thrpt  100  15932,450 ±  124,986  ops/ms
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList                               10  thrpt  100  47161,439 ± 1346,698  ops/ms
+
+BulkOperationBenchmark.measureAddOneByOne                                                    100  thrpt  100    947,420 ±    6,610  ops/ms
+BulkOperationBenchmark.measureAddAll_ArrayList                                               100  thrpt  100   4497,081 ±   45,395  ops/ms
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList                              100  thrpt  100   8006,795 ±  237,731  ops/ms
+
+BulkOperationBenchmark.measureAddOneByOne                                                   1000  thrpt  100     85,130 ±    0,839  ops/ms
+BulkOperationBenchmark.measureAddAll_ArrayList                                              1000  thrpt  100    576,931 ±    2,734  ops/ms
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList                             1000  thrpt  100    938,726 ±   28,109  ops/ms
+
+BulkOperationBenchmark.measureAddOneByOne:·gc.alloc.rate.norm                                 10  thrpt  100     80,000 ±    0,001    B/op
+BulkOperationBenchmark.measureAddAll_ArrayList:·gc.alloc.rate.norm                            10  thrpt  100    136,000 ±    0,001    B/op
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList:·gc.alloc.rate.norm           10  thrpt  100     80,000 ±    0,001    B/op
+
+BulkOperationBenchmark.measureAddOneByOne:·gc.alloc.rate.norm                                100  thrpt  100   1400,006 ±    0,001    B/op
+BulkOperationBenchmark.measureAddAll_ArrayList:·gc.alloc.rate.norm                           100  thrpt  100    856,001 ±    0,001    B/op
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList:·gc.alloc.rate.norm          100  thrpt  100    440,001 ±    0,001    B/op
+
+BulkOperationBenchmark.measureAddOneByOne:·gc.alloc.rate.norm                               1000  thrpt  100  15024,522 ±    0,013    B/op
+BulkOperationBenchmark.measureAddAll_ArrayList:·gc.alloc.rate.norm                          1000  thrpt  100   8056,077 ±    0,002    B/op
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList:·gc.alloc.rate.norm         1000  thrpt  100   4040,048 ±    0,002    B/op
+
+BulkOperationBenchmark Java 9 HahSet
+
+BulkOperationBenchmark.measureAddOneByOne_HashSet                                             10  thrpt  100   5096,544 ±   31,118  ops/ms
+BulkOperationBenchmark.measureAddAll_HashSet                                                  10  thrpt  100   4657,570 ±   77,032  ops/ms
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet                                 10  thrpt  100   4551,167 ±   50,965  ops/ms
+
+BulkOperationBenchmark.measureAddOneByOne_HashSet                                            100  thrpt  100    339,270 ±    2,674  ops/ms
+BulkOperationBenchmark.measureAddAll_HashSet                                                 100  thrpt  100    316,472 ±    3,468  ops/ms
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet                                100  thrpt  100    455,761 ±    3,331  ops/ms
+
+BulkOperationBenchmark.measureAddOneByOne_HashSet                                           1000  thrpt  100     27,845 ±    1,205  ops/ms
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet                               1000  thrpt  100     45,796 ±    0,425  ops/ms
+BulkOperationBenchmark.measureAddAll_HashSet                                                1000  thrpt  100     27,448 ±    0,576  ops/ms
+
+BulkOperationBenchmark.measureAddOneByOne_HashSet:·gc.alloc.rate.norm                         10  thrpt  100    464,000 ±    0,001    B/op
+BulkOperationBenchmark.measureAddAll_HashSet:·gc.alloc.rate.norm                              10  thrpt  100    464,000 ±    0,001    B/op
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet:·gc.alloc.rate.norm             10  thrpt  100    464,000 ±    0,001    B/op
+
+BulkOperationBenchmark.measureAddOneByOne_HashSet:·gc.alloc.rate.norm                        100  thrpt  100   5328,018 ±    0,003    B/op
+BulkOperationBenchmark.measureAddAll_HashSet:·gc.alloc.rate.norm                             100  thrpt  100   5328,019 ±    0,003    B/op
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet:·gc.alloc.rate.norm            100  thrpt  100   4304,013 ±    0,002    B/op
+
+BulkOperationBenchmark.measureAddOneByOne_HashSet:·gc.alloc.rate.norm                       1000  thrpt  100  48513,626 ±    0,087    B/op
+BulkOperationBenchmark.measureAddAll_HashSet:·gc.alloc.rate.norm                            1000  thrpt  100  48513,624 ±    0,052    B/op
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet:·gc.alloc.rate.norm           1000  thrpt  100  40272,970 ±    0,026    B/op
+
+
+BulkOperationBenchmark Java 8
+
+
+Benchmark                                                                                         (count)   Mode  Cnt      Score      Error   Units
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList                                        10  thrpt  100  50533,331 ±  542,651  ops/ms
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList:·gc.alloc.rate                         10  thrpt  100   2565,113 ±   26,734  MB/sec
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList:·gc.alloc.rate.norm                    10  thrpt  100     80,000 ±    0,001    B/op
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList:·gc.churn.PS_Eden_Space                10  thrpt  100   2564,063 ±   49,650  MB/sec
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList:·gc.churn.PS_Eden_Space.norm           10  thrpt  100     79,961 ±    1,264    B/op
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList:·gc.churn.PS_Survivor_Space            10  thrpt  100      0,067 ±    0,011  MB/sec
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList:·gc.churn.PS_Survivor_Space.norm       10  thrpt  100      0,002 ±    0,001    B/op
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList:·gc.count                              10  thrpt  100   1233,000             counts
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList:·gc.time                               10  thrpt  100    979,000                 ms
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList                                       100  thrpt  100   9329,004 ±   56,497  ops/ms
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList:·gc.alloc.rate                        100  thrpt  100   2602,016 ±   15,696  MB/sec
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList:·gc.alloc.rate.norm                   100  thrpt  100    440,001 ±    0,001    B/op
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList:·gc.churn.PS_Eden_Space               100  thrpt  100   2601,119 ±   47,189  MB/sec
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList:·gc.churn.PS_Eden_Space.norm          100  thrpt  100    439,795 ±    7,137    B/op
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList:·gc.churn.PS_Survivor_Space           100  thrpt  100      0,062 ±    0,010  MB/sec
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList:·gc.churn.PS_Survivor_Space.norm      100  thrpt  100      0,010 ±    0,002    B/op
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList:·gc.count                             100  thrpt  100   1134,000             counts
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList:·gc.time                              100  thrpt  100   1040,000                 ms
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList                                      1000  thrpt  100   1012,205 ±    8,009  ops/ms
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList:·gc.alloc.rate                       1000  thrpt  100   2592,251 ±   20,646  MB/sec
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList:·gc.alloc.rate.norm                  1000  thrpt  100   4040,044 ±    0,001    B/op
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList:·gc.churn.PS_Eden_Space              1000  thrpt  100   2589,437 ±   49,463  MB/sec
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList:·gc.churn.PS_Eden_Space.norm         1000  thrpt  100   4036,007 ±   71,990    B/op
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList:·gc.churn.PS_Survivor_Space          1000  thrpt  100      0,065 ±    0,010  MB/sec
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList:·gc.churn.PS_Survivor_Space.norm     1000  thrpt  100      0,102 ±    0,016    B/op
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList:·gc.count                            1000  thrpt  100   1094,000             counts
+BulkOperationBenchmark.measureAddAllViaConstructorArg_ArrayList:·gc.time                             1000  thrpt  100    941,000                 ms
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet                                          10  thrpt  100   4164,389 ±  288,726  ops/ms
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet:·gc.alloc.rate                           10  thrpt  100   1239,352 ±   84,261  MB/sec
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet:·gc.alloc.rate.norm                      10  thrpt  100    467,201 ±    3,272    B/op
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet:·gc.churn.PS_Eden_Space                  10  thrpt  100   1233,993 ±   93,577  MB/sec
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet:·gc.churn.PS_Eden_Space.norm             10  thrpt  100    467,530 ±   22,904    B/op
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet:·gc.churn.PS_Survivor_Space              10  thrpt  100      0,039 ±    0,010  MB/sec
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet:·gc.churn.PS_Survivor_Space.norm         10  thrpt  100      0,014 ±    0,003    B/op
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet:·gc.count                                10  thrpt  100    624,000             counts
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet:·gc.time                                 10  thrpt  100   2173,000                 ms
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet                                         100  thrpt  100    470,436 ±   29,268  ops/ms
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet:·gc.alloc.rate                          100  thrpt  100   1295,331 ±   78,835  MB/sec
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet:·gc.alloc.rate.norm                     100  thrpt  100   4304,013 ±    0,003    B/op
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet:·gc.churn.PS_Eden_Space                 100  thrpt  100   1298,555 ±   94,227  MB/sec
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet:·gc.churn.PS_Eden_Space.norm            100  thrpt  100   4299,490 ±  177,831    B/op
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet:·gc.churn.PS_Survivor_Space             100  thrpt  100      0,036 ±    0,008  MB/sec
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet:·gc.churn.PS_Survivor_Space.norm        100  thrpt  100      0,116 ±    0,026    B/op
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet:·gc.count                               100  thrpt  100    511,000             counts
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet:·gc.time                                100  thrpt  100   2539,000                 ms
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet                                        1000  thrpt  100     50,658 ±    1,639  ops/ms
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet:·gc.alloc.rate                         1000  thrpt  100   1302,769 ±   42,102  MB/sec
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet:·gc.alloc.rate.norm                    1000  thrpt  100  40272,888 ±    0,059    B/op
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet:·gc.churn.PS_Eden_Space                1000  thrpt  100   1300,080 ±   58,404  MB/sec
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet:·gc.churn.PS_Eden_Space.norm           1000  thrpt  100  40123,369 ± 1089,721    B/op
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet:·gc.churn.PS_Survivor_Space            1000  thrpt  100      0,063 ±    0,012  MB/sec
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet:·gc.churn.PS_Survivor_Space.norm       1000  thrpt  100      1,907 ±    0,357    B/op
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet:·gc.count                              1000  thrpt  100    911,000             counts
+BulkOperationBenchmark.measureAddAllViaConstructorArg_HashSet:·gc.time                               1000  thrpt  100   1370,000                 ms
+BulkOperationBenchmark.measureAddAll_ArrayList                                                         10  thrpt  100  21281,093 ±  700,690  ops/ms
+BulkOperationBenchmark.measureAddAll_ArrayList:·gc.alloc.rate                                          10  thrpt  100   1849,145 ±   60,771  MB/sec
+BulkOperationBenchmark.measureAddAll_ArrayList:·gc.alloc.rate.norm                                     10  thrpt  100    136,000 ±    0,001    B/op
+BulkOperationBenchmark.measureAddAll_ArrayList:·gc.churn.PS_Eden_Space                                 10  thrpt  100   1839,728 ±   70,835  MB/sec
+BulkOperationBenchmark.measureAddAll_ArrayList:·gc.churn.PS_Eden_Space.norm                            10  thrpt  100    135,363 ±    2,868    B/op
+BulkOperationBenchmark.measureAddAll_ArrayList:·gc.churn.PS_Survivor_Space                             10  thrpt  100      0,061 ±    0,013  MB/sec
+BulkOperationBenchmark.measureAddAll_ArrayList:·gc.churn.PS_Survivor_Space.norm                        10  thrpt  100      0,004 ±    0,001    B/op
+BulkOperationBenchmark.measureAddAll_ArrayList:·gc.count                                               10  thrpt  100   1144,000             counts
+BulkOperationBenchmark.measureAddAll_ArrayList:·gc.time                                                10  thrpt  100   2034,000                 ms
+BulkOperationBenchmark.measureAddAll_ArrayList                                                        100  thrpt  100   4414,993 ±   99,168  ops/ms
+BulkOperationBenchmark.measureAddAll_ArrayList:·gc.alloc.rate                                         100  thrpt  100   2410,298 ±   54,125  MB/sec
+BulkOperationBenchmark.measureAddAll_ArrayList:·gc.alloc.rate.norm                                    100  thrpt  100    856,001 ±    0,001    B/op
+BulkOperationBenchmark.measureAddAll_ArrayList:·gc.churn.PS_Eden_Space                                100  thrpt  100   2405,807 ±   72,633  MB/sec
+BulkOperationBenchmark.measureAddAll_ArrayList:·gc.churn.PS_Eden_Space.norm                           100  thrpt  100    853,864 ±   14,621    B/op
+BulkOperationBenchmark.measureAddAll_ArrayList:·gc.churn.PS_Survivor_Space                            100  thrpt  100      0,061 ±    0,011  MB/sec
+BulkOperationBenchmark.measureAddAll_ArrayList:·gc.churn.PS_Survivor_Space.norm                       100  thrpt  100      0,022 ±    0,004    B/op
+BulkOperationBenchmark.measureAddAll_ArrayList:·gc.count                                              100  thrpt  100   1067,000             counts
+BulkOperationBenchmark.measureAddAll_ArrayList:·gc.time                                               100  thrpt  100   1210,000                 ms
+BulkOperationBenchmark.measureAddAll_ArrayList                                                       1000  thrpt  100    387,833 ±   52,997  ops/ms
+BulkOperationBenchmark.measureAddAll_ArrayList:·gc.alloc.rate                                        1000  thrpt  100   2004,268 ±  269,306  MB/sec
+BulkOperationBenchmark.measureAddAll_ArrayList:·gc.alloc.rate.norm                                   1000  thrpt  100   8056,137 ±    0,028    B/op
+BulkOperationBenchmark.measureAddAll_ArrayList:·gc.churn.PS_Eden_Space                               1000  thrpt  100   1998,126 ±  267,644  MB/sec
+BulkOperationBenchmark.measureAddAll_ArrayList:·gc.churn.PS_Eden_Space.norm                          1000  thrpt  100   8157,976 ±  420,568    B/op
+BulkOperationBenchmark.measureAddAll_ArrayList:·gc.churn.PS_Survivor_Space                           1000  thrpt  100      0,042 ±    0,009  MB/sec
+BulkOperationBenchmark.measureAddAll_ArrayList:·gc.churn.PS_Survivor_Space.norm                      1000  thrpt  100      0,174 ±    0,031    B/op
+BulkOperationBenchmark.measureAddAll_ArrayList:·gc.count                                             1000  thrpt  100    609,000             counts
+BulkOperationBenchmark.measureAddAll_ArrayList:·gc.time                                              1000  thrpt  100  16242,000                 ms
+BulkOperationBenchmark.measureAddAll_HashSet                                                           10  thrpt  100   5068,953 ±  211,106  ops/ms
+BulkOperationBenchmark.measureAddAll_HashSet:·gc.alloc.rate                                            10  thrpt  100   1506,250 ±   57,790  MB/sec
+BulkOperationBenchmark.measureAddAll_HashSet:·gc.alloc.rate.norm                                       10  thrpt  100    467,200 ±    3,272    B/op
+BulkOperationBenchmark.measureAddAll_HashSet:·gc.churn.PS_Eden_Space                                   10  thrpt  100   1500,207 ±   79,738  MB/sec
+BulkOperationBenchmark.measureAddAll_HashSet:·gc.churn.PS_Eden_Space.norm                              10  thrpt  100    463,053 ±   16,047    B/op
+BulkOperationBenchmark.measureAddAll_HashSet:·gc.churn.PS_Survivor_Space                               10  thrpt  100      0,052 ±    0,010  MB/sec
+BulkOperationBenchmark.measureAddAll_HashSet:·gc.churn.PS_Survivor_Space.norm                          10  thrpt  100      0,016 ±    0,003    B/op
+BulkOperationBenchmark.measureAddAll_HashSet:·gc.count                                                 10  thrpt  100    900,000             counts
+BulkOperationBenchmark.measureAddAll_HashSet:·gc.time                                                  10  thrpt  100    967,000                 ms
+BulkOperationBenchmark.measureAddAll_HashSet                                                          100  thrpt  100    374,161 ±   20,587  ops/ms
+BulkOperationBenchmark.measureAddAll_HashSet:·gc.alloc.rate                                           100  thrpt  100   1273,333 ±   67,926  MB/sec
+BulkOperationBenchmark.measureAddAll_HashSet:·gc.alloc.rate.norm                                      100  thrpt  100   5331,217 ±    3,272    B/op
+BulkOperationBenchmark.measureAddAll_HashSet:·gc.churn.PS_Eden_Space                                  100  thrpt  100   1275,256 ±   77,197  MB/sec
+BulkOperationBenchmark.measureAddAll_HashSet:·gc.churn.PS_Eden_Space.norm                             100  thrpt  100   5332,450 ±  137,749    B/op
+BulkOperationBenchmark.measureAddAll_HashSet:·gc.churn.PS_Survivor_Space                              100  thrpt  100      0,052 ±    0,011  MB/sec
+BulkOperationBenchmark.measureAddAll_HashSet:·gc.churn.PS_Survivor_Space.norm                         100  thrpt  100      0,213 ±    0,046    B/op
+BulkOperationBenchmark.measureAddAll_HashSet:·gc.count                                                100  thrpt  100    929,000             counts
+BulkOperationBenchmark.measureAddAll_HashSet:·gc.time                                                 100  thrpt  100   8233,000                 ms
+BulkOperationBenchmark.measureAddAll_HashSet                                                         1000  thrpt  100     30,716 ±    1,953  ops/ms
+BulkOperationBenchmark.measureAddAll_HashSet:·gc.alloc.rate                                          1000  thrpt  100    951,343 ±   59,724  MB/sec
+BulkOperationBenchmark.measureAddAll_HashSet:·gc.alloc.rate.norm                                     1000  thrpt  100  48516,712 ±    3,242    B/op
+BulkOperationBenchmark.measureAddAll_HashSet:·gc.churn.PS_Eden_Space                                 1000  thrpt  100    948,904 ±   74,205  MB/sec
+BulkOperationBenchmark.measureAddAll_HashSet:·gc.churn.PS_Eden_Space.norm                            1000  thrpt  100  48324,055 ± 2520,826    B/op
+BulkOperationBenchmark.measureAddAll_HashSet:·gc.churn.PS_Survivor_Space                             1000  thrpt  100      0,063 ±    0,014  MB/sec
+BulkOperationBenchmark.measureAddAll_HashSet:·gc.churn.PS_Survivor_Space.norm                        1000  thrpt  100      3,159 ±    0,665    B/op
+BulkOperationBenchmark.measureAddAll_HashSet:·gc.count                                               1000  thrpt  100    836,000             counts
+BulkOperationBenchmark.measureAddAll_HashSet:·gc.time                                                1000  thrpt  100   2543,000                 ms
+BulkOperationBenchmark.measureAddOneByOne                                                              10  thrpt  100  10946,329 ±  202,674  ops/ms
+BulkOperationBenchmark.measureAddOneByOne:·gc.alloc.rate                                               10  thrpt  100    557,638 ±   10,418  MB/sec
+BulkOperationBenchmark.measureAddOneByOne:·gc.alloc.rate.norm                                          10  thrpt  100     80,000 ±    0,001    B/op
+BulkOperationBenchmark.measureAddOneByOne:·gc.churn.PS_Eden_Space                                      10  thrpt  100    552,752 ±   24,844  MB/sec
+BulkOperationBenchmark.measureAddOneByOne:·gc.churn.PS_Eden_Space.norm                                 10  thrpt  100     79,314 ±    3,293    B/op
+BulkOperationBenchmark.measureAddOneByOne:·gc.churn.PS_Survivor_Space                                  10  thrpt  100      0,037 ±    0,009  MB/sec
+BulkOperationBenchmark.measureAddOneByOne:·gc.churn.PS_Survivor_Space.norm                             10  thrpt  100      0,005 ±    0,001    B/op
+BulkOperationBenchmark.measureAddOneByOne:·gc.count                                                    10  thrpt  100    721,000             counts
+BulkOperationBenchmark.measureAddOneByOne:·gc.time                                                     10  thrpt  100    856,000                 ms
+BulkOperationBenchmark.measureAddOneByOne                                                             100  thrpt  100   1102,233 ±   25,210  ops/ms
+BulkOperationBenchmark.measureAddOneByOne:·gc.alloc.rate                                              100  thrpt  100    981,764 ±   22,321  MB/sec
+BulkOperationBenchmark.measureAddOneByOne:·gc.alloc.rate.norm                                         100  thrpt  100   1400,006 ±    0,001    B/op
+BulkOperationBenchmark.measureAddOneByOne:·gc.churn.PS_Eden_Space                                     100  thrpt  100    976,129 ±   37,556  MB/sec
+BulkOperationBenchmark.measureAddOneByOne:·gc.churn.PS_Eden_Space.norm                                100  thrpt  100   1392,798 ±   46,902    B/op
+BulkOperationBenchmark.measureAddOneByOne:·gc.churn.PS_Survivor_Space                                 100  thrpt  100      0,064 ±    0,014  MB/sec
+BulkOperationBenchmark.measureAddOneByOne:·gc.churn.PS_Survivor_Space.norm                            100  thrpt  100      0,090 ±    0,019    B/op
+BulkOperationBenchmark.measureAddOneByOne:·gc.count                                                   100  thrpt  100   1181,000             counts
+BulkOperationBenchmark.measureAddOneByOne:·gc.time                                                    100  thrpt  100   1207,000                 ms
+BulkOperationBenchmark.measureAddOneByOne                                                            1000  thrpt  100    106,904 ±    2,809  ops/ms
+BulkOperationBenchmark.measureAddOneByOne:·gc.alloc.rate                                             1000  thrpt  100   1021,362 ±   26,523  MB/sec
+BulkOperationBenchmark.measureAddOneByOne:·gc.alloc.rate.norm                                        1000  thrpt  100  15024,423 ±    0,020    B/op
+BulkOperationBenchmark.measureAddOneByOne:·gc.churn.PS_Eden_Space                                    1000  thrpt  100   1024,939 ±   38,741  MB/sec
+BulkOperationBenchmark.measureAddOneByOne:·gc.churn.PS_Eden_Space.norm                               1000  thrpt  100  15106,137 ±  496,568    B/op
+BulkOperationBenchmark.measureAddOneByOne:·gc.churn.PS_Survivor_Space                                1000  thrpt  100      0,068 ±    0,013  MB/sec
+BulkOperationBenchmark.measureAddOneByOne:·gc.churn.PS_Survivor_Space.norm                           1000  thrpt  100      0,998 ±    0,190    B/op
+BulkOperationBenchmark.measureAddOneByOne:·gc.count                                                  1000  thrpt  100   1049,000             counts
+BulkOperationBenchmark.measureAddOneByOne:·gc.time                                                   1000  thrpt  100   1091,000                 ms
+BulkOperationBenchmark.measureAddOneByOne_HashSet                                                      10  thrpt  100   4188,508 ±  315,376  ops/ms
+BulkOperationBenchmark.measureAddOneByOne_HashSet:·gc.alloc.rate                                       10  thrpt  100   1240,218 ±   92,031  MB/sec
+BulkOperationBenchmark.measureAddOneByOne_HashSet:·gc.alloc.rate.norm                                  10  thrpt  100    464,001 ±    0,001    B/op
+BulkOperationBenchmark.measureAddOneByOne_HashSet:·gc.churn.PS_Eden_Space                              10  thrpt  100   1233,853 ±  110,796  MB/sec
+BulkOperationBenchmark.measureAddOneByOne_HashSet:·gc.churn.PS_Eden_Space.norm                         10  thrpt  100    461,484 ±   26,262    B/op
+BulkOperationBenchmark.measureAddOneByOne_HashSet:·gc.churn.PS_Survivor_Space                          10  thrpt  100      0,037 ±    0,010  MB/sec
+BulkOperationBenchmark.measureAddOneByOne_HashSet:·gc.churn.PS_Survivor_Space.norm                     10  thrpt  100      0,014 ±    0,003    B/op
+BulkOperationBenchmark.measureAddOneByOne_HashSet:·gc.count                                            10  thrpt  100    461,000             counts
+BulkOperationBenchmark.measureAddOneByOne_HashSet:·gc.time                                             10  thrpt  100   2631,000                 ms
+BulkOperationBenchmark.measureAddOneByOne_HashSet                                                     100  thrpt  100    327,728 ±   22,047  ops/ms
+BulkOperationBenchmark.measureAddOneByOne_HashSet:·gc.alloc.rate                                      100  thrpt  100   1113,142 ±   74,937  MB/sec
+BulkOperationBenchmark.measureAddOneByOne_HashSet:·gc.alloc.rate.norm                                 100  thrpt  100   5328,020 ±    0,005    B/op
+BulkOperationBenchmark.measureAddOneByOne_HashSet:·gc.churn.PS_Eden_Space                             100  thrpt  100   1113,708 ±   88,903  MB/sec
+BulkOperationBenchmark.measureAddOneByOne_HashSet:·gc.churn.PS_Eden_Space.norm                        100  thrpt  100   5350,011 ±  272,506    B/op
+BulkOperationBenchmark.measureAddOneByOne_HashSet:·gc.churn.PS_Survivor_Space                         100  thrpt  100      0,032 ±    0,009  MB/sec
+BulkOperationBenchmark.measureAddOneByOne_HashSet:·gc.churn.PS_Survivor_Space.norm                    100  thrpt  100      0,149 ±    0,043    B/op
+BulkOperationBenchmark.measureAddOneByOne_HashSet:·gc.count                                           100  thrpt  100    509,000             counts
+BulkOperationBenchmark.measureAddOneByOne_HashSet:·gc.time                                            100  thrpt  100   2201,000                 ms
+BulkOperationBenchmark.measureAddOneByOne_HashSet                                                    1000  thrpt  100     30,495 ±    1,593  ops/ms
+BulkOperationBenchmark.measureAddOneByOne_HashSet:·gc.alloc.rate                                     1000  thrpt  100    942,958 ±   48,984  MB/sec
+BulkOperationBenchmark.measureAddOneByOne_HashSet:·gc.alloc.rate.norm                                1000  thrpt  100  48513,503 ±    0,123    B/op
+BulkOperationBenchmark.measureAddOneByOne_HashSet:·gc.churn.PS_Eden_Space                            1000  thrpt  100    939,939 ±   69,018  MB/sec
+BulkOperationBenchmark.measureAddOneByOne_HashSet:·gc.churn.PS_Eden_Space.norm                       1000  thrpt  100  47997,179 ± 2354,573    B/op
+BulkOperationBenchmark.measureAddOneByOne_HashSet:·gc.churn.PS_Survivor_Space                        1000  thrpt  100      0,055 ±    0,014  MB/sec
+BulkOperationBenchmark.measureAddOneByOne_HashSet:·gc.churn.PS_Survivor_Space.norm                   1000  thrpt  100      2,778 ±    0,689    B/op
+BulkOperationBenchmark.measureAddOneByOne_HashSet:·gc.count                                          1000  thrpt  100    640,000             counts
+BulkOperationBenchmark.measureAddOneByOne_HashSet:·gc.time                                           1000  thrpt  100   1270,000                 ms
+
+
+
+
+--------------------- для доклада Интересная идея
 
 JDK 9
 
 Benchmark                                                                                 Mode   Cnt     Score    Error   Units
-ContainsInEmptyHashSetBenchmark.measureClearCustomHashSet                                 avgt  1000     3,571 ?  0,009   ns/op
-ContainsInEmptyHashSetBenchmark.measureClearJdkHashSet                                    avgt  1000     4,594 ?  0,029   ns/op
+ContainsInEmptyHashSetBenchmark.measureClearCustomHashSet                                 avgt  1000     3,571 ±  0,009   ns/op
+ContainsInEmptyHashSetBenchmark.measureClearJdkHashSet                                    avgt  1000     4,594 ±  0,029   ns/op
 
-ContainsInEmptyHashSetBenchmark.measureContainsAllInCustomHashSet                         avgt  1000     3,367 ?  0,007   ns/op
-ContainsInEmptyHashSetBenchmark.measureContainsAllInJdkHashSet                            avgt  1000     9,780 ?  0,226   ns/op
+ContainsInEmptyHashSetBenchmark.measureContainsAllInCustomHashSet                         avgt  1000     3,367 ±  0,007   ns/op
+ContainsInEmptyHashSetBenchmark.measureContainsAllInJdkHashSet                            avgt  1000     9,780 ±  0,226   ns/op
 
-ContainsInEmptyHashSetBenchmark.measureContainsInCustomHashSet                            avgt  1000     3,345 ?  0,011   ns/op
-ContainsInEmptyHashSetBenchmark.measureContainsInJdkHashSet                               avgt  1000     4,374 ?  0,014   ns/op
+ContainsInEmptyHashSetBenchmark.measureContainsInCustomHashSet                            avgt  1000     3,345 ±  0,011   ns/op
+ContainsInEmptyHashSetBenchmark.measureContainsInJdkHashSet                               avgt  1000     4,374 ±  0,014   ns/op
 
 -------- memory --------
 
@@ -326,14 +547,14 @@ ContainsInEmptyHashSetBenchmark.measureContainsInJdkHashSet:·gc.alloc.rate.norm
 JDK 8
 
 Benchmark                                                          Mode   Cnt  Score   Error  Units
-ContainsInEmptyHashSetBenchmark.measureClearCustomHashSet          avgt  1000  3,719 ? 0,023  ns/op
-ContainsInEmptyHashSetBenchmark.measureClearJdkHashSet             avgt  1000  4,519 ? 0,014  ns/op
+ContainsInEmptyHashSetBenchmark.measureClearCustomHashSet          avgt  1000  3,719 ± 0,023  ns/op
+ContainsInEmptyHashSetBenchmark.measureClearJdkHashSet             avgt  1000  4,519 ± 0,014  ns/op
 
-ContainsInEmptyHashSetBenchmark.measureContainsAllInCustomHashSet  avgt  1000  3,401 ? 0,013  ns/op
-ContainsInEmptyHashSetBenchmark.measureContainsAllInJdkHashSet     avgt  1000  8,460 ? 0,092  ns/op
+ContainsInEmptyHashSetBenchmark.measureContainsAllInCustomHashSet  avgt  1000  3,401 ± 0,013  ns/op
+ContainsInEmptyHashSetBenchmark.measureContainsAllInJdkHashSet     avgt  1000  8,460 ± 0,092  ns/op
 
-ContainsInEmptyHashSetBenchmark.measureContainsInCustomHashSet     avgt  1000  3,398 ? 0,009  ns/op
-ContainsInEmptyHashSetBenchmark.measureContainsInJdkHashSet        avgt  1000  3,979 ? 0,012  ns/op
+ContainsInEmptyHashSetBenchmark.measureContainsInCustomHashSet     avgt  1000  3,398 ± 0,009  ns/op
+ContainsInEmptyHashSetBenchmark.measureContainsInJdkHashSet        avgt  1000  3,979 ± 0,012  ns/op
 
 Java 8
 
@@ -365,31 +586,49 @@ ContainsInEmptyHashSetBenchmark.measureRemoveFromJdkHashMap      avgt  200  4,24
 
 Java 9
 
-ContainsInEmptyHashSetBenchmark.measureContainsKeyIdeaHashMap    avgt  200   3,049 ?  0,015   ns/op
-ContainsInEmptyHashSetBenchmark.measureContainsKeyJdkHashMap     avgt  200   3,497 ?  0,018   ns/op
+ContainsInEmptyHashSetBenchmark.measureContainsKeyIdeaHashMap    avgt  200   3,049 ±  0,015   ns/op
+ContainsInEmptyHashSetBenchmark.measureContainsKeyJdkHashMap     avgt  200   3,497 ±  0,018   ns/op
 
-ContainsInEmptyHashSetBenchmark.measureContainsValueIdeaHashMap  avgt  200   3,018 ?  0,017   ns/op
-ContainsInEmptyHashSetBenchmark.measureContainsValueJdkHashMap   avgt  200   3,364 ?  0,017   ns/op
+ContainsInEmptyHashSetBenchmark.measureContainsValueIdeaHashMap  avgt  200   3,018 ±  0,017   ns/op
+ContainsInEmptyHashSetBenchmark.measureContainsValueJdkHashMap   avgt  200   3,364 ±  0,017   ns/op
 
-ContainsInEmptyHashSetBenchmark.measureGetFromIdeaHashMap        avgt  200   3,524 ?  0,021   ns/op
-ContainsInEmptyHashSetBenchmark.measureGetFromJdkHashMap         avgt  200   4,022 ?  0,029   ns/op
+ContainsInEmptyHashSetBenchmark.measureGetFromIdeaHashMap        avgt  200   3,524 ±  0,021   ns/op
+ContainsInEmptyHashSetBenchmark.measureGetFromJdkHashMap         avgt  200   4,022 ±  0,029   ns/op
 
-ContainsInEmptyHashSetBenchmark.measureRemoveFromIdeaHashMap     avgt  200   3,552 ?  0,078   ns/op
-ContainsInEmptyHashSetBenchmark.measureRemoveFromJdkHashMap      avgt  200   4,033 ?  0,034   ns/op
+ContainsInEmptyHashSetBenchmark.measureRemoveFromIdeaHashMap     avgt  200   3,552 ±  0,078   ns/op
+ContainsInEmptyHashSetBenchmark.measureRemoveFromJdkHashMap      avgt  200   4,033 ±  0,034   ns/op
+
+--------------------- для доклада по малым оптимизациям
+
+Java 9
+
+Benchmark                                 Mode  Cnt   Score   Error  Units
+MiscBenchmark.measureBooleanGetter        avgt  200   3,164 ± 0,033  ns/op
+MiscBenchmark.measureNullabilityCheck     avgt  200   3,106 ± 0,042  ns/op
+MiscBenchmark.measureContainsInHashSet    avgt  200   6,111 ± 0,090  ns/op
+MiscBenchmark.measureContainsInArrayList  avgt  200  11,847 ± 0,124  ns/op
+
+Java 8
+
+Benchmark                                 Mode  Cnt   Score   Error  Units
+MiscBenchmark.measureBooleanGetter        avgt  200   3,378 ? 0,106  ns/op
+MiscBenchmark.measureNullabilityCheck     avgt  200   3,350 ? 0,090  ns/op
+MiscBenchmark.measureContainsInHashSet    avgt  200   7,772 ? 0,738  ns/op
+MiscBenchmark.measureContainsInArrayList  avgt  200  14,179 ? 1,189  ns/op
 
 
 Java 8
 
-Benchmark                                        (size)  Mode  Cnt     Score     Error   Units
+Benchmark                                                           (size)  Mode  Cnt     Score     Error   Units
 
-SubArrayBenchmark.measureSubArrayViaSubList           5  avgt   20    37,915 ±   0,723   ns/op
-SubArrayBenchmark.measureSubArrayViaArraysCopyOf      5  avgt   20     7,711 ±   0,091   ns/op
+SubArrayBenchmark.measureSubArrayViaSubList                              5  avgt   20    37,915 ±   0,723   ns/op
+SubArrayBenchmark.measureSubArrayViaArraysCopyOf                         5  avgt   20     7,711 ±   0,091   ns/op
 
-SubArrayBenchmark.measureSubArrayViaSubList          10  avgt   20    46,722 ±   1,043   ns/op
-SubArrayBenchmark.measureSubArrayViaArraysCopyOf     10  avgt   20     8,449 ±   0,217   ns/op
+SubArrayBenchmark.measureSubArrayViaSubList                             10  avgt   20    46,722 ±   1,043   ns/op
+SubArrayBenchmark.measureSubArrayViaArraysCopyOf                        10  avgt   20     8,449 ±   0,217   ns/op
 
-SubArrayBenchmark.measureSubArrayViaSubList         100  avgt   20   125,830 ±   1,120   ns/op
-SubArrayBenchmark.measureSubArrayViaArraysCopyOf    100  avgt   20    41,890 ±   2,162   ns/op
+SubArrayBenchmark.measureSubArrayViaSubList                            100  avgt   20   125,830 ±   1,120   ns/op
+SubArrayBenchmark.measureSubArrayViaArraysCopyOf                       100  avgt   20    41,890 ±   2,162   ns/op
 
 SubArrayBenchmark.measureSubArrayViaSubList:·gc.alloc.rate.norm          5  avgt   20   128,000 ±   0,001    B/op
 SubArrayBenchmark.measureSubArrayViaArraysCopyOf:·gc.alloc.rate.norm     5  avgt   20    24,000 ±   0,001    B/op
@@ -400,20 +639,22 @@ SubArrayBenchmark.measureSubArrayViaArraysCopyOf:·gc.alloc.rate.norm    10  avg
 SubArrayBenchmark.measureSubArrayViaSubList:·gc.alloc.rate.norm        100  avgt   20   320,000 ±   0,001    B/op
 SubArrayBenchmark.measureSubArrayViaArraysCopyOf:·gc.alloc.rate.norm   100  avgt   20   216,000 ±   0,001    B/op
 
-SubArrayBenchmark.measureSubListViaArraysAsList     5  avgt   20    10,453 ±   0,249   ns/op
-SubArrayBenchmark.measureSubListViaArraysCopyOf     5  avgt   20    10,401 ±   0,404   ns/op
+SubArrayBenchmark.measureSubListViaArraysAsList                          5  avgt   20    10,453 ±   0,249   ns/op
+SubArrayBenchmark.measureSubListViaArraysCopyOf                          5  avgt   20    10,401 ±   0,404   ns/op
 
-SubArrayBenchmark.measureSubListViaArraysAsList    10  avgt   20    10,908 ±   0,631   ns/op
-SubArrayBenchmark.measureSubListViaArraysCopyOf    10  avgt   20    12,137 ±   0,577   ns/op
+SubArrayBenchmark.measureSubListViaArraysAsList                         10  avgt   20    10,908 ±   0,631   ns/op
+SubArrayBenchmark.measureSubListViaArraysCopyOf                         10  avgt   20    12,137 ±   0,577   ns/op
 
-SubArrayBenchmark.measureSubListViaArraysAsList   100  avgt   20    11,572 ±   0,805   ns/op
-SubArrayBenchmark.measureSubListViaArraysCopyOf   100  avgt   20    45,113 ±   0,955   ns/op
+SubArrayBenchmark.measureSubListViaArraysAsList                        100  avgt   20    11,572 ±   0,805   ns/op
+SubArrayBenchmark.measureSubListViaArraysCopyOf                        100  avgt   20    45,113 ±   0,955   ns/op
 
-SubArrayBenchmark.measureSubListViaArraysAsList:·gc.alloc.rate.norm    5  avgt   20    56,000 ±   0,001    B/op
-SubArrayBenchmark.measureSubListViaArraysCopyOf:·gc.alloc.rate.norm    5  avgt   20    48,000 ±   0,001    B/op
+SubArrayBenchmark.measureSubListViaArraysAsList:·gc.alloc.rate.norm      5  avgt   20    56,000 ±   0,001    B/op
+SubArrayBenchmark.measureSubListViaArraysCopyOf:·gc.alloc.rate.norm      5  avgt   20    48,000 ±   0,001    B/op
 
-SubArrayBenchmark.measureSubListViaArraysAsList:·gc.alloc.rate.norm   10  avgt   20    56,000 ±   0,001    B/op
-SubArrayBenchmark.measureSubListViaArraysCopyOf:·gc.alloc.rate.norm   10  avgt   20    64,000 ±   0,001    B/op
+SubArrayBenchmark.measureSubListViaArraysAsList:·gc.alloc.rate.norm     10  avgt   20    56,000 ±   0,001    B/op
+SubArrayBenchmark.measureSubListViaArraysCopyOf:·gc.alloc.rate.norm     10  avgt   20    64,000 ±   0,001    B/op
 
-SubArrayBenchmark.measureSubListViaArraysAsList:·gc.alloc.rate.norm   100  avgt   20    56,000 ±   0,001    B/op
-SubArrayBenchmark.measureSubListViaArraysCopyOf:·gc.alloc.rate.norm   100  avgt   20   240,000 ±   0,001    B/op
+SubArrayBenchmark.measureSubListViaArraysAsList:·gc.alloc.rate.norm    100  avgt   20    56,000 ±   0,001    B/op
+SubArrayBenchmark.measureSubListViaArraysCopyOf:·gc.alloc.rate.norm    100  avgt   20   240,000 ±   0,001    B/op
+
+Java 9
