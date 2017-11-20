@@ -250,32 +250,87 @@ MergeBenchmark.measureModifyWithoutCallingSave:·gc.alloc.rate.norm             
 
 --------------------- для доклада Enterprise без тормозов
 
-Benchmark                                                         (entityCount)  Mode  Cnt        Score         Error   Units
-LoopVsSingleCallBenchmark.findInLoop                                         10  avgt  250      482,838 ±       8,242   us/op
-LoopVsSingleCallBenchmark.findWithSingleCall                                 10  avgt  250      206,817 ±       1,622   us/op
+Benchmark                                                           (entityCount)  Mode  Cnt        Score         Error   Units
+LoopVsSingleCallBenchmark.findInLoop                                           10  avgt  100      469,424 ±       8,099   us/op
+LoopVsSingleCallBenchmark.findWithSingleCall                                   10  avgt  100      205,886 ±      11,615   us/op
 
-LoopVsSingleCallBenchmark.findInLoop                                        100  avgt  250     1821,789 ±      29,594   us/op
-LoopVsSingleCallBenchmark.findWithSingleCall                                100  avgt  250      484,816 ±       2,411   us/op
+LoopVsSingleCallBenchmark.findInLoop                                          100  avgt  100     1887,240 ±      83,701   us/op
+LoopVsSingleCallBenchmark.findWithSingleCall                                  100  avgt  100      462,535 ±       6,892   us/op
 
-LoopVsSingleCallBenchmark.findInLoop                                       1000  avgt  250    18405,569 ±     341,172   us/op
-LoopVsSingleCallBenchmark.findWithSingleCall                               1000  avgt  250    14257,609 ±     157,939   us/op
+LoopVsSingleCallBenchmark.findInLoop                                         1000  avgt  100    19355,030 ±     433,351   us/op
+LoopVsSingleCallBenchmark.findWithSingleCall                                 1000  avgt  100    16812,107 ±    2208,749   us/op
 
-LoopVsSingleCallBenchmark.findInLoop:·gc.alloc.rate.norm                     10  avgt  250   159757,489 ±     564,696    B/op
-LoopVsSingleCallBenchmark.findWithSingleCall:·gc.alloc.rate.norm             10  avgt  250    83399,058 ±      70,414    B/op
+LoopVsSingleCallBenchmark.findInLoop:·gc.alloc.rate.norm                       10  avgt  100   158802,101 ±     452,979    B/op
+LoopVsSingleCallBenchmark.findWithSingleCall:·gc.alloc.rate.norm               10  avgt  100    83525,794 ±     105,359    B/op
 
-LoopVsSingleCallBenchmark.findInLoop:·gc.alloc.rate.norm                    100  avgt  250   649154,209 ±     571,325    B/op
-LoopVsSingleCallBenchmark.findWithSingleCall:·gc.alloc.rate.norm            100  avgt  250   239406,450 ±      18,958    B/op
+LoopVsSingleCallBenchmark.findInLoop:·gc.alloc.rate.norm                      100  avgt  100   654327,272 ±    1148,819    B/op
+LoopVsSingleCallBenchmark.findWithSingleCall:·gc.alloc.rate.norm              100  avgt  100   240181,020 ±      62,081    B/op
 
-LoopVsSingleCallBenchmark.findInLoop:·gc.alloc.rate.norm                   1000  avgt  250  6247215,835 ±    4014,127    B/op
-LoopVsSingleCallBenchmark.findWithSingleCall:·gc.alloc.rate.norm           1000  avgt  250  8092149,046 ±   14124,061    B/op
+LoopVsSingleCallBenchmark.findInLoop:·gc.alloc.rate.norm                     1000  avgt  100  6279014,561 ±   19408,550    B/op
+LoopVsSingleCallBenchmark.findWithSingleCall:·gc.alloc.rate.norm             1000  avgt  100  8117463,363 ±   27417,090    B/op
 
 
 Benchmark                                                                          Mode  Cnt      Score      Error   Units
-LazyTransactionBenchmark.measureEagerTransaction                                   avgt  250     32,533 ±    0,323   us/op
-LazyTransactionBenchmark.measureLazyTransaction                                    avgt  250      1,392 ±    0,022   us/op
+LazyTransactionBenchmark.measureLazyTransaction                                    avgt  100      1,368 ±    0,034   us/op
+LazyTransactionBenchmark.measureEagerTransaction                                   avgt  100     34,516 ±    2,051   us/op
 
-LazyTransactionBenchmark.measureEagerTransaction:·gc.alloc.rate.norm               avgt  250  11889,645 ±    7,003    B/op
-LazyTransactionBenchmark.measureLazyTransaction:·gc.alloc.rate.norm                avgt  250    520,001 ±    0,001    B/op
+LazyTransactionBenchmark.measureLazyTransaction:·gc.alloc.rate.norm                avgt  100    520,001 ±    0,001    B/op
+LazyTransactionBenchmark.measureEagerTransaction:·gc.alloc.rate.norm               avgt  100  11904,815 ±   25,272    B/op
+
+Java 8
+
+Benchmark                                                                              (collectionType)  (size)  Mode  Cnt      Score      Error   Units
+IteratorFromStreamBenchmark.measureForEach                                                         list      10  avgt  100    539,663 ±    3,865   ns/op
+IteratorFromStreamBenchmark.measureIteratorFromStream                                              list      10  avgt  100    802,860 ±    9,600   ns/op
+IteratorFromStreamBenchmark.measureIteratorFromCollectedList                                       list      10  avgt  100    628,270 ±   11,582   ns/op
+
+IteratorFromStreamBenchmark.measureForEach                                                         list     100  avgt  100   5009,942 ±   37,940   ns/op
+IteratorFromStreamBenchmark.measureIteratorFromStream                                              list     100  avgt  100   7121,474 ±  131,639   ns/op
+IteratorFromStreamBenchmark.measureIteratorFromCollectedList                                       list     100  avgt  100   5570,164 ±   36,062   ns/op
+
+IteratorFromStreamBenchmark.measureForEach                                                         list    1000  avgt  100  52946,050 ± 1459,283   ns/op
+IteratorFromStreamBenchmark.measureIteratorFromStream                                              list    1000  avgt  100  76045,745 ± 1458,132   ns/op
+IteratorFromStreamBenchmark.measureIteratorFromCollectedList                                       list    1000  avgt  100  62056,434 ± 2977,828   ns/op
+
+IteratorFromStreamBenchmark.measureForEach:·gc.alloc.rate.norm                                     list      10  avgt  100    855,200 ±    0,818    B/op
+IteratorFromStreamBenchmark.measureIteratorFromStream:·gc.alloc.rate.norm                          list      10  avgt  100   1054,400 ±    1,091    B/op
+IteratorFromStreamBenchmark.measureIteratorFromCollectedList:·gc.alloc.rate.norm                   list      10  avgt  100    960,000 ±    2,987    B/op
+
+IteratorFromStreamBenchmark.measureForEach:·gc.alloc.rate.norm                                     list     100  avgt  100   6600,002 ±    2,112    B/op
+IteratorFromStreamBenchmark.measureIteratorFromStream:·gc.alloc.rate.norm                          list     100  avgt  100   6784,003 ±    2,112    B/op
+IteratorFromStreamBenchmark.measureIteratorFromCollectedList:·gc.alloc.rate.norm                   list     100  avgt  100   8049,602 ±    4,189    B/op
+
+IteratorFromStreamBenchmark.measureForEach:·gc.alloc.rate.norm                                     list    1000  avgt  100  64010,423 ±   11,827    B/op
+IteratorFromStreamBenchmark.measureIteratorFromStream:·gc.alloc.rate.norm                          list    1000  avgt  100  64205,633 ±   18,090    B/op
+IteratorFromStreamBenchmark.measureIteratorFromCollectedList:·gc.alloc.rate.norm                   list    1000  avgt  100  79097,627 ±   12,244    B/op
+
+IteratorFromStreamBenchmark.measureForEach                                                          set      10  avgt  100    636,313 ±   14,099   ns/op
+IteratorFromStreamBenchmark.measureIteratorFromCollectedList                                        set      10  avgt  100    780,868 ±   18,441   ns/op
+IteratorFromStreamBenchmark.measureIteratorFromStream                                               set      10  avgt  100    853,301 ±    8,823   ns/op
+
+IteratorFromStreamBenchmark.measureForEach                                                          set     100  avgt  100   6424,974 ±  553,441   ns/op
+IteratorFromStreamBenchmark.measureIteratorFromStream                                               set     100  avgt  100   7309,634 ±  103,849   ns/op
+IteratorFromStreamBenchmark.measureIteratorFromCollectedList                                        set     100  avgt  100   6744,272 ±   78,717   ns/op
+
+IteratorFromStreamBenchmark.measureForEach                                                          set    1000  avgt  100  66635,240 ± 1211,282   ns/op
+IteratorFromStreamBenchmark.measureIteratorFromStream                                               set    1000  avgt  100  86997,079 ± 2141,281   ns/op
+IteratorFromStreamBenchmark.measureIteratorFromCollectedList                                        set    1000  avgt  100  72514,557 ±  703,861   ns/op
+
+IteratorFromStreamBenchmark.measureForEach:·gc.alloc.rate.norm                                      set      10  avgt  100    861,600 ±    1,250    B/op
+IteratorFromStreamBenchmark.measureIteratorFromStream:·gc.alloc.rate.norm                           set      10  avgt  100   1060,800 ±    1,809    B/op
+IteratorFromStreamBenchmark.measureIteratorFromCollectedList:·gc.alloc.rate.norm                    set      10  avgt  100    967,200 ±    3,329    B/op
+
+IteratorFromStreamBenchmark.measureForEach:·gc.alloc.rate.norm                                      set     100  avgt  100   6607,203 ±    3,328    B/op
+IteratorFromStreamBenchmark.measureIteratorFromStream:·gc.alloc.rate.norm                           set     100  avgt  100   6804,003 ±    4,604    B/op
+IteratorFromStreamBenchmark.measureIteratorFromCollectedList:·gc.alloc.rate.norm                    set     100  avgt  100   8060,003 ±    3,709    B/op
+
+IteratorFromStreamBenchmark.measureForEach:·gc.alloc.rate.norm                                      set    1000  avgt  100  63988,829 ±   11,836    B/op
+IteratorFromStreamBenchmark.measureIteratorFromStream:·gc.alloc.rate.norm                           set    1000  avgt  100  64199,238 ±   11,534    B/op
+IteratorFromStreamBenchmark.measureIteratorFromCollectedList:·gc.alloc.rate.norm                    set    1000  avgt  100  79109,632 ±    8,713    B/op
+
+Java 9
+
+
 
 
 Benchmark                                                                                  Mode  Cnt     Score    Error   Units
