@@ -5,58 +5,59 @@ import org.openjdk.jmh.annotations.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.LongStream;
+import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toCollection;
 
-@State(Scope.Thread)
-@Warmup(batchSize = 1000, iterations = 50)
-@Measurement(batchSize = 1000, iterations = 50)
-@BenchmarkMode(Mode.SingleShotTime)
-@OutputTimeUnit(TimeUnit.MICROSECONDS)
+@BenchmarkMode(Mode.AverageTime)
+@OutputTimeUnit(TimeUnit.NANOSECONDS)
+@Fork(jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms2g", "-Xmx2g"})
 public class RemoveFromArrayListBenchmark {
 
-	@Param({"100", "1000", "10000"})
-	private int itemsCount; 			//items count
+    @Benchmark
+    public List<Byte> measureRemoveFromArrayListOneByOne_reverseOrder(Data data) {
+        ArrayList<Byte> arrayList = new ArrayList<>(data.initial);
+        for (int i = data.to - 1; i >= data.from; i--) {
+            arrayList.remove(i);
+        }
+        return arrayList;
+    }
 
-	@Param({"5", "10", "25", "50"})
-	private int percentOfRemovedItems;  //count of items removed from list
+    @Benchmark
+    public List<Byte> measureRemoveFromArrayListOneByOne_directOrder(Data data) {
+        ArrayList<Byte> arrayList = new ArrayList<>(data.initial);
+        for (int i = data.from; i < data.to; i++) {
+            arrayList.remove(data.from);
+        }
+        return arrayList;
+    }
 
-	private List<Long> arrayList;
-	private int from;
-	private int to;
+    @Benchmark
+    public List<Byte> measureRemoveFromArrayListUsingSubList(Data data) {
+        ArrayList<Byte> arrayList = new ArrayList<>(data.initial);
+        arrayList.subList(data.from, data.to).clear();
+        return arrayList;
+    }
 
-	@Setup(Level.Iteration)
-	public void initIteration() {
-		from = itemsCount / 2; //remove from the second half of the list
-		to = from + (itemsCount / 100 * percentOfRemovedItems);
-	}
+    @State(Scope.Thread)
+    public static class Data {
+        @Param({"10", "100"})
+        private int itemsCount;            //items count
 
-	@Setup(Level.Invocation)
-	public void initInvocation() {
-		arrayList = LongStream.range(0, itemsCount).boxed().collect(toCollection(ArrayList::new));
-	}
+        @Param({"5", "10", "25", "50"})
+        private int percentOfRemovedItems; //count of items removed from list
 
-	@Benchmark
-	public List<Long> measureRemoveFromArrayListOneByOne_reverseOrder() {
-		for (int i = to - 1; i >= from; i--) {
-			arrayList.remove(i);
-		}
-		return arrayList;
-	}
+        private ArrayList<Byte> initial;
+        private int from;
+        private int to;
 
-	@Benchmark
-	public List<Long> measureRemoveFromArrayListOneByOne_directOrder() {
-		for (int i = from; i < to; i++) {
-			arrayList.remove(from);
-		}
-		return arrayList;
-	}
-
-	@Benchmark
-	public List<Long> measureRemoveFromArrayListUsingSubList() {
-		arrayList.subList(from, to).clear();
-		return arrayList;
-	}
-
+        @Setup
+        public void initIteration() {
+            from = itemsCount / 2; //remove from the second half of the list
+            to = from + (itemsCount / 100 * percentOfRemovedItems);
+            initial = IntStream.range(0, itemsCount).boxed()
+                    .map(Integer::byteValue)
+                    .collect(toCollection(ArrayList::new));
+        }
+    }
 }
