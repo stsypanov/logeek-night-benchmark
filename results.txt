@@ -475,7 +475,54 @@ IteratorFromStreamBenchmark.measureIteratorFromCollectedList:·gc.alloc.rate.nor
 
 Java 9
 
+Benchmark                                                                              (collectionType)  (size)  Mode  Cnt      Score      Error   Units
+IteratorFromStreamBenchmark.measureForEach                                                         list      10  avgt  100    416,411 ?   21,179   ns/op
+IteratorFromStreamBenchmark.measureIteratorFromStream                                              list      10  avgt  100    599,202 ?    7,988   ns/op
+IteratorFromStreamBenchmark.measureIteratorFromCollectedList                                       list      10  avgt  100    485,270 ?    8,807   ns/op
 
+IteratorFromStreamBenchmark.measureForEach                                                         list     100  avgt  100   3761,885 ?  163,805   ns/op
+IteratorFromStreamBenchmark.measureIteratorFromStream                                              list     100  avgt  100   5220,375 ?   30,295   ns/op
+IteratorFromStreamBenchmark.measureIteratorFromCollectedList                                       list     100  avgt  100   3993,701 ?   49,647   ns/op
+
+IteratorFromStreamBenchmark.measureForEach                                                         list    1000  avgt  100  34939,077 ?  383,860   ns/op
+IteratorFromStreamBenchmark.measureIteratorFromCollectedList                                       list    1000  avgt  100  43252,519 ?  692,061   ns/op
+IteratorFromStreamBenchmark.measureIteratorFromStream                                              list    1000  avgt  100  49409,624 ?  476,151   ns/op
+
+IteratorFromStreamBenchmark.measureForEach                                                          set      10  avgt  100    433,885 ?    3,420   ns/op
+IteratorFromStreamBenchmark.measureIteratorFromStream                                               set      10  avgt  100    660,230 ?   16,530   ns/op
+IteratorFromStreamBenchmark.measureIteratorFromCollectedList                                        set      10  avgt  100    559,765 ?    4,393   ns/op
+
+IteratorFromStreamBenchmark.measureForEach                                                          set     100  avgt  100   4280,782 ?   44,527   ns/op
+IteratorFromStreamBenchmark.measureIteratorFromStream                                               set     100  avgt  100   5786,209 ?   95,587   ns/op
+IteratorFromStreamBenchmark.measureIteratorFromCollectedList                                        set     100  avgt  100   4905,285 ?   85,272   ns/op
+
+IteratorFromStreamBenchmark.measureForEach                                                          set    1000  avgt  100  50037,610 ?  436,697   ns/op
+IteratorFromStreamBenchmark.measureIteratorFromStream                                               set    1000  avgt  100  66463,477 ?  716,422   ns/op
+IteratorFromStreamBenchmark.measureIteratorFromCollectedList                                        set    1000  avgt  100  57080,198 ?  979,201   ns/op
+
+IteratorFromStreamBenchmark.measureForEach:·gc.alloc.rate.norm                                     list      10  avgt  100    776,000 ?    0,001    B/op
+IteratorFromStreamBenchmark.measureIteratorFromStream:·gc.alloc.rate.norm                          list      10  avgt  100    974,400 ?    1,091    B/op
+IteratorFromStreamBenchmark.measureIteratorFromCollectedList:·gc.alloc.rate.norm                   list      10  avgt  100    909,600 ?    1,250    B/op
+
+IteratorFromStreamBenchmark.measureForEach:·gc.alloc.rate.norm                                     list     100  avgt  100   5789,602 ?    3,000    B/op
+IteratorFromStreamBenchmark.measureIteratorFromStream:·gc.alloc.rate.norm                          list     100  avgt  100   5985,602 ?    5,426    B/op
+IteratorFromStreamBenchmark.measureIteratorFromCollectedList:·gc.alloc.rate.norm                   list     100  avgt  100   7247,202 ?    5,778    B/op
+
+IteratorFromStreamBenchmark.measureForEach:·gc.alloc.rate.norm                                     list    1000  avgt  100  56015,214 ?   10,522    B/op
+IteratorFromStreamBenchmark.measureIteratorFromStream:·gc.alloc.rate.norm                          list    1000  avgt  100  56175,220 ?    7,363    B/op
+IteratorFromStreamBenchmark.measureIteratorFromCollectedList:·gc.alloc.rate.norm                   list    1000  avgt  100  71080,018 ?   17,030    B/op
+
+IteratorFromStreamBenchmark.measureForEach:·gc.alloc.rate.norm                                      set      10  avgt  100    780,800 ?    1,809    B/op
+IteratorFromStreamBenchmark.measureIteratorFromStream:·gc.alloc.rate.norm                           set      10  avgt  100    981,600 ?    1,250    B/op
+IteratorFromStreamBenchmark.measureIteratorFromCollectedList:·gc.alloc.rate.norm                    set      10  avgt  100    918,400 ?    1,091    B/op
+
+IteratorFromStreamBenchmark.measureForEach:·gc.alloc.rate.norm                                      set     100  avgt  100   5802,402 ?    5,036    B/op
+IteratorFromStreamBenchmark.measureIteratorFromStream:·gc.alloc.rate.norm                           set     100  avgt  100   6000,802 ?    2,847    B/op
+IteratorFromStreamBenchmark.measureIteratorFromCollectedList:·gc.alloc.rate.norm                    set     100  avgt  100   7268,802 ?    2,182    B/op
+
+IteratorFromStreamBenchmark.measureForEach:·gc.alloc.rate.norm                                      set    1000  avgt  100  56022,421 ?    8,945    B/op
+IteratorFromStreamBenchmark.measureIteratorFromStream:·gc.alloc.rate.norm                           set    1000  avgt  100  56214,427 ?   14,926    B/op
+IteratorFromStreamBenchmark.measureIteratorFromCollectedList:·gc.alloc.rate.norm                    set    1000  avgt  100  71103,224 ?   18,950    B/op
 
 
 Benchmark                                                                                  Mode  Cnt     Score    Error   Units
@@ -857,4 +904,3 @@ SubArrayBenchmark.measureSubListViaArraysCopyOf:·gc.alloc.rate.norm     10  avg
 SubArrayBenchmark.measureSubListViaArraysAsList:·gc.alloc.rate.norm    100  avgt   20    56,000 ±   0,001    B/op
 SubArrayBenchmark.measureSubListViaArraysCopyOf:·gc.alloc.rate.norm    100  avgt   20   240,000 ±   0,001    B/op
 
-Java 9
