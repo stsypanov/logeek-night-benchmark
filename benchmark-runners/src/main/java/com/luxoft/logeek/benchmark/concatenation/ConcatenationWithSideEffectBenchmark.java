@@ -5,7 +5,6 @@ import org.openjdk.jmh.annotations.*;
 import java.util.concurrent.TimeUnit;
 
 @Fork(jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms2g", "-Xmx2g"})
-@State(Scope.Benchmark)
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 public class ConcatenationWithSideEffectBenchmark {
@@ -23,6 +22,6 @@ public class ConcatenationWithSideEffectBenchmark {
 
     @State(Scope.Thread)
     public static class Data {
-        int i = 1000;
+        int i = 1000; //use long number to have String of constant length
     }
 }
