@@ -250,6 +250,151 @@ MergeBenchmark.measureModifyWithoutCallingSave:·gc.alloc.rate.norm             
 
 --------------------- для доклада Enterprise без тормозов
 
+RemoveFromArrayListBenchmark
+
+Java 9
+
+Benchmark                                                              (itemsCount)  (percentOfRemovedItems)  Mode  Cnt     Score     Error Units
+measureRemoveFromArrayListOneByOne_directOrder                                   10                        5  avgt  100    21,101 ±   0,265 ns/op
+measureRemoveFromArrayListOneByOne_reverseOrder                                  10                        5  avgt  100    22,231 ±   0,864 ns/op
+measureRemoveFromArrayListUsingSubList                                           10                        5  avgt  100    29,627 ±   0,334 ns/op
+
+measureRemoveFromArrayListOneByOne_directOrder                                   10                       10  avgt  100    22,394 ±   0,807 ns/op
+measureRemoveFromArrayListOneByOne_reverseOrder                                  10                       10  avgt  100    21,854 ±   0,434 ns/op
+measureRemoveFromArrayListUsingSubList                                           10                       10  avgt  100    29,549 ±   0,243 ns/op
+
+measureRemoveFromArrayListOneByOne_directOrder                                   10                       25  avgt  100    24,048 ±   0,834 ns/op
+measureRemoveFromArrayListOneByOne_reverseOrder                                  10                       25  avgt  100    22,780 ±   0,864 ns/op
+measureRemoveFromArrayListUsingSubList                                           10                       25  avgt  100    29,385 ±   0,144 ns/op
+
+measureRemoveFromArrayListOneByOne_directOrder                                   10                       50  avgt  100    23,582 ±   0,752 ns/op
+measureRemoveFromArrayListOneByOne_reverseOrder                                  10                       50  avgt  100    22,154 ±   0,605 ns/op
+measureRemoveFromArrayListUsingSubList                                           10                       50  avgt  100    29,863 ±   0,468 ns/op
+
+measureRemoveFromArrayListOneByOne_directOrder                                  100                        5  avgt  100   128,580 ±   1,300 ns/op
+measureRemoveFromArrayListOneByOne_reverseOrder                                 100                        5  avgt  100   129,707 ±   0,997 ns/op
+measureRemoveFromArrayListUsingSubList                                          100                        5  avgt  100   116,529 ±   1,425 ns/op
+
+measureRemoveFromArrayListOneByOne_directOrder                                  100                       10  avgt  100   232,685 ±   8,614 ns/op
+measureRemoveFromArrayListOneByOne_reverseOrder                                 100                       10  avgt  100   186,487 ±   1,650 ns/op
+measureRemoveFromArrayListUsingSubList                                          100                       10  avgt  100   114,983 ±   0,535 ns/op
+
+measureRemoveFromArrayListOneByOne_directOrder                                  100                       25  avgt  100   375,304 ±   4,334 ns/op
+measureRemoveFromArrayListOneByOne_reverseOrder                                 100                       25  avgt  100   357,215 ±   3,639 ns/op
+measureRemoveFromArrayListUsingSubList                                          100                       25  avgt  100   115,418 ±   0,608 ns/op
+
+measureRemoveFromArrayListOneByOne_directOrder                                  100                       50  avgt  100   625,820 ±   3,460 ns/op
+measureRemoveFromArrayListOneByOne_reverseOrder                                 100                       50  avgt  100   136,133 ±   1,128 ns/op
+measureRemoveFromArrayListUsingSubList                                          100                       50  avgt  100   115,587 ±   0,753 ns/op
+
+
+
+
+measureRemoveFromArrayListOneByOne_directOrder:·gc.alloc.rate.norm               10                        5  avgt  100    80,000 ±   0,001 B/op
+measureRemoveFromArrayListOneByOne_reverseOrder:·gc.alloc.rate.norm              10                        5  avgt  100    80,000 ±   0,001 B/op
+measureRemoveFromArrayListUsingSubList:·gc.alloc.rate.norm                       10                        5  avgt  100    80,000 ±   0,001 B/op
+
+measureRemoveFromArrayListOneByOne_directOrder:·gc.alloc.rate.norm               10                       10  avgt  100    80,000 ±   0,001 B/op
+measureRemoveFromArrayListOneByOne_reverseOrder:·gc.alloc.rate.norm              10                       10  avgt  100    80,000 ±   0,001 B/op
+measureRemoveFromArrayListUsingSubList:·gc.alloc.rate.norm                       10                       10  avgt  100    80,000 ±   0,001 B/op
+
+measureRemoveFromArrayListOneByOne_directOrder:·gc.alloc.rate.norm               10                       25  avgt  100    80,000 ±   0,001 B/op
+measureRemoveFromArrayListOneByOne_reverseOrder:·gc.alloc.rate.norm              10                       25  avgt  100    80,000 ±   0,001 B/op
+measureRemoveFromArrayListUsingSubList:·gc.alloc.rate.norm                       10                       25  avgt  100    80,000 ±   0,001 B/op
+
+measureRemoveFromArrayListOneByOne_directOrder:·gc.alloc.rate.norm               10                       50  avgt  100    80,000 ±   0,001 B/op
+measureRemoveFromArrayListOneByOne_reverseOrder:·gc.alloc.rate.norm              10                       50  avgt  100    80,000 ±   0,001 B/op
+measureRemoveFromArrayListUsingSubList:·gc.alloc.rate.norm                       10                       50  avgt  100    80,000 ±   0,001 B/op
+
+measureRemoveFromArrayListOneByOne_directOrder:·gc.alloc.rate.norm              100                        5  avgt  100   440,000 ±   0,001 B/op
+measureRemoveFromArrayListOneByOne_reverseOrder:·gc.alloc.rate.norm             100                        5  avgt  100   440,000 ±   0,001 B/op
+measureRemoveFromArrayListUsingSubList:·gc.alloc.rate.norm                      100                        5  avgt  100   440,000 ±   0,001 B/op
+
+
+measureRemoveFromArrayListOneByOne_directOrder:·gc.alloc.rate.norm              100                       10  avgt  100   440,000 ±   0,001 B/op
+measureRemoveFromArrayListOneByOne_reverseOrder:·gc.alloc.rate.norm             100                       10  avgt  100   440,000 ±   0,001 B/op
+measureRemoveFromArrayListUsingSubList:·gc.alloc.rate.norm                      100                       10  avgt  100   440,000 ±   0,001 B/op
+
+measureRemoveFromArrayListOneByOne_directOrder:·gc.alloc.rate.norm              100                       25  avgt  100   440,001 ±   0,001 B/op
+measureRemoveFromArrayListOneByOne_reverseOrder:·gc.alloc.rate.norm             100                       25  avgt  100   440,001 ±   0,001 B/op
+measureRemoveFromArrayListUsingSubList:·gc.alloc.rate.norm                      100                       25  avgt  100   440,000 ±   0,001 B/op
+
+measureRemoveFromArrayListOneByOne_directOrder:·gc.alloc.rate.norm              100                       50  avgt  100   440,001 ±   0,001 B/op
+measureRemoveFromArrayListOneByOne_reverseOrder:·gc.alloc.rate.norm             100                       50  avgt  100   440,000 ±   0,001 B/op
+measureRemoveFromArrayListUsingSubList:·gc.alloc.rate.norm                      100                       50  avgt  100   440,000 ±   0,001 B/op
+
+Java 8
+
+Benchmark                                                              (itemsCount)  (percentOfRemovedItems)  Mode  Cnt     Score    Error   Units
+measureRemoveFromArrayListOneByOne_directOrder                                   10                        5  avgt  100    21,890 ?  0,415   ns/op
+measureRemoveFromArrayListOneByOne_reverseOrder                                  10                        5  avgt  100    22,543 ?  0,421   ns/op
+measureRemoveFromArrayListUsingSubList                                           10                        5  avgt  100    29,962 ?  0,524   ns/op
+
+measureRemoveFromArrayListOneByOne_directOrder                                   10                       10  avgt  100    21,777 ?  0,306   ns/op
+measureRemoveFromArrayListOneByOne_reverseOrder                                  10                       10  avgt  100    22,279 ?  0,474   ns/op
+measureRemoveFromArrayListUsingSubList                                           10                       10  avgt  100    29,967 ?  0,582   ns/op
+
+measureRemoveFromArrayListOneByOne_directOrder                                   10                       25  avgt  100    21,515 ?  0,207   ns/op
+measureRemoveFromArrayListOneByOne_reverseOrder                                  10                       25  avgt  100    22,275 ?  0,412   ns/op
+measureRemoveFromArrayListUsingSubList                                           10                       25  avgt  100    29,899 ?  0,529   ns/op
+
+measureRemoveFromArrayListOneByOne_directOrder                                   10                       50  avgt  100    22,141 ?  0,298   ns/op
+measureRemoveFromArrayListOneByOne_reverseOrder                                  10                       50  avgt  100    22,718 ?  0,482   ns/op
+measureRemoveFromArrayListUsingSubList                                           10                       50  avgt  100    30,217 ?  0,652   ns/op
+
+measureRemoveFromArrayListOneByOne_directOrder                                  100                        5  avgt  100   139,554 ?  5,524   ns/op
+measureRemoveFromArrayListOneByOne_reverseOrder                                 100                        5  avgt  100   138,123 ?  2,555   ns/op
+measureRemoveFromArrayListUsingSubList                                          100                        5  avgt  100   120,463 ?  2,212   ns/op
+
+measureRemoveFromArrayListOneByOne_directOrder                                  100                       10  avgt  100   208,267 ?  2,512   ns/op
+measureRemoveFromArrayListOneByOne_reverseOrder                                 100                       10  avgt  100   202,681 ?  4,326   ns/op
+measureRemoveFromArrayListUsingSubList                                          100                       10  avgt  100   119,669 ?  2,046   ns/op
+
+measureRemoveFromArrayListOneByOne_directOrder                                  100                       25  avgt  100   412,283 ?  3,716   ns/op
+measureRemoveFromArrayListOneByOne_reverseOrder                                 100                       25  avgt  100   364,053 ?  6,598   ns/op
+measureRemoveFromArrayListUsingSubList                                          100                       25  avgt  100   117,446 ?  1,556   ns/op
+
+measureRemoveFromArrayListOneByOne_directOrder                                  100                       50  avgt  100   709,898 ?  7,442   ns/op
+measureRemoveFromArrayListOneByOne_reverseOrder                                 100                       50  avgt  100   136,523 ?  3,213   ns/op
+measureRemoveFromArrayListUsingSubList                                          100                       50  avgt  100   117,482 ?  1,695   ns/op
+
+
+
+measureRemoveFromArrayListOneByOne_directOrder:·gc.alloc.rate.norm               10                        5  avgt  100    80,000 ?  0,001    B/op
+measureRemoveFromArrayListOneByOne_reverseOrder:·gc.alloc.rate.norm              10                        5  avgt  100    80,000 ?  0,001    B/op
+measureRemoveFromArrayListUsingSubList:·gc.alloc.rate.norm                       10                        5  avgt  100    80,000 ?  0,001    B/op
+
+measureRemoveFromArrayListOneByOne_directOrder:·gc.alloc.rate.norm               10                       10  avgt  100    80,000 ?  0,001    B/op
+measureRemoveFromArrayListOneByOne_reverseOrder:·gc.alloc.rate.norm              10                       10  avgt  100    80,000 ?  0,001    B/op
+measureRemoveFromArrayListUsingSubList:·gc.alloc.rate.norm                       10                       10  avgt  100    80,000 ?  0,001    B/op
+
+measureRemoveFromArrayListOneByOne_directOrder:·gc.alloc.rate.norm               10                       25  avgt  100    80,000 ?  0,001    B/op
+measureRemoveFromArrayListOneByOne_reverseOrder:·gc.alloc.rate.norm              10                       25  avgt  100    80,000 ?  0,001    B/op
+measureRemoveFromArrayListUsingSubList:·gc.alloc.rate.norm                       10                       25  avgt  100    80,000 ?  0,001    B/op
+
+measureRemoveFromArrayListOneByOne_reverseOrder:·gc.alloc.rate.norm              10                       50  avgt  100    80,000 ?  0,001    B/op
+measureRemoveFromArrayListOneByOne_directOrder:·gc.alloc.rate.norm               10                       50  avgt  100    80,000 ?  0,001    B/op
+measureRemoveFromArrayListUsingSubList:·gc.alloc.rate.norm                       10                       50  avgt  100    80,000 ?  0,001    B/op
+
+measureRemoveFromArrayListOneByOne_directOrder:·gc.alloc.rate.norm              100                        5  avgt  100   440,000 ?  0,001    B/op
+measureRemoveFromArrayListOneByOne_reverseOrder:·gc.alloc.rate.norm             100                        5  avgt  100   440,000 ?  0,001    B/op
+measureRemoveFromArrayListUsingSubList:·gc.alloc.rate.norm                      100                        5  avgt  100   440,000 ?  0,001    B/op
+
+measureRemoveFromArrayListOneByOne_directOrder:·gc.alloc.rate.norm              100                       10  avgt  100   440,000 ?  0,001    B/op
+measureRemoveFromArrayListOneByOne_reverseOrder:·gc.alloc.rate.norm             100                       10  avgt  100   440,000 ?  0,001    B/op
+measureRemoveFromArrayListUsingSubList:·gc.alloc.rate.norm                      100                       10  avgt  100   440,000 ?  0,001    B/op
+
+measureRemoveFromArrayListOneByOne_directOrder:·gc.alloc.rate.norm              100                       25  avgt  100   440,001 ?  0,001    B/op
+measureRemoveFromArrayListOneByOne_reverseOrder:·gc.alloc.rate.norm             100                       25  avgt  100   440,001 ?  0,001    B/op
+measureRemoveFromArrayListUsingSubList:·gc.alloc.rate.norm                      100                       25  avgt  100   440,000 ?  0,001    B/op
+
+measureRemoveFromArrayListOneByOne_directOrder:·gc.alloc.rate.norm              100                       50  avgt  100   440,001 ?  0,001    B/op
+measureRemoveFromArrayListOneByOne_reverseOrder:·gc.alloc.rate.norm             100                       50  avgt  100   440,000 ?  0,001    B/op
+measureRemoveFromArrayListUsingSubList:·gc.alloc.rate.norm                      100                       50  avgt  100   440,000 ?  0,001    B/op
+
+
+
+
 Benchmark                                                           (entityCount)  Mode  Cnt        Score         Error   Units
 LoopVsSingleCallBenchmark.findInLoop                                           10  avgt  100      469,424 ±       8,099   us/op
 LoopVsSingleCallBenchmark.findWithSingleCall                                   10  avgt  100      205,886 ±      11,615   us/op
