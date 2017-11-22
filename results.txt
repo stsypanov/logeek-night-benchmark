@@ -250,6 +250,45 @@ MergeBenchmark.measureModifyWithoutCallingSave:·gc.alloc.rate.norm             
 
 --------------------- для доклада Enterprise без тормозов
 
+Benchmark                                                                           (valid)  Mode  Cnt      Score       Error   Units
+CircuitousTreasureHuntBenchmark.doIneffectively                                        true  avgt  100    250,387 ±    37,152   us/op
+CircuitousTreasureHuntBenchmark.doEffectively                                          true  avgt  100    244,615 ±    41,030   us/op
+CircuitousTreasureHuntBenchmark.doMostEffectively                                      true  avgt  100    341,429 ±    53,034   us/op
+
+CircuitousTreasureHuntBenchmark.doIneffectively                                       false  avgt  100    212,072 ±    20,370   us/op
+CircuitousTreasureHuntBenchmark.doEffectively                                         false  avgt  100     25,039 ±     0,372   us/op
+CircuitousTreasureHuntBenchmark.doMostEffectively                                     false  avgt  100     24,730 ±     0,299   us/op
+
+CircuitousTreasureHuntBenchmark.doIneffectively:·gc.alloc.rate.norm                    true  avgt  100  55151,313 ±   137,540    B/op
+CircuitousTreasureHuntBenchmark.doEffectively:·gc.alloc.rate.norm                      true  avgt  100  55122,672 ±   102,254    B/op
+CircuitousTreasureHuntBenchmark.doMostEffectively:·gc.alloc.rate.norm                  true  avgt  100  59686,063 ±   149,453    B/op
+
+CircuitousTreasureHuntBenchmark.doIneffectively:·gc.alloc.rate.norm                   false  avgt  100  55098,227 ±    81,575    B/op
+CircuitousTreasureHuntBenchmark.doEffectively:·gc.alloc.rate.norm                     false  avgt  100  10650,609 ±    21,590    B/op
+CircuitousTreasureHuntBenchmark.doMostEffectively:·gc.alloc.rate.norm                 false  avgt  100  10586,621 ±    18,441    B/op
+
+
+Benchmark                                                                           (valid)  Mode  Cnt      Score       Error   Units
+CircuitousTreasureHuntBenchmark.doIneffectively                                        true  avgt  100    177,256 ±     3,906   us/op
+CircuitousTreasureHuntBenchmark.doEffectively                                          true  avgt  100    181,874 ±     2,783   us/op
+CircuitousTreasureHuntBenchmark.doMostEffectively                                      true  avgt  100    183,737 ±     6,170   us/op
+
+CircuitousTreasureHuntBenchmark.doIneffectively                                       false  avgt  100    178,638 ±     4,059   us/op
+CircuitousTreasureHuntBenchmark.doEffectively                                         false  avgt  100     24,539 ±     0,559   us/op
+CircuitousTreasureHuntBenchmark.doMostEffectively                                     false  avgt  100     24,463 ±     0,296   us/op
+
+CircuitousTreasureHuntBenchmark.doIneffectively:·gc.alloc.rate.norm                    true  avgt  100  55071,143 ±   109,981    B/op
+CircuitousTreasureHuntBenchmark.doEffectively:·gc.alloc.rate.norm                      true  avgt  100  55005,616 ±    96,553    B/op
+CircuitousTreasureHuntBenchmark.doMostEffectively:·gc.alloc.rate.norm                  true  avgt  100  59337,177 ±    47,891    B/op
+
+CircuitousTreasureHuntBenchmark.doIneffectively:·gc.alloc.rate.norm                   false  avgt  100  55123,276 ±    78,068    B/op
+CircuitousTreasureHuntBenchmark.doEffectively:·gc.alloc.rate.norm                     false  avgt  100  10617,912 ±    33,928    B/op
+CircuitousTreasureHuntBenchmark.doMostEffectively:·gc.alloc.rate.norm                 false  avgt  100  10607,426 ±    21,411    B/op
+
+
+
+
+
 RemoveFromArrayListBenchmark
 
 Java 9
@@ -903,4 +942,71 @@ SubArrayBenchmark.measureSubListViaArraysCopyOf:·gc.alloc.rate.norm     10  avg
 
 SubArrayBenchmark.measureSubListViaArraysAsList:·gc.alloc.rate.norm    100  avgt   20    56,000 ±   0,001    B/op
 SubArrayBenchmark.measureSubListViaArraysCopyOf:·gc.alloc.rate.norm    100  avgt   20   240,000 ±   0,001    B/op
+
+
+Java 9
+
+
+
+
+ConcatenationVsFormatBenchmark
+
+Java 8
+
+Benchmark                                              (length)  Mode  Cnt     Score     Error   Units
+measureStringFormat                                           5  avgt  100   892,806 ±  18,608   ns/op
+measureConcatenation                                          5  avgt  100    22,706 ±   0,335   ns/op
+
+measureStringFormat                                          10  avgt  100   925,551 ±  14,258   ns/op
+measureConcatenation                                         10  avgt  100    25,235 ±   0,279   ns/op
+
+measureStringFormat                                         100  avgt  100  1156,248 ±  66,727   ns/op
+measureConcatenation                                        100  avgt  100   118,060 ±   1,031   ns/op
+
+measureStringFormat                                         200  avgt  100  1245,966 ±  18,500   ns/op
+measureConcatenation                                        200  avgt  100   219,081 ±   2,035   ns/op
+
+measureConcatenation:·gc.alloc.rate.norm                      5  avgt  100    64,000 ±   0,001    B/op
+measureStringFormat:·gc.alloc.rate.norm                       5  avgt  100  1064,001 ±   0,001    B/op
+
+measureStringFormat:·gc.alloc.rate.norm                      10  avgt  100  1176,002 ±   0,001    B/op
+measureConcatenation:·gc.alloc.rate.norm                     10  avgt  100    88,000 ±   0,001    B/op
+
+measureStringFormat:·gc.alloc.rate.norm                     100  avgt  100  2092,802 ±   4,908    B/op
+measureConcatenation:·gc.alloc.rate.norm                    100  avgt  100   448,000 ±   0,001    B/op
+
+measureStringFormat:·gc.alloc.rate.norm                     200  avgt  100  3092,802 ±   4,908    B/op
+measureConcatenation:·gc.alloc.rate.norm                    200  avgt  100   848,000 ±   0,001    B/op
+
+Java 9
+
+Benchmark                                              (length)  Mode  Cnt     Score    Error   Units
+measureStringFormat                                           5  avgt  100   688,615 ±  7,749   ns/op
+measureConcatenation                                          5  avgt  100    26,913 ±  0,223   ns/op
+
+measureStringFormat                                          10  avgt  100   704,290 ±  8,939   ns/op
+measureConcatenation                                         10  avgt  100    28,112 ±  0,414   ns/op
+
+measureStringFormat                                         100  avgt  100   771,813 ±  7,887   ns/op
+measureConcatenation                                        100  avgt  100    69,606 ±  1,624   ns/op
+
+measureStringFormat                                         200  avgt  100   870,384 ±  9,260   ns/op
+measureConcatenation                                        200  avgt  100   124,686 ±  1,252   ns/op
+
+measureStringFormat:·gc.alloc.rate.norm                       5  avgt  100   744,001 ±  0,001    B/op
+measureConcatenation:·gc.alloc.rate.norm                      5  avgt  100    56,000 ±  0,001    B/op
+
+measureStringFormat:·gc.alloc.rate.norm                      10  avgt  100   808,001 ±  0,001    B/op
+measureConcatenation:·gc.alloc.rate.norm                     10  avgt  100    64,000 ±  0,001    B/op
+
+measureStringFormat:·gc.alloc.rate.norm                     100  avgt  100  1280,001 ±  0,001    B/op
+measureConcatenation:·gc.alloc.rate.norm                    100  avgt  100   248,000 ±  0,001    B/op
+
+measureStringFormat:·gc.alloc.rate.norm                     200  avgt  100  1776,001 ±  0,001    B/op
+measureConcatenation:·gc.alloc.rate.norm                    200  avgt  100   448,000 ±  0,001    B/op
+
+
+
+
+
 
