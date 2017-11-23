@@ -1049,6 +1049,24 @@ measureConcatenation:·gc.alloc.rate.norm                    200  avgt  100   44
 
 
 
+--------------------- для доклада по IDEA
 
+StackBenchmark
 
+Java 9
 
+Benchmark             Mode  Cnt   Score     Error   Units
+measureJdkStackPush   avgt   40  31,634 ±  18,912   ns/op
+measureIdeaStackPush  avgt   40  21,358 ±   4,107   ns/op
+
+measureJdkStackPeek   avgt   40  22,661 ±   0,104   ns/op
+measureIdeaStackPeek  avgt   40   4,866 ±   0,214   ns/op
+
+Java 8
+
+Benchmark             Mode  Cnt   Score     Error   Units
+measureJdkStackPush   avgt   40  46,676 ±  36,977   ns/op
+measureIdeaStackPush  avgt   40  23,214 ±   9,022   ns/op
+
+measureJdkStackPeek   avgt   40  22,709 ±   0,087   ns/op
+measureIdeaStackPeek  avgt   40   4,768 ±   0,064   ns/op
