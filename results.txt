@@ -563,23 +563,30 @@ IteratorFromStreamBenchmark.measureForEach:·gc.alloc.rate.norm                 
 IteratorFromStreamBenchmark.measureIteratorFromStream:·gc.alloc.rate.norm                           set    1000  avgt  100  56214,427 ?   14,926    B/op
 IteratorFromStreamBenchmark.measureIteratorFromCollectedList:·gc.alloc.rate.norm                    set    1000  avgt  100  71103,224 ?   18,950    B/op
 
+CachedFormatterBenchmark
 
-Benchmark                                                                                  Mode  Cnt     Score    Error   Units
-CachedFormatterBenchmark.measureDateTimeFormatterWhenDateConverted                         avgt  500   384,858 ±  3,791   ns/op
-CachedFormatterBenchmark.measureSimpleDateTimeFormatter                                    avgt  500  1106,523 ±  5,522   ns/op
+Java 8
 
-CachedFormatterBenchmark.measureDateTimeFormatterWhenDateConverted:·gc.alloc.rate.norm     avgt  500   500,800 ±  0,948    B/op
-CachedFormatterBenchmark.measureSimpleDateTimeFormatter:·gc.alloc.rate.norm                avgt  500  2016,001 ±  0,001    B/op
+Benchmark                                                         Mode   Cnt     Score    Error   Units
+measureDateTimeFormatter                                          avgt  1000   201,068 ±  0,758   ns/op
+measureSimpleDateTimeFormat                                       avgt  1000   268,999 ±  2,329   ns/op
+measureDateTimeFormatterWhenDateConverted                         avgt  1000   315,248 ±  0,749   ns/op
 
+measureDateTimeFormatter:·gc.alloc.rate.norm                      avgt  1000   288,000 ±  0,001    B/op
+measureSimpleDateTimeFormat:·gc.alloc.rate.norm                   avgt  1000   560,000 ±  0,001    B/op
+measureDateTimeFormatterWhenDateConverted:·gc.alloc.rate.norm     avgt  1000   419,200 ±  0,766    B/op
 
-Benchmark                                                                                  Mode  Cnt     Score    Error   Units
-CachedFormatterBenchmark.measureDateTimeFormatter                                          avgt  250   203,277 ±  3,980   ns/op
-CachedFormatterBenchmark.measureSimpleDateTimeFormatter                                    avgt  250   271,580 ±  4,002   ns/op
-CachedFormatterBenchmark.measureDateTimeFormatterWhenDateConverted                         avgt  250   323,640 ±  8,563   ns/op
+Java 9
 
-CachedFormatterBenchmark.measureDateTimeFormatter:·gc.alloc.rate.norm                      avgt  250   288,000 ±  0,001    B/op
-CachedFormatterBenchmark.measureSimpleDateTimeFormatter:·gc.alloc.rate.norm                avgt  250   560,000 ±  0,001    B/op
-CachedFormatterBenchmark.measureDateTimeFormatterWhenDateConverted:·gc.alloc.rate          avgt  250   834,033 ± 12,614  MB/sec
+Benchmark                                                         Mode   Cnt     Score    Error   Units
+measureDateTimeFormatter                                          avgt  1000   165,221 ±  2,410   ns/op
+measureSimpleDateTimeFormat                                       avgt  1000   273,422 ±  3,544   ns/op
+measureDateTimeFormatterWhenDateConverted                         avgt  1000   248,831 ±  0,919   ns/op
+
+measureDateTimeFormatter:·gc.alloc.rate.norm                      avgt  1000   248,000 ±  0,001    B/op
+measureSimpleDateTimeFormat:·gc.alloc.rate.norm                   avgt  1000   544,000 ±  0,001    B/op
+measureDateTimeFormatterWhenDateConverted:·gc.alloc.rate.norm     avgt  1000   360,000 ±  0,001    B/op
+
 
 BulkOperationBenchmark Java 9 ArrayList
 
