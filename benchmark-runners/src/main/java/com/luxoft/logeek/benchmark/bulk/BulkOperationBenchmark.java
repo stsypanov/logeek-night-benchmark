@@ -9,89 +9,44 @@ import java.util.concurrent.TimeUnit;
 
 import static java.util.stream.Collectors.toList;
 
-@SuppressWarnings("ALL")
 @BenchmarkMode(Mode.Throughput)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
+@Fork(jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms4g", "-Xmx4g"})
+@SuppressWarnings({"UseBulkOperation", "UnnecessaryLocalVariable"})
 public class BulkOperationBenchmark extends BenchmarkBase {
 
     @Benchmark
-    public List<Long> measureAddOneByOne(Data data) {
-        List<Long> newList = new ArrayList<>();
+    public Collection<Long> measureAddOneByOne(Data data) {
+        Collection<Long> newCollection = data.freshCollection();
         for (Long item : data.items) {
-            newList.add(item);
+            newCollection.add(item);
         }
-        return newList;
+        return newCollection;
     }
 
     @Benchmark
-    public List<Long> measureAddAll_ArrayList(Data data) {
-        List<Long> newList = new ArrayList<>();
-        newList.addAll(data.items);
-        return newList;
+    public Collection<Long> measureAddAll(Data data) {
+        Collection<Long> newCollection = data.freshCollection();
+        newCollection.addAll(data.items);
+        return newCollection;
     }
 
     @Benchmark
-    public List<Long> measureAddAllViaConstructorArg_ArrayList(Data data) {
-        List<Long> newList = new ArrayList<>(data.items);
-        return newList;
-    }
-
-    @Benchmark
-    public Set<Long> measureAddOneByOne_HashSet(Data data) {
-        Set<Long> newSet = new HashSet<>();
-        for (Long item : data.items) {
-            newSet.add(item);
-        }
-        return newSet;
-    }
-
-    @Benchmark
-    public Set<Long> measureAddAll_HashSet(Data data) {
-        Set<Long> newSet = new HashSet<>();
-        newSet.addAll(data.items);
-        return newSet;
-    }
-
-    @Benchmark
-    public Set<Long> measureAddAllViaConstructorArg_HashSet(Data data) {
-        Set<Long> newSet = new HashSet<>(data.items);
-        return newSet;
-    }
-
-    @Benchmark
-    public Set<Long> measureAddAllVarArgViaAsList_HashSet(Data data) {
-        Set<Long> set = new HashSet<>(Arrays.asList(data.array));
-        return set;
-    }
-
-    @Benchmark
-    public Set<Long> measureAddAllVarArgViaCollectionsAddAll_HashSet(Data data) {
-        Set<Long> set = new HashSet<>(data.array.length);
-        Collections.addAll(set, data.array);
-        return set;
-    }
-
-    @Benchmark
-    public List<Long> measureAddAllVarArgViaAsList_ArrayList(Data data) {
-        List<Long> set = new ArrayList<>(Arrays.asList(data.array));
-        return set;
-    }
-
-    @Benchmark
-    public List<Long> measureAddAllVarArgViaCollectionsAddAll_ArrayList(Data data) {
-        List<Long> set = new ArrayList<>(data.array.length);
-        Collections.addAll(set, data.array);
-        return set;
+    public Collection<Long> measureAddAllViaConstructorArg(Data data) {
+        Collection<Long> newCollection = data.freshCollection(data.items);
+        return newCollection;
     }
 
     @State(Scope.Thread)
     public static class Data {
+        @Param({"1", "2"})
+        private int collectionType;
+
         @Param({"10", "100", "1000"})
         private int count;
 
         private ThreadLocalRandom random;
-        List<Long> items;
-        Long[] array;
+        private List<Long> items;
 
         @Setup
         public void init() {
@@ -101,7 +56,18 @@ public class BulkOperationBenchmark extends BenchmarkBase {
         @Setup(Level.Iteration)
         public void initIteration() {
             items = random.longs(count).boxed().collect(toList());
-            array = items.toArray(new Long[0]);
+        }
+
+        Collection<Long> freshCollection() {
+            return 1 == collectionType
+                    ? new ArrayList<>()
+                    : new HashSet<>();
+        }
+
+        Collection<Long> freshCollection(Collection<Long> items) {
+            return 1 == collectionType
+                    ? new ArrayList<>(items)
+                    : new HashSet<>(items);
         }
     }
 }
