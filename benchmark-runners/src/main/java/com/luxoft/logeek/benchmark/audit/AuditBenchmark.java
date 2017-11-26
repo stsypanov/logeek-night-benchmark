@@ -4,53 +4,57 @@ import com.luxoft.logeek.benchmark.ContextAwareBenchmarkBase;
 import com.luxoft.logeek.dto.AuditDto;
 import com.luxoft.logeek.repository.AuditRepository;
 import com.luxoft.logeek.service.AuditLocalService;
-import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.Level;
-import org.openjdk.jmh.annotations.Setup;
-import org.openjdk.jmh.annotations.TearDown;
+import org.openjdk.jmh.annotations.*;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class AuditBenchmark extends ContextAwareBenchmarkBase {
-	private AuditLocalService service;
-	private AuditRepository auditRepository;
-	private Set<AuditDto> inserts;
-	private Set<AuditDto> updates;
-	private Set<AuditDto> deletes;
+@Fork(jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms2g", "-Xmx2g"})
+public class AuditBenchmark {
 
-	@Setup
-	public void init() {
-		super.init();
-		service = context.getBean(AuditLocalService.class);
-		auditRepository = context.getBean(AuditRepository.class);
-	}
+    @Benchmark
+    public void auditChanges(Data data) {
+        data.service.auditChanges(data.inserts, data.updates, data.deletes);
+    }
 
-	@Setup(Level.Iteration)
-	public void prepareFreshData() {
-		inserts = new HashSet<>();
-		updates = new HashSet<>();
-		deletes = new HashSet<>();
+    @Benchmark
+    public void auditChangesEffectively(Data data) {
+        data.service.auditChangesEffectively(data.inserts, data.updates, data.deletes);
+    }
 
-		for (long i = 0; i < 100; i++) {
-			inserts.add(new AuditDto(i));
-			updates.add(new AuditDto(i * 2));
-			deletes.add(new AuditDto(i * 3));
-		}
-	}
+    public static class Data extends ContextAwareBenchmarkBase {
+        @Param({"10", "100", "1000"})
+        private int count;
 
-	@TearDown(Level.Iteration)
-	public void tearDown() {
-		auditRepository.deleteAllInBatch();
-	}
+        private AuditLocalService service;
+        private AuditRepository auditRepository;
+        private Set<AuditDto> inserts;
+        private Set<AuditDto> updates;
+        private Set<AuditDto> deletes;
 
-	@Benchmark
-	public void auditChanges() {
-		service.auditChanges(inserts, updates, deletes);
-	}
+        @Setup
+        public void init() {
+            super.init();
+            service = context.getBean(AuditLocalService.class);
+            auditRepository = context.getBean(AuditRepository.class);
+        }
 
-	@Benchmark
-	public void auditChangesEffectively() {
-		service.auditChangesEffectively(inserts, updates, deletes);
-	}
+        @Setup(Level.Iteration)
+        public void prepareFreshData() {
+            inserts = new HashSet<>(count);
+            updates = new HashSet<>(count);
+            deletes = new HashSet<>(count);
+
+            for (long i = 0; i < count; i++) {
+                inserts.add(new AuditDto(i));
+                updates.add(new AuditDto(i * 2));
+                deletes.add(new AuditDto(i * 3));
+            }
+        }
+
+        @TearDown(Level.Iteration)
+        public void tearDown() {
+            auditRepository.deleteAllInBatch();
+        }
+    }
 }
