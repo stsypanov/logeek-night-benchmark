@@ -1,4 +1,4 @@
-package com.luxoft.logeek.benchmark.contains;
+package com.luxoft.logeek.collections;
 
 import java.util.Map;
 

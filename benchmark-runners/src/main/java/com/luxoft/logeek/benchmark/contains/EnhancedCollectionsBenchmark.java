@@ -1,29 +1,26 @@
 package com.luxoft.logeek.benchmark.contains;
 
-import com.luxoft.logeek.utils.SmartList;
+import com.luxoft.logeek.collections.SmartList;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 import static java.util.Collections.singletonList;
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
-public class ContainsInEmptyHashSetBenchmark {
+public class EnhancedCollectionsBenchmark {
 
     @Benchmark
     public boolean measureContainsInJdkHashSet(Data data) {
-        return data.jdkHashSet.contains(data.str);
+        return data.jdkHashSet.contains(data.integer);
     }
 
     @Benchmark
     public boolean measureContainsInCustomHashSet(Data data) {
-        return data.customHashSet.contains(data.str);
+        return data.customHashSet.contains(data.integer);
     }
 
     @Benchmark
@@ -109,36 +106,35 @@ public class ContainsInEmptyHashSetBenchmark {
 
     @State(Scope.Thread)
     public static class Data {
-        String str;
-        Collection collection;
-
-        Set<String> jdkHashSet;
-        Set<String> customHashSet;
+        @Param({"0", "1"})
         Integer integer;
+        Collection<Integer> collection;
+
+        Set<Integer> jdkHashSet;
+        Set<Integer> customHashSet;
         SmartList<Integer> smartList;
         Collection<Integer> integers;
-        java.util.HashMap<Integer, Integer> jdkMap;
-        HashMap<Integer, Integer> ideaMap;
+        Map<Integer, Integer> jdkMap;
+        Map<Integer, Integer> ideaMap;
 
         @Setup
         public void setup() {
-            str = "1";
+            integer = integer == 1
+                    ? integer
+                    : null;
 
-            collection = singletonList("1");
+            collection = singletonList(integer);
 
             jdkHashSet = new java.util.HashSet<>();
-            customHashSet = new com.luxoft.logeek.benchmark.contains.HashSet<>();
+            customHashSet = new com.luxoft.logeek.collections.HashSet<>();
 
-            integer = 1;
-
-            smartList = new SmartList<>();
-            integers = new ArrayList<>(Collections.singleton(integer));
+            smartList = new com.luxoft.logeek.collections.SmartList<>();
+            integers = new java.util.ArrayList<>(Collections.singleton(integer));
 
             jdkMap = new java.util.HashMap<>();
-            ideaMap = new HashMap<>();
+            ideaMap = new com.luxoft.logeek.collections.HashMap<>();
         }
 
     }
 }
-//java -jar benchmarks.jar ContainsInEmptyHashSetBenchmark -f 10 -wi 100 -i 100 -prof gc
 
