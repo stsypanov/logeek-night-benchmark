@@ -640,9 +640,171 @@ measureAddAll:·gc.alloc.rate.norm                             hashSet     1000 
 measureAddAllViaConstructorArg:·gc.alloc.rate.norm            hashSet     1000  thrpt  100  40272,766 ±    0,006    B/op
 
 
-Java 9
+BulkOperationBenchmark Java 9
 
-
+Benchmark                                                        (collectionType)  (count)   Mode  Cnt      Score      Error   Units
+measureAddAll                                                                   1       10  thrpt  100  23504,437 ?  433,475  ops/ms
+measureAddAll:·gc.alloc.rate                                                    1       10  thrpt  100   2021,582 ?   37,182  MB/sec
+measureAddAll:·gc.alloc.rate.norm                                               1       10  thrpt  100    136,000 ?    0,001    B/op
+measureAddAll:·gc.churn.PS_Eden_Space                                           1       10  thrpt  100      0,020 ?    0,005  MB/sec
+measureAddAll:·gc.churn.PS_Eden_Space.norm                                      1       10  thrpt  100      0,001 ?    0,001    B/op
+measureAddAll:·gc.churn.PS_Survivor_Space                                       1       10  thrpt  100   2022,956 ?  135,604  MB/sec
+measureAddAll:·gc.churn.PS_Survivor_Space.norm                                  1       10  thrpt  100    136,318 ?    9,094    B/op
+measureAddAll:·gc.count                                                         1       10  thrpt  100    228,000             counts
+measureAddAll:·gc.time                                                          1       10  thrpt  100    249,000                 ms
+measureAddAll                                                                   1      100  thrpt  100   4785,983 ?   53,050  ops/ms
+measureAddAll:·gc.alloc.rate                                                    1      100  thrpt  100   2591,249 ?   27,979  MB/sec
+measureAddAll:·gc.alloc.rate.norm                                               1      100  thrpt  100    856,001 ?    0,001    B/op
+measureAddAll:·gc.churn.PS_Eden_Space                                           1      100  thrpt  100      0,022 ?    0,004  MB/sec
+measureAddAll:·gc.churn.PS_Eden_Space.norm                                      1      100  thrpt  100      0,007 ?    0,001    B/op
+measureAddAll:·gc.churn.PS_Survivor_Space                                       1      100  thrpt  100   2605,902 ?   77,009  MB/sec
+measureAddAll:·gc.churn.PS_Survivor_Space.norm                                  1      100  thrpt  100    861,775 ?   27,320    B/op
+measureAddAll:·gc.count                                                         1      100  thrpt  100    293,000             counts
+measureAddAll:·gc.time                                                          1      100  thrpt  100    440,000                 ms
+measureAddAll                                                                   1     1000  thrpt  100    609,048 ?    5,870  ops/ms
+measureAddAll:·gc.alloc.rate                                                    1     1000  thrpt  100   3104,210 ?   28,871  MB/sec
+measureAddAll:·gc.alloc.rate.norm                                               1     1000  thrpt  100   8056,066 ?    0,002    B/op
+measureAddAll:·gc.churn.PS_Eden_Space                                           1     1000  thrpt  100      0,033 ?    0,006  MB/sec
+measureAddAll:·gc.churn.PS_Eden_Space.norm                                      1     1000  thrpt  100      0,087 ?    0,015    B/op
+measureAddAll:·gc.churn.PS_Survivor_Space                                       1     1000  thrpt  100   3097,218 ?  150,999  MB/sec
+measureAddAll:·gc.churn.PS_Survivor_Space.norm                                  1     1000  thrpt  100   8037,289 ?  382,050    B/op
+measureAddAll:·gc.count                                                         1     1000  thrpt  100    348,000             counts
+measureAddAll:·gc.time                                                          1     1000  thrpt  100    496,000                 ms
+measureAddAll                                                                   2       10  thrpt  100   5240,067 ?   90,261  ops/ms
+measureAddAll:·gc.alloc.rate                                                    2       10  thrpt  100   1537,494 ?   26,278  MB/sec
+measureAddAll:·gc.alloc.rate.norm                                               2       10  thrpt  100    464,000 ?    0,001    B/op
+measureAddAll:·gc.churn.PS_Eden_Space                                           2       10  thrpt  100      0,014 ?    0,005  MB/sec
+measureAddAll:·gc.churn.PS_Eden_Space.norm                                      2       10  thrpt  100      0,004 ?    0,002    B/op
+measureAddAll:·gc.churn.PS_Survivor_Space                                       2       10  thrpt  100   1540,579 ?  132,400  MB/sec
+measureAddAll:·gc.churn.PS_Survivor_Space.norm                                  2       10  thrpt  100    464,553 ?   39,280    B/op
+measureAddAll:·gc.count                                                         2       10  thrpt  100    174,000             counts
+measureAddAll:·gc.time                                                          2       10  thrpt  100    255,000                 ms
+measureAddAll                                                                   2      100  thrpt  100    373,444 ?    6,276  ops/ms
+measureAddAll:·gc.alloc.rate                                                    2      100  thrpt  100   1257,882 ?   20,963  MB/sec
+measureAddAll:·gc.alloc.rate.norm                                               2      100  thrpt  100   5328,015 ?    0,003    B/op
+measureAddAll:·gc.churn.PS_Eden_Space                                           2      100  thrpt  100      0,009 ?    0,005  MB/sec
+measureAddAll:·gc.churn.PS_Eden_Space.norm                                      2      100  thrpt  100      0,038 ?    0,020    B/op
+measureAddAll:·gc.churn.PS_Survivor_Space                                       2      100  thrpt  100   1255,765 ?  149,124  MB/sec
+measureAddAll:·gc.churn.PS_Survivor_Space.norm                                  2      100  thrpt  100   5325,972 ?  634,606    B/op
+measureAddAll:·gc.count                                                         2      100  thrpt  100    142,000             counts
+measureAddAll:·gc.time                                                          2      100  thrpt  100    187,000                 ms
+measureAddAll                                                                   2     1000  thrpt  100     30,945 ?    0,815  ops/ms
+measureAddAll:·gc.alloc.rate                                                    2     1000  thrpt  100    949,060 ?   24,939  MB/sec
+measureAddAll:·gc.alloc.rate.norm                                               2     1000  thrpt  100  48513,307 ?    0,047    B/op
+measureAddAll:·gc.churn.PS_Eden_Space                                           2     1000  thrpt  100      0,009 ?    0,005  MB/sec
+measureAddAll:·gc.churn.PS_Eden_Space.norm                                      2     1000  thrpt  100      0,448 ?    0,268    B/op
+measureAddAll:·gc.churn.PS_Survivor_Space                                       2     1000  thrpt  100    961,567 ?   96,245  MB/sec
+measureAddAll:·gc.churn.PS_Survivor_Space.norm                                  2     1000  thrpt  100  49109,548 ? 4520,417    B/op
+measureAddAll:·gc.count                                                         2     1000  thrpt  100    109,000             counts
+measureAddAll:·gc.time                                                          2     1000  thrpt  100    170,000                 ms
+measureAddAllViaConstructorArg                                                  1       10  thrpt  100  48377,789 ? 1371,447  ops/ms
+measureAddAllViaConstructorArg:·gc.alloc.rate                                   1       10  thrpt  100   2448,245 ?   68,758  MB/sec
+measureAddAllViaConstructorArg:·gc.alloc.rate.norm                              1       10  thrpt  100     80,000 ?    0,001    B/op
+measureAddAllViaConstructorArg:·gc.churn.PS_Eden_Space                          1       10  thrpt  100      0,020 ?    0,005  MB/sec
+measureAddAllViaConstructorArg:·gc.churn.PS_Eden_Space.norm                     1       10  thrpt  100      0,001 ?    0,001    B/op
+measureAddAllViaConstructorArg:·gc.churn.PS_Survivor_Space                      1       10  thrpt  100   2443,002 ?  130,852  MB/sec
+measureAddAllViaConstructorArg:·gc.churn.PS_Survivor_Space.norm                 1       10  thrpt  100     79,841 ?    3,793    B/op
+measureAddAllViaConstructorArg:·gc.count                                        1       10  thrpt  100    275,000             counts
+measureAddAllViaConstructorArg:·gc.time                                         1       10  thrpt  100    427,000                 ms
+measureAddAllViaConstructorArg                                                  1      100  thrpt  100   9360,042 ?   87,589  ops/ms
+measureAddAllViaConstructorArg:·gc.alloc.rate                                   1      100  thrpt  100   2604,293 ?   24,172  MB/sec
+measureAddAllViaConstructorArg:·gc.alloc.rate.norm                              1      100  thrpt  100    440,001 ?    0,001    B/op
+measureAddAllViaConstructorArg:·gc.churn.PS_Eden_Space                          1      100  thrpt  100      0,022 ?    0,004  MB/sec
+measureAddAllViaConstructorArg:·gc.churn.PS_Eden_Space.norm                     1      100  thrpt  100      0,004 ?    0,001    B/op
+measureAddAllViaConstructorArg:·gc.churn.PS_Survivor_Space                      1      100  thrpt  100   2590,538 ?   86,894  MB/sec
+measureAddAllViaConstructorArg:·gc.churn.PS_Survivor_Space.norm                 1      100  thrpt  100    437,676 ?   14,410    B/op
+measureAddAllViaConstructorArg:·gc.count                                        1      100  thrpt  100    291,000             counts
+measureAddAllViaConstructorArg:·gc.time                                         1      100  thrpt  100    421,000                 ms
+measureAddAllViaConstructorArg                                                  1     1000  thrpt  100   1018,609 ?    9,440  ops/ms
+measureAddAllViaConstructorArg:·gc.alloc.rate                                   1     1000  thrpt  100   2602,561 ?   23,812  MB/sec
+measureAddAllViaConstructorArg:·gc.alloc.rate.norm                              1     1000  thrpt  100   4040,040 ?    0,001    B/op
+measureAddAllViaConstructorArg:·gc.churn.PS_Eden_Space                          1     1000  thrpt  100      0,025 ?    0,005  MB/sec
+measureAddAllViaConstructorArg:·gc.churn.PS_Eden_Space.norm                     1     1000  thrpt  100      0,038 ?    0,008    B/op
+measureAddAllViaConstructorArg:·gc.churn.PS_Survivor_Space                      1     1000  thrpt  100   2589,837 ?   87,353  MB/sec
+measureAddAllViaConstructorArg:·gc.churn.PS_Survivor_Space.norm                 1     1000  thrpt  100   4021,076 ?  135,532    B/op
+measureAddAllViaConstructorArg:·gc.count                                        1     1000  thrpt  100    291,000             counts
+measureAddAllViaConstructorArg:·gc.time                                         1     1000  thrpt  100    335,000                 ms
+measureAddAllViaConstructorArg                                                  2       10  thrpt  100   5114,219 ?   97,314  ops/ms
+measureAddAllViaConstructorArg:·gc.alloc.rate                                   2       10  thrpt  100   1500,105 ?   28,150  MB/sec
+measureAddAllViaConstructorArg:·gc.alloc.rate.norm                              2       10  thrpt  100    464,000 ?    0,001    B/op
+measureAddAllViaConstructorArg:·gc.churn.PS_Eden_Space                          2       10  thrpt  100      0,011 ?    0,005  MB/sec
+measureAddAllViaConstructorArg:·gc.churn.PS_Eden_Space.norm                     2       10  thrpt  100      0,003 ?    0,001    B/op
+measureAddAllViaConstructorArg:·gc.churn.PS_Survivor_Space                      2       10  thrpt  100   1487,931 ?  141,149  MB/sec
+measureAddAllViaConstructorArg:·gc.churn.PS_Survivor_Space.norm                 2       10  thrpt  100    459,659 ?   42,600    B/op
+measureAddAllViaConstructorArg:·gc.count                                        2       10  thrpt  100    168,000             counts
+measureAddAllViaConstructorArg:·gc.time                                         2       10  thrpt  100    172,000                 ms
+measureAddAllViaConstructorArg                                                  2      100  thrpt  100    482,683 ?   22,639  ops/ms
+measureAddAllViaConstructorArg:·gc.alloc.rate                                   2      100  thrpt  100   1322,159 ?   61,329  MB/sec
+measureAddAllViaConstructorArg:·gc.alloc.rate.norm                              2      100  thrpt  100   4304,012 ?    0,002    B/op
+measureAddAllViaConstructorArg:·gc.churn.PS_Eden_Space                          2      100  thrpt  100      0,012 ?    0,005  MB/sec
+measureAddAllViaConstructorArg:·gc.churn.PS_Eden_Space.norm                     2      100  thrpt  100      0,038 ?    0,017    B/op
+measureAddAllViaConstructorArg:·gc.churn.PS_Survivor_Space                      2      100  thrpt  100   1318,763 ?  151,224  MB/sec
+measureAddAllViaConstructorArg:·gc.churn.PS_Survivor_Space.norm                 2      100  thrpt  100   4304,342 ?  447,383    B/op
+measureAddAllViaConstructorArg:·gc.count                                        2      100  thrpt  100    148,000             counts
+measureAddAllViaConstructorArg:·gc.time                                         2      100  thrpt  100    283,000                 ms
+measureAddAllViaConstructorArg                                                  2     1000  thrpt  100     49,308 ?    1,262  ops/ms
+measureAddAllViaConstructorArg:·gc.alloc.rate                                   2     1000  thrpt  100   1265,276 ?   32,076  MB/sec
+measureAddAllViaConstructorArg:·gc.alloc.rate.norm                              2     1000  thrpt  100  40272,824 ?    0,034    B/op
+measureAddAllViaConstructorArg:·gc.churn.PS_Eden_Space                          2     1000  thrpt  100      0,015 ?    0,007  MB/sec
+measureAddAllViaConstructorArg:·gc.churn.PS_Eden_Space.norm                     2     1000  thrpt  100      0,478 ?    0,231    B/op
+measureAddAllViaConstructorArg:·gc.churn.PS_Survivor_Space                      2     1000  thrpt  100   1252,155 ?  150,014  MB/sec
+measureAddAllViaConstructorArg:·gc.churn.PS_Survivor_Space.norm                 2     1000  thrpt  100  39832,813 ? 4589,447    B/op
+measureAddAllViaConstructorArg:·gc.count                                        2     1000  thrpt  100    140,000             counts
+measureAddAllViaConstructorArg:·gc.time                                         2     1000  thrpt  100    167,000                 ms
+measureAddOneByOne                                                              1       10  thrpt  100   8329,917 ?  261,581  ops/ms
+measureAddOneByOne:·gc.alloc.rate                                               1       10  thrpt  100    424,242 ?   13,319  MB/sec
+measureAddOneByOne:·gc.alloc.rate.norm                                          1       10  thrpt  100     80,000 ?    0,001    B/op
+measureAddOneByOne:·gc.churn.PS_Eden_Space                                      1       10  thrpt  100      0,370 ?    0,374  MB/sec
+measureAddOneByOne:·gc.churn.PS_Eden_Space.norm                                 1       10  thrpt  100      0,077 ?    0,080    B/op
+measureAddOneByOne:·gc.churn.PS_Survivor_Space                                  1       10  thrpt  100    437,034 ?  152,152  MB/sec
+measureAddOneByOne:·gc.churn.PS_Survivor_Space.norm                             1       10  thrpt  100     84,122 ?   29,822    B/op
+measureAddOneByOne:·gc.count                                                    1       10  thrpt  100     49,000             counts
+measureAddOneByOne:·gc.time                                                     1       10  thrpt  100    151,000                 ms
+measureAddOneByOne                                                              1      100  thrpt  100    825,646 ?    7,881  ops/ms
+measureAddOneByOne:·gc.alloc.rate                                               1      100  thrpt  100    735,713 ?    7,011  MB/sec
+measureAddOneByOne:·gc.alloc.rate.norm                                          1      100  thrpt  100   1400,007 ?    0,001    B/op
+measureAddOneByOne:·gc.churn.PS_Eden_Space                                      1      100  thrpt  100      0,003 ?    0,003  MB/sec
+measureAddOneByOne:·gc.churn.PS_Eden_Space.norm                                 1      100  thrpt  100      0,006 ?    0,006    B/op
+measureAddOneByOne:·gc.churn.PS_Survivor_Space                                  1      100  thrpt  100    751,296 ?  111,772  MB/sec
+measureAddOneByOne:·gc.churn.PS_Survivor_Space.norm                             1      100  thrpt  100   1430,539 ?  213,469    B/op
+measureAddOneByOne:·gc.count                                                    1      100  thrpt  100     84,000             counts
+measureAddOneByOne:·gc.time                                                     1      100  thrpt  100    105,000                 ms
+measureAddOneByOne                                                              1     1000  thrpt  100     85,161 ?    1,894  ops/ms
+measureAddOneByOne:·gc.alloc.rate                                               1     1000  thrpt  100    814,936 ?   18,105  MB/sec
+measureAddOneByOne:·gc.alloc.rate.norm                                          1     1000  thrpt  100  15024,478 ?    0,020    B/op
+measureAddOneByOne:·gc.churn.PS_Eden_Space                                      1     1000  thrpt  100      0,007 ?    0,004  MB/sec
+measureAddOneByOne:·gc.churn.PS_Eden_Space.norm                                 1     1000  thrpt  100      0,122 ?    0,073    B/op
+measureAddOneByOne:·gc.churn.PS_Survivor_Space                                  1     1000  thrpt  100    822,168 ?   82,647  MB/sec
+measureAddOneByOne:·gc.churn.PS_Survivor_Space.norm                             1     1000  thrpt  100  15150,879 ? 1577,474    B/op
+measureAddOneByOne:·gc.count                                                    1     1000  thrpt  100     92,000             counts
+measureAddOneByOne:·gc.time                                                     1     1000  thrpt  100    132,000                 ms
+measureAddOneByOne                                                              2       10  thrpt  100   4894,224 ?  175,730  ops/ms
+measureAddOneByOne:·gc.alloc.rate                                               2       10  thrpt  100   1447,578 ?   51,786  MB/sec
+measureAddOneByOne:·gc.alloc.rate.norm                                          2       10  thrpt  100    464,000 ?    0,001    B/op
+measureAddOneByOne:·gc.churn.PS_Eden_Space                                      2       10  thrpt  100      0,016 ?    0,006  MB/sec
+measureAddOneByOne:·gc.churn.PS_Eden_Space.norm                                 2       10  thrpt  100      0,005 ?    0,002    B/op
+measureAddOneByOne:·gc.churn.PS_Survivor_Space                                  2       10  thrpt  100   1450,059 ?  154,415  MB/sec
+measureAddOneByOne:·gc.churn.PS_Survivor_Space.norm                             2       10  thrpt  100    463,785 ?   49,535    B/op
+measureAddOneByOne:·gc.count                                                    2       10  thrpt  100    162,000             counts
+measureAddOneByOne:·gc.time                                                     2       10  thrpt  100    380,000                 ms
+measureAddOneByOne                                                              2      100  thrpt  100    347,767 ?   10,263  ops/ms
+measureAddOneByOne:·gc.alloc.rate                                               2      100  thrpt  100   1181,501 ?   35,232  MB/sec
+measureAddOneByOne:·gc.alloc.rate.norm                                          2      100  thrpt  100   5328,016 ?    0,003    B/op
+measureAddOneByOne:·gc.churn.PS_Eden_Space                                      2      100  thrpt  100      0,012 ?    0,006  MB/sec
+measureAddOneByOne:·gc.churn.PS_Eden_Space.norm                                 2      100  thrpt  100      0,052 ?    0,025    B/op
+measureAddOneByOne:·gc.churn.PS_Survivor_Space                                  2      100  thrpt  100   1214,515 ?  146,180  MB/sec
+measureAddOneByOne:·gc.churn.PS_Survivor_Space.norm                             2      100  thrpt  100   5470,805 ?  620,014    B/op
+measureAddOneByOne:·gc.count                                                    2      100  thrpt  100    136,000             counts
+measureAddOneByOne:·gc.time                                                     2      100  thrpt  100    191,000                 ms
+measureAddOneByOne                                                              2     1000  thrpt  100     28,017 ?    1,699  ops/ms
+measureAddOneByOne:·gc.alloc.rate                                               2     1000  thrpt  100    863,653 ?   52,386  MB/sec
+measureAddOneByOne:·gc.alloc.rate.norm                                          2     1000  thrpt  100  48513,506 ?    0,162    B/op
+measureAddOneByOne:·gc.churn.PS_Eden_Space                                      2     1000  thrpt  100      0,007 ?    0,005  MB/sec
+measureAddOneByOne:·gc.churn.PS_Eden_Space.norm                                 2     1000  thrpt  100      0,429 ?    0,273    B/op
+measureAddOneByOne:·gc.churn.PS_Survivor_Space                                  2     1000  thrpt  100    857,175 ?   90,769  MB/sec
+measureAddOneByOne:·gc.churn.PS_Survivor_Space.norm                             2     1000  thrpt  100  48568,243 ? 6399,234    B/op
+measureAddOneByOne:·gc.count                                                    2     1000  thrpt  100     97,000             counts
+measureAddOneByOne:·gc.time                                                     2     1000  thrpt  100    447,000                 ms
 
 
 
