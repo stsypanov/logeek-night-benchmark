@@ -949,3 +949,52 @@ measureIdeaStackPush  avgt   40  23,214 ±   9,022   ns/op
 
 measureJdkStackPeek   avgt   40  22,709 ±   0,087   ns/op
 measureIdeaStackPeek  avgt   40   4,768 ±   0,064   ns/op
+
+LoopVsStreamBenchmark
+
+Java 8
+
+Benchmark                                            (count)  Mode  Cnt      Score      Error   Units
+measureOldMapping                                          1  avgt  500     32,824 ±    0,208   ns/op
+measureIdeaMapping                                         1  avgt  500     32,139 ±    0,151   ns/op
+measureStream                                              1  avgt  500     94,949 ±    0,847   ns/op
+measureSizedStream                                         1  avgt  500     93,323 ±    0,867   ns/op
+
+measureOldMapping                                         10  avgt  500     85,401 ±    0,643   ns/op
+measureIdeaMapping                                        10  avgt  500     89,375 ±    1,894   ns/op
+measureStream                                             10  avgt  500    170,608 ±    1,332   ns/op
+measureSizedStream                                        10  avgt  500    175,193 ±    1,430   ns/op
+
+measureOldMapping                                        100  avgt  500    594,746 ±    5,978   ns/op
+measureIdeaMapping                                       100  avgt  500    623,551 ±   10,974   ns/op
+measureStream                                            100  avgt  500   1185,007 ±    9,197   ns/op
+measureSizedStream                                       100  avgt  500   1077,774 ±    8,747   ns/op
+
+measureOldMapping                                       1000  avgt  500   6117,414 ±   42,749   ns/op
+measureIdeaMapping                                      1000  avgt  500   6078,770 ±   56,251   ns/op
+measureStream                                           1000  avgt  500  12145,044 ±   79,053   ns/op
+measureSizedStream                                      1000  avgt  500  10133,314 ±   53,757   ns/op
+
+measureOldMapping:·gc.alloc.rate.norm                      1  avgt  500     48,000 ±    0,001    B/op
+measureIdeaMapping:·gc.alloc.rate.norm                     1  avgt  500     48,000 ±    0,001    B/op
+measureStream:·gc.alloc.rate.norm                          1  avgt  500    345,600 ±    2,173    B/op
+measureSizedStream:·gc.alloc.rate.norm                     1  avgt  500    323,200 ±    1,423    B/op
+
+measureOldMapping:·gc.alloc.rate.norm                     10  avgt  500     80,000 ±    0,001    B/op
+measureIdeaMapping:·gc.alloc.rate.norm                    10  avgt  500     80,000 ±    0,001    B/op
+measureStream:·gc.alloc.rate.norm                         10  avgt  500    342,400 ±    1,897    B/op
+measureSizedStream:·gc.alloc.rate.norm                    10  avgt  500    358,400 ±    1,897    B/op
+
+measureOldMapping:·gc.alloc.rate.norm                    100  avgt  500    440,000 ±    0,001    B/op
+measureIdeaMapping:·gc.alloc.rate.norm                   100  avgt  500    440,000 ±    0,001    B/op
+measureStream:·gc.alloc.rate.norm                        100  avgt  500   1659,201 ±    1,423    B/op
+measureSizedStream:·gc.alloc.rate.norm                   100  avgt  500    712,001 ±    0,001    B/op
+
+measureOldMapping:·gc.alloc.rate.norm                   1000  avgt  500   4040,004 ±    0,002    B/op
+measureIdeaMapping:·gc.alloc.rate.norm                  1000  avgt  500   4043,204 ±    1,423    B/op
+measureStream:·gc.alloc.rate.norm                       1000  avgt  500  15280,008 ±    0,003    B/op
+measureSizedStream:·gc.alloc.rate.norm                  1000  avgt  500   4312,007 ±    0,003    B/op
+
+
+Java 9
+
