@@ -7,115 +7,105 @@ import org.openjdk.jmh.infra.Blackhole;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-import static java.util.Collections.singletonList;
+import static java.util.Collections.*;
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
+@Fork(jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms4g", "-Xmx4g"})
 public class EnhancedCollectionsBenchmark {
 
     @Benchmark
-    public boolean measureContainsInJdkHashSet(Data data) {
-        return data.jdkHashSet.contains(data.integer);
+    public boolean measureContainsInEmptyJdkHashSet(Data data) {
+        return data.emptyJdkHashSet.contains(data.integer);
     }
 
     @Benchmark
-    public boolean measureContainsInCustomHashSet(Data data) {
-        return data.customHashSet.contains(data.integer);
+    public boolean measureContainsInEmptyIdeaHashSet(Data data) {
+        return data.emptyIdeaHashSet.contains(data.integer);
     }
 
     @Benchmark
-    public boolean measureContainsAllInJdkHashSet(Data data) {
-        return data.jdkHashSet.containsAll(data.collection);
+    public boolean measureContainsAllInEmptyJdkHashSet(Data data) {
+        return data.emptyJdkHashSet.containsAll(data.integers);
     }
 
     @Benchmark
-    public boolean measureContainsAllInCustomHashSet(Data data) {
-        return data.customHashSet.containsAll(data.collection);
+    public boolean measureContainsAllInEmptyIdeaHashSet(Data data) {
+        return data.emptyIdeaHashSet.containsAll(data.integers);
     }
 
     @Benchmark
-    public void measureClearJdkHashSet(Data data, Blackhole bh) {
-        data.jdkHashSet.clear();
-        bh.consume(data.jdkHashSet);
+    public void measureClearEmptyJdkHashSet(Data data, Blackhole bh) {
+        data.emptyJdkHashSet.clear();
+        bh.consume(data.emptyJdkHashSet);
     }
 
     @Benchmark
-    public void measureClearCustomHashSet(Data data, Blackhole bh) {
-        data.customHashSet.clear();
-        bh.consume(data.customHashSet);
+    public void measureClearEmptyIdeaHashSet(Data data, Blackhole bh) {
+        data.emptyIdeaHashSet.clear();
+        bh.consume(data.emptyIdeaHashSet);
+    }
+
+    @Benchmark
+    public boolean measureSmartListEnhancedContainsAll(Data data) {
+        return data.emptySmartList.containsAll(data.integers);
     }
 
     @Benchmark
     public boolean measureSmartListContainsAll(Data data) {
-        return a(data);
+        return data.emptySmartList._containsAll(data.integers);
     }
 
     @Benchmark
-    public boolean _measureSmartListContainsAll(Data data) {
-        return b(data);
-    }
-
-    @CompilerControl(CompilerControl.Mode.DONT_INLINE)
-    private boolean a(Data data) {
-        return data.smartList.containsAll(data.integers);
-    }
-
-    @CompilerControl(CompilerControl.Mode.DONT_INLINE)
-    private boolean b(Data data) {
-        return data.smartList._containsAll(data.integers);
+    public Integer measureGetFromEmptyJdkHashMap(Data data) {
+        return data.emptyJdkMap.get(data.integer);
     }
 
     @Benchmark
-    public Integer measureGetFromJdkHashMap(Data data) {
-        return data.jdkMap.get(data.integer);
+    public Integer measureGetFromEmptyIdeaHashMap(Data data) {
+        return data.emptyIdeaMap.get(data.integer);
     }
 
     @Benchmark
-    public Integer measureGetFromIdeaHashMap(Data data) {
-        return data.ideaMap.get(data.integer);
+    public boolean measureContainsKeyEmptyJdkHashMap(Data data) {
+        return data.emptyJdkMap.containsKey(data.integer);
     }
 
     @Benchmark
-    public boolean measureContainsKeyJdkHashMap(Data data) {
-        return data.jdkMap.containsKey(data.integer);
+    public boolean measureContainsKeyEmptyIdeaHashMap(Data data) {
+        return data.emptyIdeaMap.containsKey(data.integer);
     }
 
     @Benchmark
-    public boolean measureContainsKeyIdeaHashMap(Data data) {
-        return data.ideaMap.containsKey(data.integer);
+    public boolean measureContainsValueEmptyJdkHashMap(Data data) {
+        return data.emptyJdkMap.containsValue(data.integer);
     }
 
     @Benchmark
-    public boolean measureContainsValueJdkHashMap(Data data) {
-        return data.jdkMap.containsValue(data.integer);
+    public boolean measureContainsValueEmptyIdeaHashMap(Data data) {
+        return data.emptyIdeaMap.containsValue(data.integer);
     }
 
     @Benchmark
-    public boolean measureContainsValueIdeaHashMap(Data data) {
-        return data.ideaMap.containsValue(data.integer);
-    }
-
-    @Benchmark
-    public Integer measureRemoveFromJdkHashMap(Data data) {
-        return data.jdkMap.remove(data.integer);
+    public Integer measureRemoveFromEmptyJdkHashMap(Data data) {
+        return data.emptyJdkMap.remove(data.integer);
     }
     @Benchmark
-    public Integer measureRemoveFromIdeaHashMap(Data data) {
-        return data.ideaMap.remove(data.integer);
+    public Integer measureRemoveFromEmptyIdeaHashMap(Data data) {
+        return data.emptyIdeaMap.remove(data.integer);
     }
 
     @State(Scope.Thread)
     public static class Data {
         @Param({"0", "1"})
         Integer integer;
-        Collection<Integer> collection;
 
-        Set<Integer> jdkHashSet;
-        Set<Integer> customHashSet;
-        SmartList<Integer> smartList;
+        Set<Integer> emptyJdkHashSet;
+        Set<Integer> emptyIdeaHashSet;
+        SmartList<Integer> emptySmartList;
         Collection<Integer> integers;
-        Map<Integer, Integer> jdkMap;
-        Map<Integer, Integer> ideaMap;
+        Map<Integer, Integer> emptyJdkMap;
+        Map<Integer, Integer> emptyIdeaMap;
 
         @Setup
         public void setup() {
@@ -123,16 +113,14 @@ public class EnhancedCollectionsBenchmark {
                     ? integer
                     : null;
 
-            collection = singletonList(integer);
+            emptyJdkHashSet = new java.util.HashSet<>();
+            emptyIdeaHashSet = new com.luxoft.logeek.collections.HashSet<>();
 
-            jdkHashSet = new java.util.HashSet<>();
-            customHashSet = new com.luxoft.logeek.collections.HashSet<>();
+            emptySmartList = new com.luxoft.logeek.collections.SmartList<>();
+            integers = new java.util.ArrayList<>(singleton(integer));
 
-            smartList = new com.luxoft.logeek.collections.SmartList<>();
-            integers = new java.util.ArrayList<>(Collections.singleton(integer));
-
-            jdkMap = new java.util.HashMap<>();
-            ideaMap = new com.luxoft.logeek.collections.HashMap<>();
+            emptyJdkMap = new java.util.HashMap<>();
+            emptyIdeaMap = new com.luxoft.logeek.collections.HashMap<>();
         }
 
     }
