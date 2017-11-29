@@ -5,7 +5,7 @@ import org.openjdk.jmh.annotations.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
-@Fork(jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms2g", "-Xmx2g"})
+@Fork(jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms4g", "-Xmx4g"})
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 public class ConcatenationVsFormatBenchmark {
@@ -33,11 +33,11 @@ public class ConcatenationVsFormatBenchmark {
             ThreadLocalRandom random = ThreadLocalRandom.current();
             char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 
-            str1 = random(chars, random);
-            str2 = random(chars, random);
+            str1 = randomString(chars, random);
+            str2 = randomString(chars, random);
         }
 
-        private String random(char[] chars, ThreadLocalRandom random) {
+        private String randomString(char[] chars, ThreadLocalRandom random) {
             StringBuilder sb = new StringBuilder(length);
             for (int i = 0; i < length; i++) {
                 char c = chars[random.nextInt(chars.length)];
