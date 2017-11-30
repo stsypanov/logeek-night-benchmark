@@ -1070,7 +1070,21 @@ measureJdkCOWAdd   avgt  500  40497,404 ± 9529,448  us/op
 
 Java 9
 
+1 thread
+Benchmark          Mode  Cnt      Score      Error  Units
+measureIdeaCOWAdd  avgt  500    165,706 ±    4,391  us/op
+measureJdkCOWAdd   avgt  500    161,120 ±    2,945  us/op
 
+2 thread
+Benchmark          Mode  Cnt      Score      Error  Units
+measureIdeaCOWAdd  avgt  500    481,878 ±   10,505  us/op
+measureJdkCOWAdd   avgt  500   2728,116 ± 5360,456  us/op
+
+
+8 threads
+Benchmark          Mode  Cnt      Score      Error  Units
+measureIdeaCOWAdd  avgt  500   3718,412 ±  221,349  us/op
+measureJdkCOWAdd   avgt  500  31699,583 ± 6896,530  us/op
 
 ------------------------------------------------------------------------------------------------------------
 
@@ -1148,6 +1162,8 @@ measureSmartListContainsAll                                       1  avgt  500  
 measureSmartListEnhancedContainsAll                               1  avgt  500  18,690 ±  0,119   ns/op
 
 Java 9
+
+not-empty collections, 'integers' instance of HashSet
 
 Benchmark                                                                              (integer)  Mode  Cnt   Score    Error   Units
 EnhancedCollectionsBenchmark.measureContainsAllInEmptyIdeaHashSet                              0  avgt  500  20,974 ?  0,216   ns/op
