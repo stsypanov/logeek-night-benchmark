@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
 @Fork(jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms2g", "-Xmx2g"})
-public class LockFreeVsJdkCOWArrayList {
+public class LockFreeVsJdkCOWArrayListBenchmark {
 
     @Benchmark
     public boolean measureIdeaCOWAdd(Data data) {
