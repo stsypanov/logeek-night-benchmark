@@ -19,8 +19,7 @@ public class HashSet<E> extends java.util.HashSet<E> {
 
   @Override
   public boolean contains(Object o) {
-    if (size() == 0) return false;
-    return super.contains(o);
+    return size() != 0 && super.contains(o);
   }
 
   @Override
