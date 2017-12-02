@@ -25,7 +25,7 @@ public class PatchedArrayList<T> extends ArrayList<T> {
 		for (int i = 0; i < size; i++) {
 			T o1 = get(i);
 			Object o2 = that.get(i);
-			if (!(o1 == null ? o2 == null : o1.equals(o2))) {
+			if (o1 == null ? o2 != null : !o1.equals(o2)) {
 				return false;
 			}
 		}
