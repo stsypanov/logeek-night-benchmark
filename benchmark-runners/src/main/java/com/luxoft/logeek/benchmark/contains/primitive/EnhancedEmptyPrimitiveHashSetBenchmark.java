@@ -1,57 +1,57 @@
-package com.luxoft.logeek.benchmark.contains;
+package com.luxoft.logeek.benchmark.contains.primitive;
 
 import org.openjdk.jmh.annotations.*;
 
 import java.util.ArrayList;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import static java.util.Collections.singleton;
 
 /**
- * Measures collection enhancement for empty HashSet of {@link Dto}
+ * Measures collection enhancement for empty HashSet of {@link Integer}
  */
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
-public class EnhancedEmptyHashSetBenchmark {
+public class EnhancedEmptyPrimitiveHashSetBenchmark {
 
     @Benchmark
     public boolean measureContainsAllInEmptyJdkHashSet(Data data) {
-        return data.emptyJdkHashSet.containsAll(data.dtos);
+        return data.emptyJdkHashSet.containsAll(data.integers);
     }
 
     @Benchmark
     public boolean measureContainsAllInEmptyIdeaHashSet(Data data) {
-        return data.emptyIdeaHashSet.containsAll(data.dtos);
+        return data.emptyIdeaHashSet.containsAll(data.integers);
     }
 
     @Benchmark
     public boolean measureContainsInEmptyJdkHashSet(Data data) {
-        return data.emptyJdkHashSet.contains(data.dto);
+        return data.emptyJdkHashSet.contains(data.integer);
     }
 
     @Benchmark
     public boolean measureContainsInEmptyIdeaHashSet(Data data) {
-        return data.emptyIdeaHashSet.contains(data.dto);
+        return data.emptyIdeaHashSet.contains(data.integer);
     }
 
     @State(Scope.Thread)
     public static class Data {
-        private Dto dto;
+        private Integer integer;
 
-        private Set<Dto> emptyJdkHashSet;
-        private Set<Dto> emptyIdeaHashSet;
+        private java.util.HashSet<Integer> emptyJdkHashSet;
+        private com.luxoft.logeek.collections.HashSet<Integer> emptyIdeaHashSet;
 
-        private ArrayList<Dto> dtos;
+        private ArrayList<Integer> integers;
 
         @Setup
         public void setup() {
-            dto = new Dto(1);
+            integer = 1;
 
-            dtos = new ArrayList<>(singleton(dto));
+            integers = new ArrayList<>(singleton(integer));
 
             emptyJdkHashSet = new java.util.HashSet<>();
             emptyIdeaHashSet = new com.luxoft.logeek.collections.HashSet<>();
         }
     }
+
 }
