@@ -1075,11 +1075,15 @@ Benchmark          Mode  Cnt      Score      Error  Units
 measureIdeaCOWAdd  avgt  500    165,706 ±    4,391  us/op
 measureJdkCOWAdd   avgt  500    161,120 ±    2,945  us/op
 
-2 thread
+2 threads
 Benchmark          Mode  Cnt      Score      Error  Units
 measureIdeaCOWAdd  avgt  500    481,878 ±   10,505  us/op
 measureJdkCOWAdd   avgt  500   2728,116 ± 5360,456  us/op
 
+4 theads
+Benchmark          Mode  Cnt      Score      Error  Units
+measureIdeaCOWAdd  avgt  500   1559,028 ±   40,373  us/op
+measureJdkCOWAdd   avgt  500   2458,943 ± 1590,451  us/op
 
 8 threads
 Benchmark          Mode  Cnt      Score      Error  Units
@@ -1166,20 +1170,142 @@ Java 9
 not-empty collections, 'integers' instance of HashSet
 
 Benchmark                                                                              (integer)  Mode  Cnt   Score    Error   Units
-EnhancedCollectionsBenchmark.measureContainsAllInEmptyIdeaHashSet                              0  avgt  500  20,974 ?  0,216   ns/op
-EnhancedCollectionsBenchmark.measureContainsAllInEmptyJdkHashSet                               0  avgt  500  20,104 ?  0,140   ns/op
+EnhancedCollectionsBenchmark.measureContainsAllInEmptyIdeaHashSet                              0  avgt  500  20,974 ±  0,216   ns/op
+EnhancedCollectionsBenchmark.measureContainsAllInEmptyJdkHashSet                               0  avgt  500  20,104 ±  0,140   ns/op
 
-EnhancedCollectionsBenchmark.measureContainsInEmptyIdeaHashSet                                 0  avgt  500   6,512 ?  0,051   ns/op
-EnhancedCollectionsBenchmark.measureContainsInEmptyJdkHashSet                                  0  avgt  500   6,359 ?  0,045   ns/op
+EnhancedCollectionsBenchmark.measureContainsInEmptyIdeaHashSet                                 0  avgt  500   6,512 ±  0,051   ns/op
+EnhancedCollectionsBenchmark.measureContainsInEmptyJdkHashSet                                  0  avgt  500   6,359 ±  0,045   ns/op
 
-EnhancedCollectionsBenchmark.measureSmartListContainsAll                                       0  avgt  500  17,049 ?  0,119   ns/op
-EnhancedCollectionsBenchmark.measureSmartListEnhancedContainsAll                               0  avgt  500  17,844 ?  0,151   ns/op
+EnhancedCollectionsBenchmark.measureSmartListContainsAll                                       0  avgt  500  17,049 ±  0,119   ns/op
+EnhancedCollectionsBenchmark.measureSmartListEnhancedContainsAll                               0  avgt  500  17,844 ±  0,151   ns/op
 
-EnhancedCollectionsBenchmark.measureContainsAllInEmptyIdeaHashSet                              1  avgt  500  26,765 ?  0,310   ns/op
-EnhancedCollectionsBenchmark.measureContainsAllInEmptyJdkHashSet                               1  avgt  500  26,490 ?  0,181   ns/op
+EnhancedCollectionsBenchmark.measureContainsAllInEmptyIdeaHashSet                              1  avgt  500  26,765 ±  0,310   ns/op
+EnhancedCollectionsBenchmark.measureContainsAllInEmptyJdkHashSet                               1  avgt  500  26,490 ±  0,181   ns/op
 
-EnhancedCollectionsBenchmark.measureContainsInEmptyIdeaHashSet                                 1  avgt  500   6,401 ?  0,049   ns/op
-EnhancedCollectionsBenchmark.measureContainsInEmptyJdkHashSet                                  1  avgt  500   6,463 ?  0,069   ns/op
+EnhancedCollectionsBenchmark.measureContainsInEmptyIdeaHashSet                                 1  avgt  500   6,401 ±  0,049   ns/op
+EnhancedCollectionsBenchmark.measureContainsInEmptyJdkHashSet                                  1  avgt  500   6,463 ±  0,069   ns/op
 
-EnhancedCollectionsBenchmark.measureSmartListContainsAll                                       1  avgt  500  18,907 ?  0,116   ns/op
-EnhancedCollectionsBenchmark.measureSmartListEnhancedContainsAll                               1  avgt  500  19,225 ?  0,159   ns/op
+EnhancedCollectionsBenchmark.measureSmartListContainsAll                                       1  avgt  500  18,907 ±  0,116   ns/op
+EnhancedCollectionsBenchmark.measureSmartListEnhancedContainsAll                               1  avgt  500  19,225 ±  0,159   ns/op
+
+
+
+EnhancedCollectionsBenchmark (Java 8)
+
+Benchmark                             (integer)  Mode   Cnt   Score   Error  Units
+measureClearEmptyIdeaHashSet                  0  avgt  1000   3,797 ± 0,012  ns/op
+measureClearEmptyJdkHashSet                   0  avgt  1000   5,028 ± 0,010  ns/op
+
+measureClearEmptyIdeaHashSet                  1  avgt  1000   3,795 ± 0,010  ns/op
+measureClearEmptyJdkHashSet                   1  avgt  1000   5,017 ± 0,008  ns/op
+
+measureContainsAllInEmptyIdeaHashSet          0  avgt  1000  21,976 ± 0,046  ns/op
+measureContainsAllInEmptyJdkHashSet           0  avgt  1000  21,575 ± 0,034  ns/op
+
+measureContainsAllInEmptyIdeaHashSet          1  avgt  1000  28,070 ± 0,110  ns/op
+measureContainsAllInEmptyJdkHashSet           1  avgt  1000  27,958 ± 0,071  ns/op
+
+measureContainsInEmptyIdeaHashSet             0  avgt  1000   6,249 ± 0,021  ns/op
+measureContainsInEmptyJdkHashSet              0  avgt  1000   6,149 ± 0,015  ns/op
+
+measureContainsInEmptyIdeaHashSet             1  avgt  1000   6,528 ± 0,019  ns/op
+measureContainsInEmptyJdkHashSet              1  avgt  1000   6,328 ± 0,031  ns/op
+
+measureSmartListContainsAll                   0  avgt  1000  17,849 ± 0,028  ns/op
+measureSmartListEnhancedContainsAll           0  avgt  1000  17,751 ± 0,029  ns/op
+
+measureSmartListContainsAll                   1  avgt  1000  18,345 ± 0,024  ns/op
+measureSmartListEnhancedContainsAll           1  avgt  1000  18,442 ± 0,025  ns/op
+
+java -jar benchmarks.jar EnhancedCollectionsBenchmark -f 100 -wi 15 -i 10
+
+
+@BenchmarkMode(Mode.AverageTime)
+@OutputTimeUnit(TimeUnit.NANOSECONDS)
+@Fork(jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms4g", "-Xmx4g"})
+public class EnhancedCollectionsBenchmark {
+
+    @Benchmark
+    public boolean measureContainsInEmptyJdkHashSet(Data data) {
+        return data.emptyJdkHashSet.contains(data.integer);
+    }
+
+    @Benchmark
+    public boolean measureContainsInEmptyIdeaHashSet(Data data) {
+        return data.emptyIdeaHashSet.contains(data.integer);
+    }
+
+    @Benchmark
+    public boolean measureContainsAllInEmptyJdkHashSet(Data data) {
+        return data.emptyJdkHashSet.containsAll(data.integers);
+    }
+
+    @Benchmark
+    public boolean measureContainsAllInEmptyIdeaHashSet(Data data) {
+        return data.emptyIdeaHashSet.containsAll(data.integers);
+    }
+
+    @Benchmark
+    public void measureClearEmptyJdkHashSet(Data data, Blackhole bh) {
+        data.emptyJdkHashSet.clear();
+        bh.consume(data.emptyJdkHashSet);
+    }
+
+    @Benchmark
+    public void measureClearEmptyIdeaHashSet(Data data, Blackhole bh) {
+        data.emptyIdeaHashSet.clear();
+        bh.consume(data.emptyIdeaHashSet);
+    }
+
+    @Benchmark
+    public boolean measureSmartListEnhancedContainsAll(Data data) {
+        return data.emptySmartList.containsAll(data.integers);
+    }
+
+    @Benchmark
+    public boolean measureSmartListContainsAll(Data data) {
+        return data.emptySmartList._containsAll(data.integers);
+    }
+
+    @State(Scope.Thread)
+    public static class Data {
+        @Param({"0", "1"})
+        Integer integer;
+
+        Set<Integer> emptyJdkHashSet;
+        Set<Integer> emptyIdeaHashSet;
+        SmartList<Integer> emptySmartList;
+        Collection<Integer> integers;
+
+        @Setup
+        public void setup() {
+            integer = integer == 1
+                    ? integer
+                    : null;
+
+            integers = new java.util.HashSet<>(singleton(integer));
+
+            emptyJdkHashSet = new java.util.HashSet<>(integers);
+            emptyIdeaHashSet = new com.luxoft.logeek.collections.HashSet<>(integers);
+
+            emptySmartList = new com.luxoft.logeek.collections.SmartList<>(integers);
+        }
+
+    }
+}
+
+_containsAll - non-enhanced version
+
+-------------------------------------------------------------------------------------------------
+
+java -jar benchmarks.jar EnhancedEmptyHashSetBenchmark -f 200 -wi 15 -i 10
+
+EnhancedEmptyHashSetBenchmark
+
+Java 8
+
+Benchmark                             Mode   Cnt  Score   Error  Units
+measureContainsAllInEmptyIdeaHashSet  avgt  2000  3,903 ± 0,007  ns/op
+measureContainsAllInEmptyJdkHashSet   avgt  2000  8,940 ± 0,015  ns/op
+measureContainsInEmptyIdeaHashSet     avgt  2000  3,500 ± 0,007  ns/op
+measureContainsInEmptyJdkHashSet      avgt  2000  4,069 ± 0,005  ns/op
