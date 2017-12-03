@@ -653,18 +653,6 @@ measureAddOneByOne                                                      arrayLis
 measureAddAll                                                           arrayList     1000  thrpt  100    609,048 ±    5,870  ops/ms
 measureAddAllViaConstructorArg                                          arrayList     1000  thrpt  100   1018,609 ±    9,440  ops/ms
 
-measureAddOneByOne                                                        hashSet       10  thrpt  100   4894,224 ±  175,730  ops/ms
-measureAddAll                                                             hashSet       10  thrpt  100   5240,067 ±   90,261  ops/ms
-measureAddAllViaConstructorArg                                            hashSet       10  thrpt  100   5114,219 ±   97,314  ops/ms
-
-measureAddOneByOne                                                        hashSet      100  thrpt  100    347,767 ±   10,263  ops/ms
-measureAddAll                                                             hashSet      100  thrpt  100    373,444 ±    6,276  ops/ms
-measureAddAllViaConstructorArg                                            hashSet      100  thrpt  100    482,683 ±   22,639  ops/ms
-
-measureAddOneByOne                                                        hashSet     1000  thrpt  100     28,017 ±    1,699  ops/ms
-measureAddAll                                                             hashSet     1000  thrpt  100     30,945 ±    0,815  ops/ms
-measureAddAllViaConstructorArg                                            hashSet     1000  thrpt  100     49,308 ±    1,262  ops/ms
-
 measureAddOneByOne:·gc.alloc.rate.norm                                  arrayList       10  thrpt  100     80,000 ±    0,001    B/op
 measureAddAll:·gc.alloc.rate.norm                                       arrayList       10  thrpt  100    136,000 ±    0,001    B/op
 measureAddAllViaConstructorArg:·gc.alloc.rate.norm                      arrayList       10  thrpt  100     80,000 ±    0,001    B/op
@@ -676,6 +664,18 @@ measureAddAllViaConstructorArg:·gc.alloc.rate.norm                      arrayLi
 measureAddOneByOne:·gc.alloc.rate.norm                                  arrayList     1000  thrpt  100  15024,478 ±    0,020    B/op
 measureAddAll:·gc.alloc.rate.norm                                       arrayList     1000  thrpt  100   8056,066 ±    0,002    B/op
 measureAddAllViaConstructorArg:·gc.alloc.rate.norm                      arrayList     1000  thrpt  100   4040,040 ±    0,001    B/op
+
+measureAddOneByOne                                                        hashSet       10  thrpt  100   4894,224 ±  175,730  ops/ms
+measureAddAll                                                             hashSet       10  thrpt  100   5240,067 ±   90,261  ops/ms
+measureAddAllViaConstructorArg                                            hashSet       10  thrpt  100   5114,219 ±   97,314  ops/ms
+
+measureAddOneByOne                                                        hashSet      100  thrpt  100    347,767 ±   10,263  ops/ms
+measureAddAll                                                             hashSet      100  thrpt  100    373,444 ±    6,276  ops/ms
+measureAddAllViaConstructorArg                                            hashSet      100  thrpt  100    482,683 ±   22,639  ops/ms
+
+measureAddOneByOne                                                        hashSet     1000  thrpt  100     28,017 ±    1,699  ops/ms
+measureAddAll                                                             hashSet     1000  thrpt  100     30,945 ±    0,815  ops/ms
+measureAddAllViaConstructorArg                                            hashSet     1000  thrpt  100     49,308 ±    1,262  ops/ms
 
 measureAddOneByOne:·gc.alloc.rate.norm                                    hashSet       10  thrpt  100    464,000 ±    0,001    B/op
 measureAddAll:·gc.alloc.rate.norm                                         hashSet       10  thrpt  100    464,000 ±    0,001    B/op
