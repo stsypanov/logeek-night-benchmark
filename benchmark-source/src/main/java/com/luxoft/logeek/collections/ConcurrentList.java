@@ -1,7 +1,5 @@
 package com.luxoft.logeek.collections;
 
-import com.sun.istack.internal.NotNull;
-
 import java.util.Collection;
 import java.util.List;
 
@@ -21,5 +19,5 @@ public interface ConcurrentList<E> extends List<E> {
    *
    * @return the number of elements added
    */
-  int addAllAbsent(@NotNull Collection<? extends E> c);
+  int addAllAbsent(Collection<? extends E> c);
 }
