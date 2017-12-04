@@ -1280,7 +1280,7 @@ public class EnhancedCollectionsBenchmark {
         @Setup
         public void setup() {
             integer = integer == 1
-                    ? integer
+                    ± integer
                     : null;
 
             integers = new java.util.HashSet<>(singleton(integer));
@@ -1298,14 +1298,56 @@ _containsAll - non-enhanced version
 
 -------------------------------------------------------------------------------------------------
 
-java -jar benchmarks.jar EnhancedEmptyHashSetBenchmark -f 200 -wi 15 -i 10
-
-EnhancedEmptyHashSetBenchmark
-
 Java 8
 
-Benchmark                             Mode   Cnt  Score   Error  Units
-measureContainsAllInEmptyIdeaHashSet  avgt  2000  3,903 ± 0,007  ns/op
-measureContainsAllInEmptyJdkHashSet   avgt  2000  8,940 ± 0,015  ns/op
-measureContainsInEmptyIdeaHashSet     avgt  2000  3,500 ± 0,007  ns/op
-measureContainsInEmptyJdkHashSet      avgt  2000  4,069 ± 0,005  ns/op
+"C:\Program Files\Java\jdk1.8.0_144\bin\java" -jar target/benchmarks.jar
+
+EnhancedEmptyPrimitiveHashSetBenchmark
+EnhancedNonEmptyPrimitiveHashSetBenchmark
+EnhancedEmptyPrimitiveSmartListBenchmark
+EnhancedNonEmptyPrimitiveSmartListBenchmark
+EnhancedEmptyHashSetBenchmark
+EnhancedNonEmptyHashSetBenchmark
+EnhancedEmptySmartListBenchmark
+EnhancedNonEmptySmartListBenchmark
+
+-f 200 -wi 10 -i 10 --jvmArgsAppend="-XX:+UseParallelGC -Xms4g -Xmx4g" -foe true
+
+
+Benchmark                                                                                    Mode   Cnt   Score   Error  Units
+EnhancedEmptyHashSetBenchmark.measureContainsAllInEmptyIdeaHashSet                           avgt  2000   4,075 ± 0,006  ns/op
+EnhancedEmptyHashSetBenchmark.measureContainsAllInEmptyJdkHashSet                            avgt  2000  10,507 ± 0,031  ns/op
+
+EnhancedEmptyHashSetBenchmark.measureContainsInEmptyIdeaHashSet                              avgt  2000   3,456 ± 0,006  ns/op
+EnhancedEmptyHashSetBenchmark.measureContainsInEmptyJdkHashSet                               avgt  2000   4,090 ± 0,007  ns/op
+
+EnhancedNonEmptyHashSetBenchmark.measureContainsAllInNonEmptyIdeaHashSet                     avgt  2000  13,864 ± 0,026  ns/op
+EnhancedNonEmptyHashSetBenchmark.measureContainsAllInNonEmptyJdkHashSet                      avgt  2000  12,400 ± 0,024  ns/op
+
+EnhancedNonEmptyHashSetBenchmark.measureContainsInNonEmptyIdeaHashSet                        avgt  2000   5,954 ± 0,016  ns/op
+EnhancedNonEmptyHashSetBenchmark.measureContainsInNonEmptyJdkHashSet                         avgt  2000   6,275 ± 0,021  ns/op
+
+EnhancedEmptySmartListBenchmark.measureEnhancedContainsAll                                   avgt  2000   3,324 ± 0,014  ns/op
+EnhancedEmptySmartListBenchmark.measureConventionalContainsAll                               avgt  2000   4,365 ± 0,006  ns/op
+
+EnhancedNonEmptySmartListBenchmark.measureEnhancedContainsAll                                avgt  2000   8,035 ± 0,019  ns/op
+EnhancedNonEmptySmartListBenchmark.measureConventionalContainsAll                            avgt  2000   8,035 ± 0,027  ns/op
+
+
+primitive.EnhancedEmptyPrimitiveHashSetBenchmark.measureContainsAllInEmptyIdeaHashSet        avgt  2000   3,680 ± 0,008  ns/op
+primitive.EnhancedEmptyPrimitiveHashSetBenchmark.measureContainsAllInEmptyJdkHashSet         avgt  2000  10,117 ± 0,026  ns/op
+
+primitive.EnhancedEmptyPrimitiveHashSetBenchmark.measureContainsInEmptyIdeaHashSet           avgt  2000   3,124 ± 0,006  ns/op
+primitive.EnhancedEmptyPrimitiveHashSetBenchmark.measureContainsInEmptyJdkHashSet            avgt  2000   4,125 ± 0,009  ns/op
+
+primitive.EnhancedNonEmptyPrimitiveHashSetBenchmark.measureContainsAllInNonEmptyIdeaHashSet  avgt  2000  13,748 ± 0,019  ns/op
+primitive.EnhancedNonEmptyPrimitiveHashSetBenchmark.measureContainsAllInNonEmptyJdkHashSet   avgt  2000  12,574 ± 0,036  ns/op
+
+primitive.EnhancedNonEmptyPrimitiveHashSetBenchmark.measureContainsInNonEmptyIdeaHashSet     avgt  2000   5,962 ± 0,012  ns/op
+primitive.EnhancedNonEmptyPrimitiveHashSetBenchmark.measureContainsInNonEmptyJdkHashSet      avgt  2000   6,250 ± 0,019  ns/op
+
+primitive.EnhancedEmptyPrimitiveSmartListBenchmark.measureEnhancedContainsAll                avgt  2000   3,331 ± 0,013  ns/op
+primitive.EnhancedEmptyPrimitiveSmartListBenchmark.measureConventionalContainsAll            avgt  2000   4,383 ± 0,009  ns/op
+
+primitive.EnhancedNonEmptyPrimitiveSmartListBenchmark.measureEnhancedContainsAll             avgt  2000   8,260 ± 0,014  ns/op
+primitive.EnhancedNonEmptyPrimitiveSmartListBenchmark.measureConventionalContainsAll         avgt  2000   8,050 ± 0,023  ns/op
