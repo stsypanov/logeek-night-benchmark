@@ -4,6 +4,7 @@ package com.luxoft.logeek.benchmark.stream;
 import org.openjdk.jmh.annotations.*;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
@@ -12,6 +13,7 @@ import static java.util.Arrays.copyOf;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
+@SuppressWarnings("unchecked")
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @Fork(jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms4g", "-Xmx4g"})
@@ -24,7 +26,7 @@ public class AllMatchVsContainsAllBenchmark {
 
     @Benchmark
     public boolean measureCollectionContainsAll(Data data) {
-        return data.collection.containsAll(data.anotherCollection);
+        return data.anotherCollection.containsAll(data.collection);
     }
 
     @State(Scope.Thread)
@@ -44,10 +46,10 @@ public class AllMatchVsContainsAllBenchmark {
         public void setup() {
             if (collectionType == arrayList) {
                 collection = IntStream.range(0, count).boxed().collect(toList());
-                anotherCollection = asList(copyOf(collection.toArray(), collection.size() / 2));
+                anotherCollection = new HashSet(asList(copyOf(collection.toArray(), collection.size() / 2)));
             } else {
                 collection = IntStream.range(0, count).boxed().collect(toSet());
-                anotherCollection = asList(copyOf(collection.toArray(), collection.size() / 2));
+                anotherCollection = new HashSet(asList(copyOf(collection.toArray(), collection.size() / 2)));
             }
         }
     }
