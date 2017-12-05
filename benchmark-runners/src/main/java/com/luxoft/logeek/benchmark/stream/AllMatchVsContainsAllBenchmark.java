@@ -45,11 +45,11 @@ public class AllMatchVsContainsAllBenchmark {
         @Setup
         public void setup() {
             if (collectionType == arrayList) {
-                collection = IntStream.range(0, count).boxed().collect(toList());
-                anotherCollection = new HashSet(asList(copyOf(collection.toArray(), collection.size() / 2)));
+                anotherCollection = IntStream.range(0, count).boxed().collect(toList());
+                collection = new HashSet(asList(copyOf(anotherCollection.toArray(), anotherCollection.size() / 2)));
             } else {
-                collection = IntStream.range(0, count).boxed().collect(toSet());
-                anotherCollection = new HashSet(asList(copyOf(collection.toArray(), collection.size() / 2)));
+                anotherCollection = IntStream.range(0, count).boxed().collect(toSet());
+                collection = new HashSet(asList(copyOf(anotherCollection.toArray(), anotherCollection.size() / 2)));
             }
         }
     }
