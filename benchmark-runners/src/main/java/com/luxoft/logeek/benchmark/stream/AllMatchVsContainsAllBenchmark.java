@@ -3,6 +3,7 @@ package com.luxoft.logeek.benchmark.stream;
 
 import org.openjdk.jmh.annotations.*;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.concurrent.TimeUnit;
@@ -10,6 +11,7 @@ import java.util.stream.IntStream;
 
 import static java.util.Arrays.asList;
 import static java.util.Arrays.copyOf;
+import static java.util.stream.Collectors.toCollection;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
@@ -45,7 +47,7 @@ public class AllMatchVsContainsAllBenchmark {
         @Setup
         public void setup() {
             if (collectionType == arrayList) {
-                anotherCollection = IntStream.range(0, count).boxed().collect(toList());
+                anotherCollection = IntStream.range(0, count).boxed().collect(toCollection(ArrayList::new));
                 collection = new HashSet(asList(copyOf(anotherCollection.toArray(), anotherCollection.size() / 2)));
             } else {
                 anotherCollection = IntStream.range(0, count).boxed().collect(toSet());
