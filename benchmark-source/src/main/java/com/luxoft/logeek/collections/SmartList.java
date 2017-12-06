@@ -1,7 +1,5 @@
 package com.luxoft.logeek.collections;
 
-import com.sun.istack.internal.NotNull;
-
 import java.lang.reflect.Array;
 import java.util.*;
 
@@ -15,7 +13,7 @@ public class SmartList<E> extends AbstractList<E> implements RandomAccess {
         add(element);
     }
 
-    public SmartList(@NotNull Collection<? extends E> elements) {
+    public SmartList(Collection<? extends E> elements) {
         int size = elements.size();
         if (size == 1) {
             E element = elements instanceof List ? (E)((List)elements).get(0) : elements.iterator().next();
@@ -27,7 +25,7 @@ public class SmartList<E> extends AbstractList<E> implements RandomAccess {
         }
     }
 
-    public SmartList(@NotNull E... elements) {
+    public SmartList(E... elements) {
         if (elements.length == 1) {
             add(elements[0]);
         }
@@ -176,7 +174,6 @@ public class SmartList<E> extends AbstractList<E> implements RandomAccess {
         return oldValue;
     }
 
-    @NotNull
     @Override
     public Iterator<E> iterator() {
         if (mySize == 0) {
@@ -220,9 +217,8 @@ public class SmartList<E> extends AbstractList<E> implements RandomAccess {
         }
     }
 
-    @NotNull
     @Override
-    public <T> T[] toArray(@NotNull T[] a) {
+    public <T> T[] toArray( T[] a) {
         int aLength = a.length;
         if (mySize == 1) {
             if (aLength != 0) {
