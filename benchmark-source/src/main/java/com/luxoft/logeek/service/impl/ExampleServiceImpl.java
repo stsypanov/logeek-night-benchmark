@@ -1,7 +1,6 @@
 package com.luxoft.logeek.service.impl;
 
 import com.luxoft.logeek.dto.Dto;
-import com.luxoft.logeek.entity.RatingEntity;
 import com.luxoft.logeek.entity.SomeEntity;
 import com.luxoft.logeek.repository.SomeJpaRepository;
 import com.luxoft.logeek.service.ExampleService;
@@ -27,11 +26,7 @@ public class ExampleServiceImpl implements ExampleService {
 			return entity.getChildEntity().getRatingEntity().hasGoodRating();
 		};
 		this.moreEffectiveRatingPredicate = id -> {
-			RatingEntity ratingEntity = jpaRepository.findRating(id);
-			if (ratingEntity == null) {
-				return false;
-			}
-			return ratingEntity.hasGoodRating();
+			return jpaRepository.findRating(id);
 		};
 	}
 
