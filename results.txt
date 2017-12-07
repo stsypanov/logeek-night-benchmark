@@ -970,46 +970,42 @@ collectionContainsAll:·gc.alloc.rate.norm       hashSet     1000  avgt  1000   
 
 Java 9
 
-Benchmark                                               (collectionType)  (count)  Mode  Cnt       Score      Error   Units
-measureStreamAllMatch                                                  1        1  avgt  100      44,823 ±    0,311   ns/op
-measureStreamAllMatch                                                  1       10  avgt  100     132,847 ±    2,338   ns/op
-measureStreamAllMatch                                                  1      100  avgt  100    1809,536 ±   26,649   ns/op
-measureStreamAllMatch                                                  1     1000  avgt  100  110056,371 ± 1209,667   ns/op
+Benchmark                                        (collectionType)  (count)  Mode  Cnt       Score      Error   Units
+streamAllMatch                                          arrayList        1  avgt  1000      46,013 ±   0,218   ns/op
+collectionContainsAll                                   arrayList        1  avgt  1000       5,690 ±   0,027   ns/op
+streamAllMatch                                          arrayList       10  avgt  1000     139,566 ±   1,568   ns/op
+collectionContainsAll                                   arrayList       10  avgt  1000      50,722 ±   0,212   ns/op
+streamAllMatch                                          arrayList      100  avgt  1000    1858,910 ±  11,770   ns/op
+collectionContainsAll                                   arrayList      100  avgt  1000    1615,091 ±   4,968   ns/op
+streamAllMatch                                          arrayList     1000  avgt  1000  111730,598 ± 519,042   ns/op
+collectionContainsAll                                   arrayList     1000  avgt  1000  106927,766 ± 441,506   ns/op
 
-measureCollectionContainsAll                                           1        1  avgt  100       5,786 ±    0,076   ns/op
-measureCollectionContainsAll                                           1       10  avgt  100      50,890 ±    0,414   ns/op
-measureCollectionContainsAll                                           1      100  avgt  100    1606,019 ±    6,499   ns/op
-measureCollectionContainsAll                                           1     1000  avgt  100  106198,418 ±  954,946   ns/op
+streamAllMatch:·gc.alloc.rate.norm                      arrayList        1  avgt  1000     184,000 ±   0,001    B/op
+collectionContainsAll:·gc.alloc.rate.norm               arrayList        1  avgt  1000      ≈ 10??              B/op
+streamAllMatch:·gc.alloc.rate.norm                      arrayList       10  avgt  1000     184,000 ±   0,001    B/op
+collectionContainsAll:·gc.alloc.rate.norm               arrayList       10  avgt  1000      ≈ 10??              B/op
+streamAllMatch:·gc.alloc.rate.norm                      arrayList      100  avgt  1000     184,003 ±   0,001    B/op
+collectionContainsAll:·gc.alloc.rate.norm               arrayList      100  avgt  1000       0,002 ±   0,001    B/op
+streamAllMatch:·gc.alloc.rate.norm                      arrayList     1000  avgt  1000     175,631 ±   1,826    B/op
+collectionContainsAll:·gc.alloc.rate.norm               arrayList     1000  avgt  1000      40,155 ±   0,035    B/op
 
-measureCollectionContainsAll:·gc.alloc.rate.norm                       1        1  avgt  100      ? 10??               B/op
-measureCollectionContainsAll:·gc.alloc.rate.norm                       1       10  avgt  100      ? 10??               B/op
-measureCollectionContainsAll:·gc.alloc.rate.norm                       1      100  avgt  100       0,002 ±    0,002    B/op
-measureCollectionContainsAll:·gc.alloc.rate.norm                       1     1000  avgt  100      40,155 ±    0,112    B/op
+streamAllMatch                                            hashSet        1  avgt  1000      46,186 ±   0,265   ns/op
+collectionContainsAll                                     hashSet        1  avgt  1000       5,699 ±   0,023   ns/op
+streamAllMatch                                            hashSet       10  avgt  1000     130,437 ±   1,092   ns/op
+collectionContainsAll                                     hashSet       10  avgt  1000      68,930 ±   0,295   ns/op
+streamAllMatch                                            hashSet      100  avgt  1000     824,388 ±   8,462   ns/op
+collectionContainsAll                                     hashSet      100  avgt  1000     584,963 ±   1,780   ns/op
+streamAllMatch                                            hashSet     1000  avgt  1000    7788,589 ±  66,274   ns/op
+collectionContainsAll                                     hashSet     1000  avgt  1000    5792,112 ±  23,523   ns/op
 
-measureStreamAllMatch:·gc.alloc.rate.norm                              1        1  avgt  100     184,000 ±    0,001    B/op
-measureStreamAllMatch:·gc.alloc.rate.norm                              1       10  avgt  100     184,000 ±    0,001    B/op
-measureStreamAllMatch:·gc.alloc.rate.norm                              1      100  avgt  100     184,003 ±    0,002    B/op
-measureStreamAllMatch:·gc.alloc.rate.norm                              1     1000  avgt  100     175,882 ±    5,760    B/op
-
-measureStreamAllMatch                                            hashSet        1  avgt  100      45,380 ±    0,683   ns/op
-measureStreamAllMatch                                            hashSet       10  avgt  100     137,537 ±    2,759   ns/op
-measureStreamAllMatch                                            hashSet      100  avgt  100     784,174 ±   32,377   ns/op
-measureStreamAllMatch                                            hashSet     1000  avgt  100    7910,102 ±  160,009   ns/op
-
-measureCollectionContainsAll                                     hashSet        1  avgt  100       5,668 ±    0,097   ns/op
-measureCollectionContainsAll                                     hashSet       10  avgt  100      68,238 ±    0,334   ns/op
-measureCollectionContainsAll                                     hashSet      100  avgt  100     582,116 ±    1,394   ns/op
-measureCollectionContainsAll                                     hashSet     1000  avgt  100    5760,107 ±   49,001   ns/op
-
-measureStreamAllMatch:·gc.alloc.rate.norm                        hashSet        1  avgt  100     184,000 ±    0,001    B/op
-measureStreamAllMatch:·gc.alloc.rate.norm                        hashSet       10  avgt  100     184,000 ±    0,001    B/op
-measureStreamAllMatch:·gc.alloc.rate.norm                        hashSet      100  avgt  100     184,001 ±    0,001    B/op
-measureStreamAllMatch:·gc.alloc.rate.norm                        hashSet     1000  avgt  100     184,011 ±    0,008    B/op
-
-measureCollectionContainsAll:·gc.alloc.rate.norm                 hashSet        1  avgt  100      ? 10??               B/op
-measureCollectionContainsAll:·gc.alloc.rate.norm                 hashSet       10  avgt  100      ? 10??               B/op
-measureCollectionContainsAll:·gc.alloc.rate.norm                 hashSet      100  avgt  100       0,001 ±    0,001    B/op
-measureCollectionContainsAll:·gc.alloc.rate.norm                 hashSet     1000  avgt  100       0,008 ±    0,006    B/op
+streamAllMatch:·gc.alloc.rate.norm                        hashSet        1  avgt  1000     184,000 ±   0,001    B/op
+collectionContainsAll:·gc.alloc.rate.norm                 hashSet        1  avgt  1000      ≈ 10??              B/op
+streamAllMatch:·gc.alloc.rate.norm                        hashSet       10  avgt  1000     184,000 ±   0,001    B/op
+collectionContainsAll:·gc.alloc.rate.norm                 hashSet       10  avgt  1000      ≈ 10??              B/op
+streamAllMatch:·gc.alloc.rate.norm                        hashSet      100  avgt  1000     184,001 ±   0,001    B/op
+collectionContainsAll:·gc.alloc.rate.norm                 hashSet      100  avgt  1000       0,001 ±   0,001    B/op
+streamAllMatch:·gc.alloc.rate.norm                        hashSet     1000  avgt  1000     184,011 ±   0,003    B/op
+collectionContainsAll:·gc.alloc.rate.norm                 hashSet     1000  avgt  1000       0,808 ±   0,585    B/op
 
 
 --------------------- для доклада по IDEA ---------------------
