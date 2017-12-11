@@ -50,7 +50,7 @@ public class AllMatchVsContainsAllBenchmark {
                 anotherCollection = IntStream.range(0, count).boxed().collect(toCollection(ArrayList::new));
                 collection = new HashSet(asList(copyOf(anotherCollection.toArray(), anotherCollection.size() / 2)));
             } else {
-                anotherCollection = IntStream.range(0, count).boxed().collect(toSet());
+                anotherCollection = IntStream.range(0, count).boxed().collect(toCollection(HashSet::new));
                 collection = new HashSet(asList(copyOf(anotherCollection.toArray(), anotherCollection.size() / 2)));
             }
         }
