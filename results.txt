@@ -1225,3 +1225,28 @@ primitive.EnhancedEmptyPrimitiveSmartListBenchmark.measureConventionalContainsAl
 
 primitive.EnhancedNonEmptyPrimitiveSmartListBenchmark.measureEnhancedContainsAll             avgt  2000   8,260 ± 0,014  ns/op
 primitive.EnhancedNonEmptyPrimitiveSmartListBenchmark.measureConventionalContainsAll         avgt  2000   8,050 ± 0,023  ns/op
+
+
+AddIntoArrayListBenchmark
+
+Benchmark                                  Mode  Cnt     Score     Error   Units
+
+1 item
+
+addIntoNewList                             avgt  100    20,906 ±   0,284   ns/op
+addIntoNewSizedList                        avgt  100    12,619 ±   0,271   ns/op
+addViaConstructor                          avgt  100    12,593 ±   0,259   ns/op
+
+addIntoNewList:·gc.alloc.rate.norm         avgt  100    80,000 ±   0,001    B/op
+addIntoNewSizedList:·gc.alloc.rate.norm    avgt  100    48,000 ±   0,001    B/op
+addViaConstructor:·gc.alloc.rate.norm      avgt  100    48,000 ±   0,001    B/op
+
+2 items
+
+addIntoNewList                             avgt  100    21,176 ±   0,578   ns/op
+addIntoNewSizedList                        avgt  100    13,201 ±   0,445   ns/op
+addViaConstructor                          avgt  100    27,136 ±   0,951   ns/op
+
+addIntoNewList:·gc.alloc.rate.norm         avgt  100    80,000 ±   0,001    B/op
+addIntoNewSizedList:·gc.alloc.rate.norm    avgt  100    48,000 ±   0,001    B/op
+addViaConstructor:·gc.alloc.rate.norm      avgt  100    96,000 ±   0,001    B/op
