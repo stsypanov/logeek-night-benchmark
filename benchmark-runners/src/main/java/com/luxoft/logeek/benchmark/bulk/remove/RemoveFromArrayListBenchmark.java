@@ -42,10 +42,10 @@ public class RemoveFromArrayListBenchmark {
     @State(Scope.Thread)
     public static class Data {
         @Param({"10", "100"})
-        private int itemsCount;            //items count
+        private int сount;            //items count
 
         @Param({"5", "10", "25", "50"})
-        private int percentOfRemovedItems; //count of items removed from list
+        private int percentRemoved; //count of items removed from list
 
         private ArrayList<Byte> initial;
         private int from;
@@ -53,9 +53,9 @@ public class RemoveFromArrayListBenchmark {
 
         @Setup
         public void initIteration() {
-            from = itemsCount / 2; //remove from the second half of the list
-            to = from + (itemsCount / 100 * percentOfRemovedItems);
-            initial = IntStream.range(0, itemsCount).boxed()
+            from = сount / 2; //remove from the second half of the list
+            to = from + (сount / 100 * percentRemoved);
+            initial = IntStream.range(0, сount).boxed()
                     .map(Integer::byteValue)
                     .collect(toCollection(ArrayList::new));
         }
