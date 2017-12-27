@@ -6,8 +6,6 @@ import org.openjdk.jmh.annotations.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
@@ -33,7 +31,7 @@ public class IteratorFromListBenchmark {
     }
 
     @Benchmark
-    public Iterator<Integer> iteratorFromSigletonSmartList(Lists lists) {
+    public Iterator<Integer> iteratorFromSingletonSmartList(Lists lists) {
         return lists.singletonSmartList.iterator();
     }
 

@@ -1,14 +1,12 @@
 package com.luxoft.logeek.repository;
 
 import com.luxoft.logeek.entity.ContractEntity;
-import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Repository
 public class CashFlowRepositoryImpl extends BaseDao implements CashFlowRepository {
 
 	@Override

@@ -1,6 +1,5 @@
 package com.luxoft.logeek.benchmark.bulk;
 
-import com.luxoft.logeek.benchmark.BenchmarkBase;
 import org.openjdk.jmh.annotations.*;
 
 import java.util.*;
@@ -13,7 +12,7 @@ import static java.util.stream.Collectors.toList;
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @Fork(jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms4g", "-Xmx4g"})
 @SuppressWarnings({"UseBulkOperation", "UnnecessaryLocalVariable"})
-public class BulkOperationBenchmark extends BenchmarkBase {
+public class BulkOperationBenchmark {
 
     @Benchmark
     public Collection<Long> measureAddOneByOne(Data data) {
