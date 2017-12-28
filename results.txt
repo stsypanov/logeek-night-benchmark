@@ -1321,3 +1321,112 @@ addViaConstructor                          avgt  100    27,136 ±   0,951   ns/o
 addIntoNewList:·gc.alloc.rate.norm         avgt  100    80,000 ±   0,001    B/op
 addIntoNewSizedList:·gc.alloc.rate.norm    avgt  100    48,000 ±   0,001    B/op
 addViaConstructor:·gc.alloc.rate.norm      avgt  100    96,000 ±   0,001    B/op
+
+
+ArrayVsSmartListIterator
+
+Java 8
+
+iteratorFromArrayList       5  avgt  100     28,171 ±    0,431  ns/op
+iteratorFromSmartList       5  avgt  100     32,597 ±    0,243  ns/op
+
+iteratorFromArrayList      10  avgt  100     74,458 ±    7,160  ns/op
+iteratorFromSmartList      10  avgt  100     59,776 ±    0,777  ns/op
+
+iteratorFromArrayList     100  avgt  100    603,072 ±   37,336  ns/op
+iteratorFromSmartList     100  avgt  100    646,456 ±   40,875  ns/op
+
+iteratorFromArrayList    1000  avgt  100   5664,893 ±  342,226  ns/op
+iteratorFromSmartList    1000  avgt  100   5941,984 ±   66,118  ns/op
+
+iteratorFromArrayList   10000  avgt  100  55552,412 ± 1198,274  ns/op
+iteratorFromSmartList   10000  avgt  100  70837,410 ± 7129,006  ns/op
+
+Java 9
+
+iteratorFromArrayList       5  avgt  100     29,190 ±   1,918  ns/op
+iteratorFromSmartList       5  avgt  100     35,375 ±   1,977  ns/op
+
+iteratorFromArrayList      10  avgt  100     57,673 ±   3,402  ns/op
+iteratorFromSmartList      10  avgt  100     59,000 ±   0,672  ns/op
+
+iteratorFromArrayList     100  avgt  100    553,941 ±   9,999  ns/op
+iteratorFromSmartList     100  avgt  100    591,916 ±  10,015  ns/op
+
+iteratorFromArrayList    1000  avgt  100   5973,889 ± 382,769  ns/op
+iteratorFromSmartList    1000  avgt  100   7323,720 ± 119,798  ns/op
+
+iteratorFromArrayList   10000  avgt  100  55206,350 ± 906,177  ns/op
+iteratorFromSmartList   10000  avgt  100  57265,239 ± 521,058  ns/op
+
+iteratorFromArrayList       5  avgt  100     30,181 ±    0,532  ns/op
+iteratorFromSmartList       5  avgt  100     34,501 ±    0,727  ns/op
+
+iteratorFromArrayList      10  avgt  100     60,729 ±    1,937  ns/op
+iteratorFromSmartList      10  avgt  100     62,173 ±    0,638  ns/op
+
+iteratorFromArrayList     100  avgt  100    590,432 ±    6,732  ns/op
+iteratorFromSmartList     100  avgt  100    604,745 ±    3,655  ns/op
+
+iteratorFromArrayList    1000  avgt  100   5892,733 ±  101,656  ns/op
+iteratorFromSmartList    1000  avgt  100   7508,883 ±   45,650  ns/op
+
+iteratorFromArrayList   10000  avgt  100  57997,378 ± 1430,257  ns/op
+iteratorFromSmartList   10000  avgt  100  61076,742 ±  940,054  ns/op
+
+
+ArrayVsAsListIterationBenchmark
+
+Java 8
+
+                         (length)  Mode  Cnt     Score     Error  Units
+iterateOverArray                1  avgt  100     5,615 ±   0,077  ns/op
+iterateOverArraysAsList         1  avgt  100     9,324 ±   0,293  ns/op
+
+iterateOverArray                5  avgt  100    19,901 ±   0,466  ns/op
+iterateOverArraysAsList         5  avgt  100    29,573 ±   0,183  ns/op
+
+iterateOverArray               10  avgt  100    38,332 ±   0,681  ns/op
+iterateOverArraysAsList        10  avgt  100    53,975 ±   0,147  ns/op
+
+iterateOverArray              100  avgt  100   375,908 ±  12,108  ns/op
+iterateOverArraysAsList       100  avgt  100   530,855 ±   1,883  ns/op
+
+iterateOverArray             1000  avgt  100  3338,651 ± 128,508  ns/op
+iterateOverArraysAsList      1000  avgt  100  5193,825 ±  11,256  ns/op
+
+Java 9
+
+                         (length)  Mode  Cnt     Score    Error  Units
+iterateOverArray                1  avgt  100     5,708 ±  0,118  ns/op
+iterateOverArraysAsList         1  avgt  100     5,566 ±  0,044  ns/op
+
+iterateOverArray                5  avgt  100    18,718 ±  0,339  ns/op
+iterateOverArraysAsList         5  avgt  100    26,380 ±  0,325  ns/op
+
+iterateOverArray               10  avgt  100    34,506 ±  0,385  ns/op
+iterateOverArraysAsList        10  avgt  100    52,129 ±  0,420  ns/op
+
+iterateOverArray              100  avgt  100   330,892 ±  2,215  ns/op
+iterateOverArraysAsList       100  avgt  100   526,209 ±  1,875  ns/op
+
+iterateOverArray             1000  avgt  100  3200,416 ± 24,364  ns/op
+iterateOverArraysAsList      1000  avgt  100  5177,437 ± 11,452  ns/op
+
+Java 10
+
+                         (length)  Mode  Cnt     Score    Error  Units
+iterateOverArray                1  avgt  100     5,722 ±  0,118  ns/op
+iterateOverArraysAsList         1  avgt  100     5,849 ±  0,074  ns/op
+
+iterateOverArray                5  avgt  100    18,969 ±  0,197  ns/op
+iterateOverArraysAsList         5  avgt  100    26,612 ±  0,113  ns/op
+
+iterateOverArray               10  avgt  100    36,672 ±  1,530  ns/op
+iterateOverArraysAsList        10  avgt  100    53,134 ±  0,211  ns/op
+
+iterateOverArray              100  avgt  100   340,164 ±  1,901  ns/op
+iterateOverArraysAsList       100  avgt  100   541,170 ±  8,665  ns/op
+
+iterateOverArray             1000  avgt  100  3373,848 ± 37,525  ns/op
+iterateOverArraysAsList      1000  avgt  100  5326,449 ± 80,483  ns/op
