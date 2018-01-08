@@ -39,7 +39,6 @@ public class ArrayVsAsListIterationBenchmark {
         @Setup
         public void setup() {
             array = IntStream.range(0, length).boxed().toArray(Integer[]::new);
-
         }
     }
 }
