@@ -182,7 +182,62 @@ public class SmartList<E> extends AbstractList<E> implements RandomAccess {
         if (mySize == 1) {
             return new SingletonIterator();
         }
-        return super.iterator();
+        return new Itr();
+    }
+
+    private class Itr implements Iterator<E> {
+        int cursor = 0;
+        int lastRet = -1;
+        int expectedModCount = modCount;
+
+        public boolean hasNext() {
+            return cursor != mySize;
+        }
+
+        public E next() {
+            checkForComodification();
+            int i = cursor;
+            if (i >= mySize)
+                throw new NoSuchElementException();
+
+            E returned;
+
+            Object data = myElem;
+
+            if (mySize == 1) {
+                if (i >= 1)
+                    throw new ConcurrentModificationException();
+                returned = (E)data;
+            } else {
+                Object[] elementData = ((Object[]) data);
+                if (i >= elementData.length)
+                    throw new ConcurrentModificationException();
+                returned = (E) ((Object[]) data)[i];
+            }
+
+            cursor = i + 1;
+            return returned;
+        }
+
+        public void remove() {
+            if (lastRet < 0)
+                throw new IllegalStateException();
+            checkForComodification();
+
+            try {
+                SmartList.this.remove(lastRet);
+                cursor = lastRet;
+                lastRet = -1;
+                expectedModCount = modCount;
+            } catch (IndexOutOfBoundsException e) {
+                throw new ConcurrentModificationException();
+            }
+        }
+
+        final void checkForComodification() {
+            if (modCount != expectedModCount)
+                throw new ConcurrentModificationException();
+        }
     }
 
     private class SingletonIterator extends SingletonIteratorBase<E> {
