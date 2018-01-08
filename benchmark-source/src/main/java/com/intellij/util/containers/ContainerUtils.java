@@ -1,4 +1,4 @@
-package com.luxoft.logeek.utils;
+package com.intellij.util.containers;
 
 
 import java.util.Collection;

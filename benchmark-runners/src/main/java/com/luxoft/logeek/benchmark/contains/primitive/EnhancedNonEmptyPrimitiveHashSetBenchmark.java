@@ -1,5 +1,6 @@
 package com.luxoft.logeek.benchmark.contains.primitive;
 
+import com.intellij.util.containers.HashSet;
 import org.openjdk.jmh.annotations.*;
 
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class EnhancedNonEmptyPrimitiveHashSetBenchmark {
         private Integer integer;
 
         private java.util.HashSet<Integer> jdkHashSet;
-        private com.luxoft.logeek.collections.HashSet<Integer> ideaHashSet;
+        private HashSet<Integer> ideaHashSet;
 
         private ArrayList<Integer> integers;
 
@@ -50,7 +51,7 @@ public class EnhancedNonEmptyPrimitiveHashSetBenchmark {
             integers = new ArrayList<>(singleton(integer));
 
             jdkHashSet = new java.util.HashSet<>(integers);
-            ideaHashSet = new com.luxoft.logeek.collections.HashSet<>(integers);
+            ideaHashSet = new HashSet<>(integers);
         }
     }
 

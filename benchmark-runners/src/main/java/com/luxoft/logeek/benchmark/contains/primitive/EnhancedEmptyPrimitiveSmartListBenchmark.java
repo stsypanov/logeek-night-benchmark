@@ -1,6 +1,6 @@
 package com.luxoft.logeek.benchmark.contains.primitive;
 
-import com.luxoft.logeek.collections.SmartList;
+import com.intellij.util.containers.SmartList;
 import org.openjdk.jmh.annotations.*;
 
 import java.util.ArrayList;

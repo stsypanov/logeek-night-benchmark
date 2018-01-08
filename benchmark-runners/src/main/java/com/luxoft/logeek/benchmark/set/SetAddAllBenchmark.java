@@ -1,7 +1,7 @@
 package com.luxoft.logeek.benchmark.set;
 
 import com.luxoft.logeek.benchmark.BenchmarkBase;
-import com.luxoft.logeek.utils.ContainerUtils;
+import com.intellij.util.containers.ContainerUtils;
 import org.openjdk.jmh.annotations.*;
 
 import java.util.Arrays;

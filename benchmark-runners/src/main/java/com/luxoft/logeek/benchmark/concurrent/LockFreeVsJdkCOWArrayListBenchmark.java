@@ -1,6 +1,7 @@
 package com.luxoft.logeek.benchmark.concurrent;
 
-import com.luxoft.logeek.collections.LockFreeCopyOnWriteArrayList;
+import com.intellij.util.containers.COWList;
+import com.intellij.util.containers.LockFreeCopyOnWriteArrayList;
 import org.openjdk.jmh.annotations.*;
 
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -21,16 +22,23 @@ public class LockFreeVsJdkCOWArrayListBenchmark {
         return data.jdkCowList.add(data.integer);
     }
 
+    @Benchmark
+    public boolean measureCOWAdd(Data data) {
+        return data.cowList.add(data.integer);
+    }
+
     @State(Scope.Benchmark)
     public static class Data {
         private Integer integer = 1;
         private CopyOnWriteArrayList<Integer> jdkCowList;
         private LockFreeCopyOnWriteArrayList<Integer> ideaCowList;
+        private COWList<Integer> cowList;
 
         @Setup
         public void setup() {
             jdkCowList = new CopyOnWriteArrayList<>();
             ideaCowList = new LockFreeCopyOnWriteArrayList<>();
+            cowList = new COWList<>();
         }
     }
 }

@@ -1,6 +1,6 @@
 package com.luxoft.logeek.benchmark.collection;
 
-import com.luxoft.logeek.collections.IdeaStack;
+import com.intellij.util.containers.IdeaStack;
 import org.openjdk.jmh.annotations.*;
 
 import java.util.Stack;

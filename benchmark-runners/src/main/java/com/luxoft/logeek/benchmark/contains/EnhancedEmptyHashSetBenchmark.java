@@ -1,5 +1,6 @@
 package com.luxoft.logeek.benchmark.contains;
 
+import com.intellij.util.containers.HashSet;
 import org.openjdk.jmh.annotations.*;
 
 import java.util.ArrayList;
@@ -51,7 +52,7 @@ public class EnhancedEmptyHashSetBenchmark {
             dtos = new ArrayList<>(singleton(dto));
 
             emptyJdkHashSet = new java.util.HashSet<>();
-            emptyIdeaHashSet = new com.luxoft.logeek.collections.HashSet<>();
+            emptyIdeaHashSet = new HashSet<>();
         }
     }
 }

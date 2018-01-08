@@ -1,10 +1,9 @@
 package com.luxoft.logeek.benchmark.contains;
 
+import com.intellij.util.containers.HashSet;
 import org.openjdk.jmh.annotations.*;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -42,7 +41,7 @@ public class EnhancedNonEmptyHashSetBenchmark {
         private Dto dto;
 
         private java.util.HashSet<Dto> jdkHashSet;
-        private com.luxoft.logeek.collections.HashSet<Dto> ideaHashSet;
+        private HashSet<Dto> ideaHashSet;
 
         private ArrayList<Dto> dtos;
 
@@ -55,7 +54,7 @@ public class EnhancedNonEmptyHashSetBenchmark {
             dtos = new ArrayList<>(one);
 
             jdkHashSet = new java.util.HashSet<>(one);
-            ideaHashSet = new com.luxoft.logeek.collections.HashSet<>(one);
+            ideaHashSet = new HashSet<>(one);
         }
     }
 }

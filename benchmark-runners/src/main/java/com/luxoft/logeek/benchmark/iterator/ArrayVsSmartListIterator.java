@@ -1,6 +1,6 @@
 package com.luxoft.logeek.benchmark.iterator;
 
-import com.luxoft.logeek.collections.SmartList;
+import com.intellij.util.containers.SmartList;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 
