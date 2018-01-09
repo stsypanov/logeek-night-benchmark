@@ -1,13 +1,13 @@
 package com.luxoft.logeek.hashcode.calcapproach;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
-@Getter
-@AllArgsConstructor
 public class DataClass {
 	private final Long id;
 	private final String idString;
+
+	public DataClass(Long id, String idString) {
+		this.id = id;
+		this.idString = idString;
+	}
 
 	@Override
 	public boolean equals(Object o) {

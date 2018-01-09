@@ -1,7 +1,7 @@
 package com.luxoft.logeek.benchmark.files;
 
 import com.luxoft.logeek.file.FileReaderWriter;
-import org.apache.poi.xssf.streaming.SXSSFWorkbook;
+//import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.openjdk.jmh.annotations.*;
 
 import java.io.ByteArrayOutputStream;
@@ -23,15 +23,15 @@ public class ReaderWriterBenchmark {
 
     private List<File> files = new ArrayList<>();
     private File temp;
-    private SXSSFWorkbook workbook;
+//    private SXSSFWorkbook workbook;
     private ByteArrayOutputStream baos;
 
     @Setup(Level.Invocation)
     public void setup() throws IOException {
         temp = Files.createTempFile("temp", ".xslx").toFile();
 
-        workbook = new SXSSFWorkbook();
-        IntStream.range(0, 9).forEach(i -> workbook.createSheet());
+//        workbook = new SXSSFWorkbook();
+//        IntStream.range(0, 9).forEach(i -> workbook.createSheet());
 
         baos = new ByteArrayOutputStream();
     }
@@ -42,13 +42,13 @@ public class ReaderWriterBenchmark {
         files.clear();
     }
 
-    @Benchmark
-    public File measureDoInEffectively() throws IOException {
-        return FileReaderWriter.doInEffectively(temp, workbook);
-    }
+//    @Benchmark
+//    public File measureDoInEffectively() throws IOException {
+//        return FileReaderWriter.doInEffectively(temp, workbook);
+//    }
 
-    @Benchmark
-    public File measureDoEffectively() throws IOException {
-        return FileReaderWriter.doEffectively(temp, baos, workbook);
-    }
+//    @Benchmark
+//    public File measureDoEffectively() throws IOException {
+//        return FileReaderWriter.doEffectively(temp, baos, workbook);
+//    }
 }

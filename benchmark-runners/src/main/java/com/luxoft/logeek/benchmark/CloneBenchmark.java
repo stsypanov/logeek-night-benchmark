@@ -1,9 +1,6 @@
 package com.luxoft.logeek.benchmark;
 
 import com.google.gson.Gson;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.SerializationUtils;
 import org.openjdk.jmh.annotations.*;
 
@@ -41,13 +38,17 @@ public class CloneBenchmark {
         }
     }
 
-    @Getter
-    @NoArgsConstructor
-    @AllArgsConstructor
     static class Value implements Serializable {
         private BigDecimal bigDecimal;
         private Long aLong;
         private String str;
         private Boolean aBoolean;
+
+        Value(BigDecimal bigDecimal, Long aLong, String str, Boolean aBoolean) {
+            this.bigDecimal = bigDecimal;
+            this.aLong = aLong;
+            this.str = str;
+            this.aBoolean = aBoolean;
+        }
     }
 }

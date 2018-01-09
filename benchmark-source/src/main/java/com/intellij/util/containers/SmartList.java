@@ -13,23 +13,21 @@ public class SmartList<E> extends AbstractList<E> implements RandomAccess {
         add(element);
     }
 
-    public SmartList( Collection<? extends E> elements) {
+    public SmartList(Collection<? extends E> elements) {
         int size = elements.size();
         if (size == 1) {
-            E element = elements instanceof List ? (E)((List)elements).get(0) : elements.iterator().next();
+            E element = elements instanceof List ? (E) ((List) elements).get(0) : elements.iterator().next();
             add(element);
-        }
-        else if (size > 0) {
+        } else if (size > 0) {
             mySize = size;
             myElem = elements.toArray(new Object[size]);
         }
     }
 
-    public SmartList( E... elements) {
+    public SmartList(E... elements) {
         if (elements.length == 1) {
             add(elements[0]);
-        }
-        else if (elements.length > 0) {
+        } else if (elements.length > 0) {
             mySize = elements.length;
             myElem = Arrays.copyOf(elements, mySize);
         }
@@ -41,24 +39,22 @@ public class SmartList<E> extends AbstractList<E> implements RandomAccess {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + mySize);
         }
         if (mySize == 1) {
-            return (E)myElem;
+            return (E) myElem;
         }
-        return (E)((Object[])myElem)[index];
+        return (E) ((Object[]) myElem)[index];
     }
 
     @Override
     public boolean add(E e) {
         if (mySize == 0) {
             myElem = e;
-        }
-        else if (mySize == 1) {
+        } else if (mySize == 1) {
             Object[] array = new Object[2];
             array[0] = myElem;
             array[1] = e;
             myElem = array;
-        }
-        else {
-            Object[] array = (Object[])myElem;
+        } else {
+            Object[] array = (Object[]) myElem;
             int oldCapacity = array.length;
             if (mySize >= oldCapacity) {
                 // have to resize
@@ -87,20 +83,17 @@ public class SmartList<E> extends AbstractList<E> implements RandomAccess {
 
         if (mySize == 0) {
             myElem = e;
-        }
-        else if (mySize == 1 && index == 0) {
+        } else if (mySize == 1 && index == 0) {
             Object[] array = new Object[2];
             array[0] = e;
             array[1] = myElem;
             myElem = array;
-        }
-        else {
+        } else {
             Object[] array = new Object[mySize + 1];
             if (mySize == 1) {
                 array[0] = myElem; // index == 1
-            }
-            else {
-                Object[] oldArray = (Object[])myElem;
+            } else {
+                Object[] oldArray = (Object[]) myElem;
                 System.arraycopy(oldArray, 0, array, 0, index);
                 System.arraycopy(oldArray, index, array, index + 1, mySize - index);
             }
@@ -132,12 +125,11 @@ public class SmartList<E> extends AbstractList<E> implements RandomAccess {
 
         final E oldValue;
         if (mySize == 1) {
-            oldValue = (E)myElem;
+            oldValue = (E) myElem;
             myElem = element;
-        }
-        else {
-            final Object[] array = (Object[])myElem;
-            oldValue = (E)array[index];
+        } else {
+            final Object[] array = (Object[]) myElem;
+            oldValue = (E) array[index];
             array[index] = element;
         }
         return oldValue;
@@ -151,17 +143,15 @@ public class SmartList<E> extends AbstractList<E> implements RandomAccess {
 
         final E oldValue;
         if (mySize == 1) {
-            oldValue = (E)myElem;
+            oldValue = (E) myElem;
             myElem = null;
-        }
-        else {
-            Object[] array = (Object[])myElem;
-            oldValue = (E)array[index];
+        } else {
+            Object[] array = (Object[]) myElem;
+            oldValue = (E) array[index];
 
             if (mySize == 2) {
                 myElem = array[1 - index];
-            }
-            else {
+            } else {
                 int numMoved = mySize - index - 1;
                 if (numMoved > 0) {
                     System.arraycopy(array, index + 1, array, index, numMoved);
@@ -174,7 +164,6 @@ public class SmartList<E> extends AbstractList<E> implements RandomAccess {
         return oldValue;
     }
 
-    
     @Override
     public Iterator<E> iterator() {
         if (mySize == 0) {
@@ -240,13 +229,14 @@ public class SmartList<E> extends AbstractList<E> implements RandomAccess {
     private class SingletonIterator extends SingletonIteratorBase<E> {
 
         private final int myInitialModCount;
+
         public SingletonIterator() {
             myInitialModCount = modCount;
         }
 
         @Override
         protected E getElement() {
-            return (E)myElem;
+            return (E) myElem;
         }
 
         @Override
@@ -263,30 +253,27 @@ public class SmartList<E> extends AbstractList<E> implements RandomAccess {
         }
 
     }
+
     public void sort(Comparator<? super E> comparator) {
         if (mySize >= 2) {
-            Arrays.sort((E[])myElem, 0, mySize, comparator);
+            Arrays.sort((E[]) myElem, 0, mySize, comparator);
         }
     }
 
-    
     @Override
-    public <T> T[] toArray( T[] a) {
+    public <T> T[] toArray(T[] a) {
         int aLength = a.length;
         if (mySize == 1) {
             if (aLength != 0) {
-                a[0] = (T)myElem;
-            }
-            else {
+                a[0] = (T) myElem;
+            } else {
                 T[] r = (T[]) Array.newInstance(a.getClass().getComponentType(), 1);
-                r[0] = (T)myElem;
+                r[0] = (T) myElem;
                 return r;
             }
-        }
-        else if (aLength < mySize) {
-            return (T[])Arrays.copyOf((E[])myElem, mySize, a.getClass());
-        }
-        else if (mySize != 0) {
+        } else if (aLength < mySize) {
+            return (T[]) Arrays.copyOf((E[]) myElem, mySize, a.getClass());
+        } else if (mySize != 0) {
             //noinspection SuspiciousSystemArraycopy
             System.arraycopy(myElem, 0, a, 0, mySize);
         }
@@ -304,7 +291,7 @@ public class SmartList<E> extends AbstractList<E> implements RandomAccess {
      */
     public void trimToSize() {
         if (mySize < 2) return;
-        Object[] array = (Object[])myElem;
+        Object[] array = (Object[]) myElem;
         int oldCapacity = array.length;
         if (mySize < oldCapacity) {
             modCount++;
@@ -320,21 +307,19 @@ public class SmartList<E> extends AbstractList<E> implements RandomAccess {
         if (mySize == 1) {
             if (o == null) {
                 return myElem == null ? 0 : -1;
-            }
-            else {
+            } else {
                 return o.equals(myElem) ? 0 : -1;
             }
         }
 
-        Object[] array = (Object[])myElem;
+        Object[] array = (Object[]) myElem;
         if (o == null) {
             for (int i = 0; i < mySize; i++) {
                 if (array[i] == null) {
                     return i;
                 }
             }
-        }
-        else {
+        } else {
             for (int i = 0; i < mySize; i++) {
                 if (o.equals(array[i])) {
                     return i;
@@ -356,11 +341,11 @@ public class SmartList<E> extends AbstractList<E> implements RandomAccess {
         }
 
         if (o instanceof SmartList) {
-            return equalsWithSmartList((SmartList)o);
+            return equalsWithSmartList((SmartList) o);
         }
 
         if (o instanceof ArrayList) {
-            return equalsWithArrayList((ArrayList)o);
+            return equalsWithArrayList((ArrayList) o);
         }
 
         return super.equals(o);

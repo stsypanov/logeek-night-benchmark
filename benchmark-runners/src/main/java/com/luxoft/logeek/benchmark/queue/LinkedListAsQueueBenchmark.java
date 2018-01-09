@@ -1,6 +1,5 @@
 package com.luxoft.logeek.benchmark.queue;
 
-import com.luxoft.logeek.benchmark.BaseBenchmark;
 import com.luxoft.logeek.benchmark.BenchmarkBase;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Level;

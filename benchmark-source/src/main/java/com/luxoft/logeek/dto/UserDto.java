@@ -1,10 +1,13 @@
 package com.luxoft.logeek.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
-@Getter
-@AllArgsConstructor
 public class UserDto {
 	private Long userId;
+
+	public UserDto(Long userId) {
+		this.userId = userId;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
 }

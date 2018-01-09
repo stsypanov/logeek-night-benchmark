@@ -1,18 +1,19 @@
 package com.luxoft.logeek.hashcode;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-
 import java.util.List;
 
-@Getter
-@RequiredArgsConstructor
 public class HashCodeCachingVO {
 	private final Long id;
 	private final String name;
 	private final List<Long> list;
 	
 	private volatile int hashCode = -1;
+
+	public HashCodeCachingVO(Long id, String name, List<Long> list) {
+		this.id = id;
+		this.name = name;
+		this.list = list;
+	}
 
 	@Override
 	public boolean equals(Object o) {
@@ -34,6 +35,10 @@ public class HashCodeCachingVO {
 			hashCode = 31 * result + (list != null ? list.hashCode() : 0);
 		}
 		return hashCode;
+	}
+
+	public Long getId() {
+		return id;
 	}
 }
 

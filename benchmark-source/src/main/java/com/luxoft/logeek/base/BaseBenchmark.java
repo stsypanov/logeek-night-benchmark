@@ -1,4 +1,4 @@
-package com.luxoft.logeek.benchmark;
+package com.luxoft.logeek.base;
 
 import java.util.concurrent.ThreadLocalRandom;
 
