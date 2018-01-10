@@ -1298,6 +1298,9 @@ primitive.EnhancedNonEmptyPrimitiveSmartListBenchmark.measureEnhancedContainsAll
 primitive.EnhancedNonEmptyPrimitiveSmartListBenchmark.measureConventionalContainsAll         avgt  2000   8,050 ± 0,023  ns/op
 
 
+mvn archetype:generate -DinteractiveMode=false -DarchetypeGroupId=org.openjdk.jmh -DarchetypeArtifactId=jmh-java-benchmark-archetype -DarchetypeVersion=1.20-SNAPSHOT -DgroupId=org.sample -DartifactId=test -Dversion=1.0
+
+
 AddIntoArrayListBenchmark
 
 Benchmark                                  Mode  Cnt     Score     Error   Units
@@ -1327,20 +1330,26 @@ ArrayVsSmartListIterator
 
 Java 8
 
-iteratorFromArrayList       5  avgt  100     28,171 ±    0,431  ns/op
-iteratorFromSmartList       5  avgt  100     32,597 ±    0,243  ns/op
+                              (size)  Mode  Cnt      Score     Error  Units
+iterateOverArrayList               5  avgt  500     30,475 ±   0,389  ns/op
+iterateOverEnhancedSmartList       5  avgt  500     29,744 ±   0,147  ns/op
+iterateOverOriginalSmartList       5  avgt  500     32,589 ±   0,132  ns/op
 
-iteratorFromArrayList      10  avgt  100     74,458 ±    7,160  ns/op
-iteratorFromSmartList      10  avgt  100     59,776 ±    0,777  ns/op
+iterateOverArrayList              10  avgt  500     59,371 ±   0,359  ns/op
+iterateOverEnhancedSmartList      10  avgt  500     57,784 ±   0,272  ns/op
+iterateOverOriginalSmartList      10  avgt  500     63,441 ±   0,225  ns/op
 
-iteratorFromArrayList     100  avgt  100    603,072 ±   37,336  ns/op
-iteratorFromSmartList     100  avgt  100    646,456 ±   40,875  ns/op
+iterateOverArrayList             100  avgt  500    606,445 ±   5,383  ns/op
+iterateOverEnhancedSmartList     100  avgt  500    578,795 ±   3,988  ns/op
+iterateOverOriginalSmartList     100  avgt  500    642,814 ±   4,207  ns/op
 
-iteratorFromArrayList    1000  avgt  100   5664,893 ±  342,226  ns/op
-iteratorFromSmartList    1000  avgt  100   5941,984 ±   66,118  ns/op
+iterateOverArrayList            1000  avgt  500   5744,351 ±  24,403  ns/op
+iterateOverEnhancedSmartList    1000  avgt  500   5590,532 ±  24,283  ns/op
+iterateOverOriginalSmartList    1000  avgt  500   6223,979 ±  24,154  ns/op
 
-iteratorFromArrayList   10000  avgt  100  55552,412 ± 1198,274  ns/op
-iteratorFromSmartList   10000  avgt  100  70837,410 ± 7129,006  ns/op
+iterateOverArrayList           10000  avgt  500  57602,162 ± 236,864  ns/op
+iterateOverEnhancedSmartList   10000  avgt  500  56233,919 ± 116,913  ns/op
+iterateOverOriginalSmartList   10000  avgt  500  62938,597 ± 341,009  ns/op
 
 Java 9
 
