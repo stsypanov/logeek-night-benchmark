@@ -3,7 +3,6 @@ package com.luxoft.logeek.benchmark.copy;
 import org.openjdk.jmh.annotations.*;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
@@ -20,16 +19,6 @@ public class SubArrayBenchmark {
     @Benchmark
     public Integer[] measureSubArrayViaArraysCopyOf(Data data) {
         return Arrays.copyOf(data.array, data.to);
-    }
-
-    @Benchmark
-    public List<Integer> measureSubListViaArraysAsList(Data data) {
-        return Arrays.asList(data.array).subList(0, data.to);
-    }
-
-    @Benchmark
-    public List<Integer> measureSubListViaArraysCopyOf(Data data) {
-        return Arrays.asList(Arrays.copyOf(data.array, data.to));
     }
 
     @State(Scope.Thread)
