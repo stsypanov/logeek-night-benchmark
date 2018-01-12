@@ -1441,3 +1441,55 @@ iterateOverArraysAsList       100  avgt  100   541,170 ±  8,665  ns/op
 
 iterateOverArray             1000  avgt  100  3373,848 ± 37,525  ns/op
 iterateOverArraysAsList      1000  avgt  100  5326,449 ± 80,483  ns/op
+
+1 thread
+Benchmark                                                         Mode  Cnt   Score   Error  Units
+LockFreeVsJdkCOWArrayListModificationBenchmark.measureIdeaCOWAdd  avgt  500  19,817 ? 0,118  us/op
+LockFreeVsJdkCOWArrayListModificationBenchmark.measureJdkCOWAdd   avgt  500  22,680 ? 0,088  us/op
+
+2 threads
+
+Benchmark                                                         Mode  Cnt   Score   Error  Units
+LockFreeVsJdkCOWArrayListModificationBenchmark.measureIdeaCOWAdd  avgt  500  53,326 ? 0,160  us/op
+LockFreeVsJdkCOWArrayListModificationBenchmark.measureJdkCOWAdd   avgt  500  49,653 ? 0,419  us/op
+
+4 threads
+
+Benchmark                                                         Mode  Cnt    Score   Error  Units
+LockFreeVsJdkCOWArrayListModificationBenchmark.measureIdeaCOWAdd  avgt  500  188,820 ? 5,646  us/op
+LockFreeVsJdkCOWArrayListModificationBenchmark.measureJdkCOWAdd   avgt  500  112,350 ? 1,559  us/op
+
+8 threads
+
+Benchmark                                                         Mode  Cnt    Score    Error  Units
+LockFreeVsJdkCOWArrayListModificationBenchmark.measureIdeaCOWAdd  avgt  500  557,963 ? 10,603  us/op
+LockFreeVsJdkCOWArrayListModificationBenchmark.measureJdkCOWAdd   avgt  500  279,084 ? 10,250  us/op
+
+1 write 2 read
+
+Benchmark                                                                   Mode   Cnt       Score      Error   Units
+LockFreeVsJdkCOWArrayListModificationBenchmark.ideaCow                     thrpt  1000   77786,196 ? 1654,399  ops/ms
+LockFreeVsJdkCOWArrayListModificationBenchmark.ideaCow:measureIdeaCOWAdd   thrpt  1000      32,654 ?    0,226  ops/ms
+LockFreeVsJdkCOWArrayListModificationBenchmark.ideaCow:measureIdeaCOWRead  thrpt  1000   77753,542 ? 1654,210  ops/ms
+LockFreeVsJdkCOWArrayListModificationBenchmark.jdkCow                      thrpt  1000  286202,157 ? 2187,394  ops/ms
+LockFreeVsJdkCOWArrayListModificationBenchmark.jdkCow:measureJdkCOWAdd     thrpt  1000      43,254 ?    0,194  ops/ms
+LockFreeVsJdkCOWArrayListModificationBenchmark.jdkCow:measureJdkCOWRead    thrpt  1000  286158,903 ? 2187,277  ops/ms
+
+
+LockFreeVsJdkCOWArrayListModificationBenchmark.ideaCow                     thrpt  1000   81546,149 ? 4498,627  ops/ms
+LockFreeVsJdkCOWArrayListModificationBenchmark.ideaCow:measureIdeaCOWAdd   thrpt  1000      20,317 ?    0,368  ops/ms
+LockFreeVsJdkCOWArrayListModificationBenchmark.ideaCow:measureIdeaCOWRead  thrpt  1000   81525,832 ? 4498,382  ops/ms
+LockFreeVsJdkCOWArrayListModificationBenchmark.jdkCow                      thrpt  1000  377683,021 ? 2687,937  ops/ms
+LockFreeVsJdkCOWArrayListModificationBenchmark.jdkCow:measureJdkCOWAdd     thrpt  1000      27,906 ?    0,406  ops/ms
+LockFreeVsJdkCOWArrayListModificationBenchmark.jdkCow:measureJdkCOWRead    thrpt  1000  377655,114 ? 2688,113  ops/ms
+
+2 write 4 read
+
+Benchmark                                                                   Mode   Cnt       Score      Error   Units
+LockFreeVsJdkCOWArrayListModificationBenchmark.ideaCow                     thrpt  1000   81546,149 ? 4498,627  ops/ms
+LockFreeVsJdkCOWArrayListModificationBenchmark.ideaCow:measureIdeaCOWAdd   thrpt  1000      20,317 ?    0,368  ops/ms
+LockFreeVsJdkCOWArrayListModificationBenchmark.ideaCow:measureIdeaCOWRead  thrpt  1000   81525,832 ? 4498,382  ops/ms
+LockFreeVsJdkCOWArrayListModificationBenchmark.jdkCow                      thrpt  1000  377683,021 ? 2687,937  ops/ms
+LockFreeVsJdkCOWArrayListModificationBenchmark.jdkCow:measureJdkCOWAdd     thrpt  1000      27,906 ?    0,406  ops/ms
+LockFreeVsJdkCOWArrayListModificationBenchmark.jdkCow:measureJdkCOWRead    thrpt  1000  377655,114 ? 2688,113  ops/ms
+
