@@ -1493,3 +1493,45 @@ LockFreeVsJdkCOWArrayListModificationBenchmark.jdkCow                      thrpt
 LockFreeVsJdkCOWArrayListModificationBenchmark.jdkCow:measureJdkCOWAdd     thrpt  1000      27,906 ?    0,406  ops/ms
 LockFreeVsJdkCOWArrayListModificationBenchmark.jdkCow:measureJdkCOWRead    thrpt  1000  377655,114 ? 2688,113  ops/ms
 
+
+
+
+
+Benchmark                                              (size)  Mode  Cnt     Score     Error  Units
+ArrayVsSmartListIterator.iterateOverArrayList               1  avgt  100     6,861 ?   0,122  ns/op
+ArrayVsSmartListIterator.iterateOverArrayList               5  avgt  100    30,420 ?   0,668  ns/op
+ArrayVsSmartListIterator.iterateOverArrayList              10  avgt  100    59,544 ?   0,935  ns/op
+ArrayVsSmartListIterator.iterateOverArrayList             100  avgt  100   603,593 ?  13,430  ns/op
+ArrayVsSmartListIterator.iterateOverArrayList            1000  avgt  100  5930,290 ?  93,796  ns/op
+
+ArrayVsSmartListIterator.iterateOverEnhancedSmartList       1  avgt  100     4,951 ?   0,088  ns/op
+ArrayVsSmartListIterator.iterateOverEnhancedSmartList       5  avgt  100    30,494 ?   0,544  ns/op
+ArrayVsSmartListIterator.iterateOverEnhancedSmartList      10  avgt  100    58,540 ?   0,905  ns/op
+ArrayVsSmartListIterator.iterateOverEnhancedSmartList     100  avgt  100   576,645 ?   9,516  ns/op
+ArrayVsSmartListIterator.iterateOverEnhancedSmartList    1000  avgt  100  5670,797 ? 122,110  ns/op
+
+ArrayVsSmartListIterator.iterateOverOriginalSmartList       1  avgt  100     4,951 ?   0,108  ns/op
+ArrayVsSmartListIterator.iterateOverOriginalSmartList       5  avgt  100    32,887 ?   0,490  ns/op
+ArrayVsSmartListIterator.iterateOverOriginalSmartList      10  avgt  100    66,061 ?   1,266  ns/op
+ArrayVsSmartListIterator.iterateOverOriginalSmartList     100  avgt  100   650,722 ?  12,461  ns/op
+ArrayVsSmartListIterator.iterateOverOriginalSmartList    1000  avgt  100  6520,943 ? 169,689  ns/op
+
+Benchmark                                              (size)  Mode  Cnt     Score    Error  Units
+ArrayVsSmartListIterator.iterateOverArrayList               1  avgt  100     7,048 ?  0,099  ns/op
+ArrayVsSmartListIterator.iterateOverArrayList               5  avgt  100    12,681 ?  0,205  ns/op
+ArrayVsSmartListIterator.iterateOverArrayList              10  avgt  100    16,613 ?  0,318  ns/op
+ArrayVsSmartListIterator.iterateOverArrayList             100  avgt  100    92,531 ?  1,305  ns/op
+ArrayVsSmartListIterator.iterateOverArrayList            1000  avgt  100   811,825 ? 18,951  ns/op
+
+ArrayVsSmartListIterator.iterateOverEnhancedSmartList       1  avgt  100     4,022 ?  0,060  ns/op
+ArrayVsSmartListIterator.iterateOverEnhancedSmartList       5  avgt  100    12,488 ?  0,182  ns/op
+ArrayVsSmartListIterator.iterateOverEnhancedSmartList      10  avgt  100    16,538 ?  0,298  ns/op
+ArrayVsSmartListIterator.iterateOverEnhancedSmartList     100  avgt  100    93,172 ?  1,850  ns/op
+ArrayVsSmartListIterator.iterateOverEnhancedSmartList    1000  avgt  100   788,678 ? 11,867  ns/op
+
+ArrayVsSmartListIterator.iterateOverOriginalSmartList       1  avgt  100     4,016 ?  0,063  ns/op
+ArrayVsSmartListIterator.iterateOverOriginalSmartList       5  avgt  100    13,659 ?  0,235  ns/op
+ArrayVsSmartListIterator.iterateOverOriginalSmartList      10  avgt  100    23,108 ?  0,385  ns/op
+ArrayVsSmartListIterator.iterateOverOriginalSmartList     100  avgt  100   176,975 ?  2,053  ns/op
+ArrayVsSmartListIterator.iterateOverOriginalSmartList    1000  avgt  100  1624,221 ? 48,551  ns/op
+
