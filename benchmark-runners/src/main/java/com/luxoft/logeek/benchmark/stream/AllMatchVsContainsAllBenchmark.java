@@ -3,56 +3,55 @@ package com.luxoft.logeek.benchmark.stream;
 
 import org.openjdk.jmh.annotations.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
 import static java.util.Arrays.asList;
 import static java.util.Arrays.copyOf;
 import static java.util.stream.Collectors.toCollection;
-import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toSet;
 
-@SuppressWarnings("unchecked")
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
-@Fork(jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms4g", "-Xmx4g"})
+@Fork(jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms2g", "-Xmx2g"})
 public class AllMatchVsContainsAllBenchmark {
 
     @Benchmark
-    public boolean measureStreamAllMatch(Data data) {
+    public boolean streamAllMatch(Data data) {
         return data.collection.stream().allMatch(data.anotherCollection::contains);
     }
 
     @Benchmark
-    public boolean measureCollectionContainsAll(Data data) {
+    public boolean collectionContainsAll(Data data) {
         return data.anotherCollection.containsAll(data.collection);
     }
 
     @State(Scope.Thread)
     public static class Data {
-        private static final int arrayList = 1;
 
-        @Param({"1", "10", "100", "1000"})
+        @Param({"10", "100", "1000"})
         private int count;
 
-        @Param({"1", "2"})// 1 for ArrayList 2 for HashSet
-        private int collectionType;
+        @Param({"ArrayList", "HashSet"})
+        private String collectionType;
 
         private Collection<Integer> collection;
-        private Collection anotherCollection;
+        private Collection<Integer> anotherCollection;
 
         @Setup
         public void setup() {
-            if (collectionType == arrayList) {
+            if ("ArrayList".equals(collectionType)) {
                 anotherCollection = IntStream.range(0, count).boxed().collect(toCollection(ArrayList::new));
-                collection = new HashSet(asList(copyOf(anotherCollection.toArray(), anotherCollection.size() / 2)));
+                collection = new HashSet<>(halfOfOriginalCollection(anotherCollection));
             } else {
                 anotherCollection = IntStream.range(0, count).boxed().collect(toCollection(HashSet::new));
-                collection = new HashSet(asList(copyOf(anotherCollection.toArray(), anotherCollection.size() / 2)));
+                collection = new HashSet<>(halfOfOriginalCollection(anotherCollection));
             }
+        }
+
+        private List<Integer> halfOfOriginalCollection(Collection<Integer> original) {
+            Integer[] integers = copyOf(original.toArray(new Integer[0]), original.size() / 2);
+            return asList(integers);
         }
     }
 }

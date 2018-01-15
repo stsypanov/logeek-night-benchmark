@@ -11,21 +11,21 @@ import java.util.concurrent.TimeUnit;
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
-@Fork(jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms4g", "-Xmx4g"})
+@Fork(jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms2g", "-Xmx2g"})
 public class CachedFormatterBenchmark {
 
     @Benchmark
-    public String measureSimpleDateTimeFormat(Data data) {
+    public String simpleDateTimeFormat(Data data) {
         return data.simpleFormatter.get().format(data.date);
     }
 
     @Benchmark
-    public String measureDateTimeFormatter(Data data) {
+    public String dateTimeFormatter(Data data) {
         return data.dateTimeFormatter.format(data.localDate);
     }
 
     @Benchmark
-    public String measureDateTimeFormatterWhenDateConverted(Data data) {
+    public String dateTimeFormatter_dateConverted(Data data) {
         LocalDate localDate = data.date.toInstant().atZone(data.zoneId).toLocalDate();
         return data.dateTimeFormatter.format(localDate);
     }

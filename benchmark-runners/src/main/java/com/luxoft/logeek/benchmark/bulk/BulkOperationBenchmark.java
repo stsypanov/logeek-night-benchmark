@@ -15,7 +15,7 @@ import static java.util.stream.Collectors.toList;
 public class BulkOperationBenchmark {
 
     @Benchmark
-    public Collection<Long> measureAddOneByOne(Data data) {
+    public Collection<Long> addOneByOne(Data data) {
         Collection<Long> newCollection = data.freshCollection();
         for (Long item : data.items) {
             newCollection.add(item);
@@ -24,22 +24,22 @@ public class BulkOperationBenchmark {
     }
 
     @Benchmark
-    public Collection<Long> measureAddAll(Data data) {
+    public Collection<Long> addAll(Data data) {
         Collection<Long> newCollection = data.freshCollection();
         newCollection.addAll(data.items);
         return newCollection;
     }
 
     @Benchmark
-    public Collection<Long> measureAddAllViaConstructorArg(Data data) {
+    public Collection<Long> addAllViaConstructorArg(Data data) {
         Collection<Long> newCollection = data.freshCollection(data.items);
         return newCollection;
     }
 
     @State(Scope.Thread)
     public static class Data {
-        @Param({"1", "2"})
-        private int collectionType;
+        @Param({"ArrayList", "HashSet"})
+        private String collection;
 
         @Param({"10", "100", "1000"})
         private int count;
@@ -58,13 +58,13 @@ public class BulkOperationBenchmark {
         }
 
         Collection<Long> freshCollection() {
-            return 1 == collectionType
+            return "ArrayList".equals(collection)
                     ? new ArrayList<>()
                     : new HashSet<>();
         }
 
         Collection<Long> freshCollection(Collection<Long> items) {
-            return 1 == collectionType
+            return "ArrayList".equals(collection)
                     ? new ArrayList<>(items)
                     : new HashSet<>(items);
         }

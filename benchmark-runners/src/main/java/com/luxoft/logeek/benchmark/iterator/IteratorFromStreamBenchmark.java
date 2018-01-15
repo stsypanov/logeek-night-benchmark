@@ -12,10 +12,11 @@ import static java.util.stream.Collectors.toList;
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
+@Fork(jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms2g", "-Xmx2g"})
 public class IteratorFromStreamBenchmark {
 
     @Benchmark
-    public void measureIteratorFromCollectedList(Data data, Blackhole bh) {
+    public void iteratorFromCollectedList(Data data, Blackhole bh) {
         Iterator<String> iterator = data.items.stream()
                 .map(Object::toString)
                 .collect(toList())//todo add case for toSet()
@@ -26,7 +27,7 @@ public class IteratorFromStreamBenchmark {
     }
 
     @Benchmark
-    public void measureIteratorFromStream(Data data, Blackhole bh) {
+    public void iteratorFromStream(Data data, Blackhole bh) {
         Iterator<String> iterator = data.items.stream()
                 .map(Object::toString)
                 .iterator();
@@ -36,7 +37,7 @@ public class IteratorFromStreamBenchmark {
     }
 
     @Benchmark
-    public void measureForEach(Data data, Blackhole bh) {
+    public void forEach(Data data, Blackhole bh) {
         data.items.stream()
                 .map(Object::toString)
                 .forEach(bh::consume);
@@ -49,8 +50,8 @@ public class IteratorFromStreamBenchmark {
         @Param({"10", "100", "1000"})
         private int size;
 
-        @Param({"list", "set"})
-        private String collectionType;
+        @Param({"ArrayList", "HashSet"})
+        private String collection;
 
         private ThreadLocalRandom random;
 
@@ -58,7 +59,7 @@ public class IteratorFromStreamBenchmark {
         public void init() {
             random = ThreadLocalRandom.current();
 
-            if ("list".equals(collectionType)) {
+            if ("ArrayList".equals(collection)) {
                 items = random.ints(size).boxed().collect(toCollection(ArrayList::new));
             } else {
                 items = random.ints(size).boxed().collect(toCollection(HashSet::new));
