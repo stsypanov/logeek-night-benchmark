@@ -18,7 +18,7 @@ import static java.util.stream.Collectors.toList;
 public class BulkOperationBenchmark {
 
     @Benchmark
-    public Collection<Integer> addOneByOne(Data data) {
+    public Collection<Integer> oneByOne(Data data) {
         Collection<Integer> newCollection = data.freshCollection();
         for (Integer item : data.items) {
             newCollection.add(item);
@@ -34,7 +34,7 @@ public class BulkOperationBenchmark {
     }
 
     @Benchmark
-    public Collection<Integer> addAllViaConstructorArg(Data data) {
+    public Collection<Integer> constructor(Data data) {
         Collection<Integer> newCollection = data.freshCollection(data.items);
         return newCollection;
     }
