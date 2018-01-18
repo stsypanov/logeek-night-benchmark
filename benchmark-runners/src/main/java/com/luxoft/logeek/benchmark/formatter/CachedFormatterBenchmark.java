@@ -26,8 +26,14 @@ public class CachedFormatterBenchmark {
 
     @Benchmark
     public String dateTimeFormatter_dateConverted(Data data) {
-        LocalDate localDate = data.date.toInstant().atZone(data.zoneId).toLocalDate();
+        LocalDate localDate = toLocalDate(data.date);
         return data.dateTimeFormatter.format(localDate);
+    }
+
+    private LocalDate toLocalDate(Date date) {
+        return date.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
     }
 
     @State(Scope.Thread)
@@ -39,14 +45,12 @@ public class CachedFormatterBenchmark {
 
         private Date date;
         private LocalDate localDate;
-        private ZoneId zoneId;
 
         @Setup
         public void setup() {
             date = new Date();
             localDate = LocalDate.now();
 
-            zoneId = ZoneId.systemDefault();
             dateTimeFormatter = DateTimeFormatter.ofPattern(pattern);
             simpleFormatter = ThreadLocal.withInitial(() -> new SimpleDateFormat(pattern));
         }
