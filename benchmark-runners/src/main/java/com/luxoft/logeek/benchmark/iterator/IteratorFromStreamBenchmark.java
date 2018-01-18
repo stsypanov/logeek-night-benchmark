@@ -17,7 +17,9 @@ public class IteratorFromStreamBenchmark {
 
     @Benchmark
     public void iteratorFromCollectedList(Data data, Blackhole bh) {
-        Iterator<Integer> iterator = data.items.stream()
+        Collection<Integer> items = data.items;
+        Iterator<String> iterator = items.stream()
+                .map(Object::toString)
                 .collect(toList())//todo add case for toSet()
                 .iterator();
 
@@ -27,17 +29,21 @@ public class IteratorFromStreamBenchmark {
 
     @Benchmark
     public void iteratorFromStream(Data data, Blackhole bh) {
-        Iterator<Integer> iterator = data.items.stream()
+        Collection<Integer> items = data.items;
+        Iterator<String> iterator = items.stream()
+                .map(Object::toString)
                 .iterator();
 
         while (iterator.hasNext())
-            bh.consume(iterator.next().intValue());
+            bh.consume(iterator.next());
     }
 
     @Benchmark
     public void forEach(Data data, Blackhole bh) {
-        data.items.stream()
-                .forEach(integer -> bh.consume(integer.intValue()));
+        Collection<Integer> items = data.items;
+        items.stream()
+                .map(Object::toString)
+                .forEach(bh::consume);
     }
 
     @State(Scope.Thread)
