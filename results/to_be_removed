@@ -1,0 +1,69 @@
+Benchmark                                              (size)  (tokens)  Mode  Cnt      Score     Error  Units
+ArrayVsSmartListIterator.iterateOverArrayList              10         2  avgt  100     77,940 ±   1,194  ns/op
+ArrayVsSmartListIterator.iterateOverEnhancedSmartList      10         2  avgt  100     85,208 ±   2,859  ns/op
+ArrayVsSmartListIterator.iterateOverOriginalSmartList      10         2  avgt  100     88,397 ±   0,923  ns/op
+
+ArrayVsSmartListIterator.iterateOverArrayList              10         4  avgt  100     96,339 ±   0,779  ns/op
+ArrayVsSmartListIterator.iterateOverEnhancedSmartList      10         4  avgt  100    105,247 ±   1,409  ns/op
+ArrayVsSmartListIterator.iterateOverOriginalSmartList      10         4  avgt  100    110,833 ±   1,371  ns/op
+
+ArrayVsSmartListIterator.iterateOverArrayList              10         8  avgt  100    155,250 ±   2,213  ns/op
+ArrayVsSmartListIterator.iterateOverEnhancedSmartList      10         8  avgt  100    162,928 ±   2,008  ns/op
+ArrayVsSmartListIterator.iterateOverOriginalSmartList      10         8  avgt  100    175,436 ±   6,588  ns/op
+
+ArrayVsSmartListIterator.iterateOverArrayList              10        16  avgt  100    311,366 ±   1,764  ns/op
+ArrayVsSmartListIterator.iterateOverEnhancedSmartList      10        16  avgt  100    324,443 ±   1,845  ns/op
+ArrayVsSmartListIterator.iterateOverOriginalSmartList      10        16  avgt  100    335,069 ±   3,378  ns/op
+
+ArrayVsSmartListIterator.iterateOverArrayList              10        32  avgt  100    659,631 ±   3,034  ns/op
+ArrayVsSmartListIterator.iterateOverEnhancedSmartList      10        32  avgt  100    681,830 ±   5,457  ns/op
+ArrayVsSmartListIterator.iterateOverOriginalSmartList      10        32  avgt  100    697,768 ±   8,414  ns/op
+
+
+
+
+
+ArrayVsSmartListIterator.iterateOverArrayList             100         2  avgt  100    770,306 ±   4,213  ns/op
+ArrayVsSmartListIterator.iterateOverEnhancedSmartList     100         2  avgt  100    834,525 ±   8,684  ns/op
+ArrayVsSmartListIterator.iterateOverOriginalSmartList     100         2  avgt  100    895,127 ±  13,566  ns/op
+
+ArrayVsSmartListIterator.iterateOverArrayList             100         4  avgt  100    964,666 ±   6,941  ns/op
+ArrayVsSmartListIterator.iterateOverEnhancedSmartList     100         4  avgt  100   1036,633 ±   8,703  ns/op
+ArrayVsSmartListIterator.iterateOverOriginalSmartList     100         4  avgt  100   1116,411 ±  25,179  ns/op
+
+ArrayVsSmartListIterator.iterateOverArrayList             100         8  avgt  100   1629,894 ±  39,350  ns/op
+ArrayVsSmartListIterator.iterateOverEnhancedSmartList     100         8  avgt  100   1653,188 ±  61,216  ns/op
+ArrayVsSmartListIterator.iterateOverOriginalSmartList     100         8  avgt  100   1700,959 ±  20,793  ns/op
+
+ArrayVsSmartListIterator.iterateOverArrayList             100        16  avgt  100   3253,894 ±  94,449  ns/op
+ArrayVsSmartListIterator.iterateOverEnhancedSmartList     100        16  avgt  100   3228,328 ±  35,747  ns/op
+ArrayVsSmartListIterator.iterateOverOriginalSmartList     100        16  avgt  100   3285,426 ±  30,370  ns/op
+
+ArrayVsSmartListIterator.iterateOverArrayList             100        32  avgt  100   6717,908 ±  39,885  ns/op
+ArrayVsSmartListIterator.iterateOverEnhancedSmartList     100        32  avgt  100   6908,570 ±  98,611  ns/op
+ArrayVsSmartListIterator.iterateOverOriginalSmartList     100        32  avgt  100   6881,372 ±  56,055  ns/op
+
+
+
+
+
+ArrayVsSmartListIterator.iterateOverArrayList            1000         2  avgt  100   7610,171 ±  91,401  ns/op
+ArrayVsSmartListIterator.iterateOverEnhancedSmartList    1000         2  avgt  100   8269,172 ±  80,221  ns/op
+ArrayVsSmartListIterator.iterateOverOriginalSmartList    1000         2  avgt  100   8694,211 ±  91,287  ns/op
+
+ArrayVsSmartListIterator.iterateOverArrayList            1000         4  avgt  100   9835,257 ± 124,927  ns/op
+ArrayVsSmartListIterator.iterateOverEnhancedSmartList    1000         4  avgt  100  10335,154 ± 149,508  ns/op
+ArrayVsSmartListIterator.iterateOverOriginalSmartList    1000         4  avgt  100  10893,266 ± 183,458  ns/op
+
+ArrayVsSmartListIterator.iterateOverArrayList            1000         8  avgt  100  16332,881 ± 779,616  ns/op
+ArrayVsSmartListIterator.iterateOverEnhancedSmartList    1000         8  avgt  100  16317,282 ± 278,698  ns/op
+ArrayVsSmartListIterator.iterateOverOriginalSmartList    1000         8  avgt  100  16916,580 ± 208,442  ns/op
+
+ArrayVsSmartListIterator.iterateOverArrayList            1000        16  avgt  100  31657,192 ± 206,303  ns/op
+ArrayVsSmartListIterator.iterateOverEnhancedSmartList    1000        16  avgt  100  31939,511 ± 252,703  ns/op
+ArrayVsSmartListIterator.iterateOverOriginalSmartList    1000        16  avgt  100  33875,351 ± 933,627  ns/op
+
+ArrayVsSmartListIterator.iterateOverArrayList            1000        32  avgt  100  66646,401 ± 389,711  ns/op
+ArrayVsSmartListIterator.iterateOverEnhancedSmartList    1000        32  avgt  100  67000,696 ± 383,551  ns/op
+ArrayVsSmartListIterator.iterateOverOriginalSmartList    1000        32  avgt  100  68773,103 ± 646,893  ns/op
+
