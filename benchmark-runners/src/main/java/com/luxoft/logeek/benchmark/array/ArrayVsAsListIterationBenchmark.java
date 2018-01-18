@@ -33,12 +33,15 @@ public class ArrayVsAsListIterationBenchmark {
     public static class ArrayHolder {
         Integer[] array;
 
-        @Param({"1", "5", "10", "100", "1000"})
+        @Param({"10", "100", "1000"})
         int length;
 
         @Setup
         public void setup() {
-            array = IntStream.range(0, length).boxed().toArray(Integer[]::new);
+            array = IntStream
+                    .range(0, length)
+                    .boxed()
+                    .toArray(Integer[]::new);
         }
     }
 }

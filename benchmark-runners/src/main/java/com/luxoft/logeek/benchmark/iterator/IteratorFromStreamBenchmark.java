@@ -4,21 +4,20 @@ import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 
 import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.IntStream;
 
-import static java.util.stream.Collectors.toCollection;
 import static java.util.stream.Collectors.toList;
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @Fork(jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms2g", "-Xmx2g"})
+@SuppressWarnings({"SimplifyStreamApiCallChains", "WhileLoopReplaceableByForEach"})
 public class IteratorFromStreamBenchmark {
 
     @Benchmark
     public void iteratorFromCollectedList(Data data, Blackhole bh) {
-        Iterator<String> iterator = data.items.stream()
-                .map(Object::toString)
+        Iterator<Integer> iterator = data.items.stream()
                 .collect(toList())//todo add case for toSet()
                 .iterator();
 
@@ -28,42 +27,40 @@ public class IteratorFromStreamBenchmark {
 
     @Benchmark
     public void iteratorFromStream(Data data, Blackhole bh) {
-        Iterator<String> iterator = data.items.stream()
-                .map(Object::toString)
+        Iterator<Integer> iterator = data.items.stream()
                 .iterator();
 
         while (iterator.hasNext())
-            bh.consume(iterator.next());
+            bh.consume(iterator.next().intValue());
     }
 
     @Benchmark
     public void forEach(Data data, Blackhole bh) {
         data.items.stream()
-                .map(Object::toString)
-                .forEach(bh::consume);
+                .forEach(integer -> bh.consume(integer.intValue()));
     }
 
     @State(Scope.Thread)
     public static class Data {
-        private Collection<Integer> items;
+        Collection<Integer> items;
 
         @Param({"10", "100", "1000"})
-        private int size;
+        int size;
 
         @Param({"ArrayList", "HashSet"})
-        private String collection;
-
-        private ThreadLocalRandom random;
+        String collection;
 
         @Setup
         public void init() {
-            random = ThreadLocalRandom.current();
-
             if ("ArrayList".equals(collection)) {
-                items = random.ints(size).boxed().collect(toCollection(ArrayList::new));
+                items = new ArrayList<>(items());
             } else {
-                items = random.ints(size).boxed().collect(toCollection(HashSet::new));
+                items = new HashSet<>(items());
             }
+        }
+
+        private List<Integer> items() {
+            return IntStream.range(0, size).boxed().collect(toList());
         }
     }
 }
