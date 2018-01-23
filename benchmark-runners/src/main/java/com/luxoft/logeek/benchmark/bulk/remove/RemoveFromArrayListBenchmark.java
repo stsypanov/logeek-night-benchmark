@@ -15,7 +15,7 @@ import static java.util.stream.Collectors.toCollection;
 public class RemoveFromArrayListBenchmark {
 
     @Benchmark
-    public List<Byte> removeFromArrayListOneByOne_reverseOrder(Data data) {
+    public List<Byte> oneByOne_reverseOrder(Data data) {
         ArrayList<Byte> arrayList = new ArrayList<>(data.initial);
         for (int i = data.to - 1; i >= data.from; i--) {
             arrayList.remove(i);
@@ -24,7 +24,7 @@ public class RemoveFromArrayListBenchmark {
     }
 
     @Benchmark
-    public List<Byte> removeFromArrayListOneByOne_directOrder(Data data) {
+    public List<Byte> oneByOne_directOrder(Data data) {
         ArrayList<Byte> arrayList = new ArrayList<>(data.initial);
         for (int i = data.from; i < data.to; i++) {
             arrayList.remove(data.from);
@@ -33,7 +33,7 @@ public class RemoveFromArrayListBenchmark {
     }
 
     @Benchmark
-    public List<Byte> removeFromArrayListUsingSubList(Data data) {
+    public List<Byte> subList(Data data) {
         ArrayList<Byte> arrayList = new ArrayList<>(data.initial);
         arrayList.subList(data.from, data.to).clear();
         return arrayList;
@@ -44,7 +44,7 @@ public class RemoveFromArrayListBenchmark {
         @Param({"10", "100", "1000"})
         private int size;
 
-        @Param({"5", "10", "25", "50"})
+        @Param({"10", "25", "50"})
         private int percentRemoved; //percent of items removed from list
 
         private ArrayList<Byte> initial;
