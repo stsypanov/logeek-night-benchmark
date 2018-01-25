@@ -6,7 +6,7 @@ import org.openjdk.jmh.annotations.*;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
-@Fork(jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms2g", "-Xmx2g"})
+@Fork(jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms1g", "-Xmx1g"})
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 public class SortingBenchmark {

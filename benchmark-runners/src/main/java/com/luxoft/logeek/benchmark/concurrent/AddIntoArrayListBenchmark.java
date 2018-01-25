@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 //todo check for OME
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
-@Fork(jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms2g", "-Xmx2g"})
+@Fork(jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms1g", "-Xmx1g"})
 public class AddIntoArrayListBenchmark {
 
     @Benchmark

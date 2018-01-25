@@ -6,7 +6,7 @@ import org.openjdk.jmh.annotations.*;
 import java.util.concurrent.TimeUnit;
 
 @State(Scope.Thread)
-@Fork(value = 10, jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms2g", "-Xmx2g"})
+@Fork(value = 10, jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms1g", "-Xmx1g"})
 @Warmup(iterations = 10)
 @Measurement(iterations =20)
 @BenchmarkMode(Mode.AverageTime)
