@@ -5,6 +5,7 @@ import com.intellij.util.containers.SingletonIteratorBase;
 
 import java.lang.reflect.Array;
 import java.util.*;
+import java.util.Arrays;
 
 public class OriginalSmartList<E> extends AbstractList<E> implements RandomAccess {
   private int mySize;
