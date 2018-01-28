@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 public class CachedFormatterBenchmark {
 
     @Benchmark
-    public String simpleDateTimeFormat(Data data) {
+    public String simpleDateFormat(Data data) {
         return data.simpleFormatter.get().format(data.date);
     }
 
