@@ -1,10 +1,9 @@
 package com.luxoft.logeek.benchmark.array;
 
-import com.luxoft.logeek.example.ArrayList;
 import org.openjdk.jmh.annotations.*;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toCollection;
