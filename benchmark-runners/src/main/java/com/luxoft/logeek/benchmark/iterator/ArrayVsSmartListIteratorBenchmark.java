@@ -15,7 +15,7 @@ import static java.util.stream.Collectors.toList;
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @Fork(jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms4g", "-Xmx4g"})
-public class ArrayVsSmartListIterator {
+public class ArrayVsSmartListIteratorBenchmark {
 
     @Benchmark
     public void iterateOverArrayList(Lists lists, Blackhole bh) {

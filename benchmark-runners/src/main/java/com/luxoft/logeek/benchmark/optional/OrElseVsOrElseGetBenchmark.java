@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
-public class OrElseVsOrElseGet {
+public class OrElseVsOrElseGetBenchmark {
 
     @Benchmark
     public String measureOrElse() {

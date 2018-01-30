@@ -1,6 +1,5 @@
 package com.luxoft.logeek.benchmark.classloader;
 
-import com.luxoft.logeek.benchmark.BaseBenchmark;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
