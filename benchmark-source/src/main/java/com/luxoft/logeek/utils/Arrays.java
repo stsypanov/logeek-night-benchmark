@@ -4,6 +4,10 @@ import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.UnaryOperator;
 
+/**
+ * Copy of {@link java.util.Arrays} with some functionality
+ * modified for better performance
+ */
 public class Arrays {
 
     @SafeVarargs
@@ -32,7 +36,10 @@ public class Arrays {
 
         @Override
         public Object[] toArray() {
-            return java.util.Arrays.copyOf(a, a.length, Object[].class);
+            int length = a.length;
+            Object[] copy = new Object[length];
+            System.arraycopy(a, 0, copy, 0, length);
+            return copy;
         }
 
         @Override
@@ -111,6 +118,205 @@ public class Arrays {
         public Iterator<E> iterator() {
             return new ArrayItr<>(a);
         }
+
+        /**
+         * Methods overridden for better performance
+         */
+        @Override
+        public int lastIndexOf(Object o) {
+            if (o == null) {
+                for (int i = size() - 1; i >= 0; i--)
+                    if (a[i] == null)
+                        return i;
+            } else {
+                for (int i = size() - 1; i >= 0; i--)
+                    if (o.equals(a[i]))
+                        return i;
+            }
+            return -1;
+        }
+
+        @Override
+        protected void removeRange(int fromIndex, int toIndex) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public int hashCode() {
+            return java.util.Arrays.hashCode(a);
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (o == this)
+                return true;
+            if (!(o instanceof List))
+                return false;
+
+            List that = (List) o;
+
+            if (that instanceof RandomAccess) {
+                if (a.length != that.size()) {
+                    return false;
+                }
+
+                for (int i = 0; i < a.length; i++) {
+                    E o1 = a[i];
+                    Object o2 = that.get(i);
+                    if (o1 == null ? o2 != null : !o1.equals(o2)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            return super.equals(o);
+        }
+
+        //        @Override
+//        public List<E> subList(int fromIndex, int toIndex) {
+//            return new SubList(this, fromIndex, toIndex);
+//        }
+//
+//        private class SubList extends AbstractList<E> {
+//            private final AbstractList<E> l;
+//            private final int offset;
+//            private int size;
+//
+//            SubList(AbstractList<E> list, int fromIndex, int toIndex) {
+//                if (fromIndex < 0)
+//                    throw new IndexOutOfBoundsException("fromIndex = " + fromIndex);
+//                if (toIndex > list.size())
+//                    throw new IndexOutOfBoundsException("toIndex = " + toIndex);
+//                if (fromIndex > toIndex)
+//                    throw new IllegalArgumentException("fromIndex(" + fromIndex +
+//                            ") > toIndex(" + toIndex + ")");
+//                l = list;
+//                offset = fromIndex;
+//                size = toIndex - fromIndex;
+//                this.modCount = l.modCount;
+//            }
+//
+//            public E set(int index, E element) {
+//                rangeCheck(index);
+//                checkForComodification();
+//                E oldValue = Arrays.ArrayList.this.a[offset + index];
+//                Arrays.ArrayList.this.a[offset + index] = element;
+//                return oldValue;
+//            }
+//
+//            public E get(int index) {
+//                rangeCheck(index);
+//                checkForComodification();
+//                return Arrays.ArrayList.this.a[offset + index];
+//            }
+//
+//            public int size() {
+//                checkForComodification();
+//                return size;
+//            }
+//
+//            public void add(int index, E element) {
+//                throw new UnsupportedOperationException();
+//            }
+//
+//            public E remove(int index) {
+//                throw new UnsupportedOperationException();
+//            }
+//
+//            protected void removeRange(int fromIndex, int toIndex) {
+//                throw new UnsupportedOperationException();
+//            }
+//
+//            public boolean addAll(Collection<? extends E> c) {
+//                throw new UnsupportedOperationException();
+//            }
+//
+//            public boolean addAll(int index, Collection<? extends E> c) {
+//                throw new UnsupportedOperationException();
+//            }
+//
+//            public Iterator<E> iterator() {
+//                return listIterator();
+//            }
+//
+//            public ListIterator<E> listIterator(final int index) {
+//                checkForComodification();
+//                rangeCheckForAdd(index);
+//
+//                return new ListIterator<E>() {
+//                    private final ListIterator<E> i = l.listIterator(index + offset);
+//
+//                    public boolean hasNext() {
+//                        return nextIndex() < size;
+//                    }
+//
+//                    public E next() {
+//                        if (hasNext())
+//                            return i.next();
+//                        else
+//                            throw new NoSuchElementException();
+//                    }
+//
+//                    public boolean hasPrevious() {
+//                        return previousIndex() >= 0;
+//                    }
+//
+//                    public E previous() {
+//                        if (hasPrevious())
+//                            return i.previous();
+//                        else
+//                            throw new NoSuchElementException();
+//                    }
+//
+//                    public int nextIndex() {
+//                        return i.nextIndex() - offset;
+//                    }
+//
+//                    public int previousIndex() {
+//                        return i.previousIndex() - offset;
+//                    }
+//
+//                    public void remove() {
+//                        throw new UnsupportedOperationException();
+//                    }
+//
+//                    public void set(E e) {
+//                        i.set(e);
+//                    }
+//
+//                    public void add(E e) {
+//                        i.add(e);
+//                        SubList.this.modCount = l.modCount;
+//                        size++;
+//                    }
+//                };
+//            }
+//
+//            public List<E> subList(int fromIndex, int toIndex) {
+//                return new SubList(this, fromIndex, toIndex);
+//            }
+//
+//            private void rangeCheck(int index) {
+//                if (index < 0 || index >= size)
+//                    throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
+//            }
+//
+//            private void rangeCheckForAdd(int index) {
+//                if (index < 0 || index > size)
+//                    throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
+//            }
+//
+//            private String outOfBoundsMsg(int index) {
+//                return "Index: " + index + ", Size: " + size;
+//            }
+//
+//            private void checkForComodification() {
+//                if (this.modCount != l.modCount)
+//                    throw new ConcurrentModificationException();
+//            }
+//        }
+
     }
 
     private static class ArrayItr<E> implements Iterator<E> {
