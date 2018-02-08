@@ -18,12 +18,12 @@ public class AllMatchVsContainsAllBenchmark {
 
     @Benchmark
     public boolean streamAllMatch(Data data) {
-        return data.collection.stream().allMatch(data.anotherCollection::contains);
+        return data.set.stream().allMatch(data.collection::contains);
     }
 
     @Benchmark
     public boolean collectionContainsAll(Data data) {
-        return data.anotherCollection.containsAll(data.collection);
+        return data.collection.containsAll(data.set);
     }
 
     @State(Scope.Thread)
@@ -35,22 +35,23 @@ public class AllMatchVsContainsAllBenchmark {
         @Param({"ArrayList", "HashSet"})
         private String collectionType;
 
+        private HashSet<Integer> set;
         private Collection<Integer> collection;
-        private Collection<Integer> anotherCollection;
 
         @Setup
         public void setup() {
             if ("ArrayList".equals(collectionType)) {
-                anotherCollection = IntStream.range(0, count).boxed().collect(toCollection(ArrayList::new));
-                collection = new HashSet<>(halfOfOriginalCollection(anotherCollection));
+                collection = IntStream.range(0, count).boxed().collect(toCollection(ArrayList::new));
+                set = new HashSet<>(halfOfOriginalCollection(collection));
             } else {
-                anotherCollection = IntStream.range(0, count).boxed().collect(toCollection(HashSet::new));
-                collection = new HashSet<>(halfOfOriginalCollection(anotherCollection));
+                collection = IntStream.range(0, count).boxed().collect(toCollection(HashSet::new));
+                set = new HashSet<>(halfOfOriginalCollection(collection));
             }
         }
 
         private List<Integer> halfOfOriginalCollection(Collection<Integer> original) {
-            Integer[] integers = copyOf(original.toArray(new Integer[0]), original.size() / 2);
+            Integer[] array = original.toArray(new Integer[0]);
+            Integer[] integers = copyOf(array, original.size() / 2);
             return asList(integers);
         }
     }
