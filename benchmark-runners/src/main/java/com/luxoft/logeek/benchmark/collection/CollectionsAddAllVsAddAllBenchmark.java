@@ -40,7 +40,7 @@ public class CollectionsAddAllVsAddAllBenchmark {
         @Param({ARRAY_LIST, HASH_SET, ARRAY_DEQUE, COPY_ON_WRITE_ARRAY_LIST, CONCURRENT_LINKED_DEQUE})
         String collection;
 
-        @Param({"0", "10", "100", "1000"})
+        @Param({"10", "100", "1000"})
         int size;
 
         @Setup
