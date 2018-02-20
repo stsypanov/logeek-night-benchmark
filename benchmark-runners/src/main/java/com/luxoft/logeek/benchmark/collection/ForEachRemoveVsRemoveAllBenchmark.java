@@ -49,6 +49,9 @@ public class ForEachRemoveVsRemoveAllBenchmark {
         @Param({"10", "100", "1000"})
         int size;
 
+        @Param({"5", "10", "25", "50", "75", "100"})
+        int percentRemoved;
+
         @Setup
         public void setup() {
             array = IntStream
@@ -56,8 +59,8 @@ public class ForEachRemoveVsRemoveAllBenchmark {
                     .boxed()
                     .toArray(Integer[]::new);
 
-            int half = array.length / 2;
-            toBeRemoved = Arrays.asList(Arrays.copyOf(this.array, half));
+            int lastRemoved = array.length / 100 * this.percentRemoved;
+            toBeRemoved = Arrays.asList(Arrays.copyOf(this.array, lastRemoved));
             Collections.shuffle(toBeRemoved);
         }
 
