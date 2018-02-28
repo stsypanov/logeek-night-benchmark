@@ -24,6 +24,16 @@ public class RemoveFromArrayListBenchmark {
     }
 
     @Benchmark
+    public List<Byte> oneByOne_reverseOrder_originalListReversed(Data data) {
+        ArrayList<Byte> arrayList = new ArrayList<>(data.initial);
+        reverse(arrayList);
+        for (int i = data.to - 1; i >= data.from; i--) {
+            arrayList.remove(i);
+        }
+        return arrayList;
+    }
+
+    @Benchmark
     public List<Byte> oneByOne_directOrder(Data data) {
         ArrayList<Byte> arrayList = new ArrayList<>(data.initial);
         for (int i = data.from; i < data.to; i++) {
@@ -59,5 +69,22 @@ public class RemoveFromArrayListBenchmark {
                     .map(Integer::byteValue)
                     .collect(toCollection(ArrayList::new));
         }
+    }
+
+    private static <T> void reverse(ArrayList<T> list) {
+        int i = 0;
+        int j = list.size() - 1;
+
+        while (i < j) {
+            swap(list, i, j);
+            i++;
+            j--;
+        }
+    }
+
+    private static <T> void swap(ArrayList<T> list, int i, int j) {
+        T tmp = list.get(i);
+        list.set(i, list.get(j));
+        list.set(j, tmp);
     }
 }
