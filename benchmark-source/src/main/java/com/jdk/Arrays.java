@@ -1,4 +1,4 @@
-package com.luxoft.logeek.utils;
+package com.jdk;
 
 import java.util.*;
 import java.util.function.Consumer;
@@ -9,6 +9,27 @@ import java.util.function.UnaryOperator;
  * modified for better performance
  */
 public class Arrays {
+
+    public static <T> boolean contains(Object obj, T[] array) {
+        return indexOf(obj, array, 0, array.length) >= 0;
+    }
+
+    public static <T> int indexOf(Object obj, T[] array) {
+        return indexOf(obj, array, 0, array.length);
+    }
+
+    static int indexOf(Object o, Object[] elements, int index, int fence) {
+        if (o == null) {
+            for (int i = index; i < fence; i++)
+                if (elements[i] == null)
+                    return i;
+        } else {
+            for (int i = index; i < fence; i++)
+                if (o.equals(elements[i]))
+                    return i;
+        }
+        return -1;
+    }
 
     @SafeVarargs
     @SuppressWarnings("varargs")
@@ -69,22 +90,12 @@ public class Arrays {
 
         @Override
         public int indexOf(Object o) {
-            E[] a = this.a;
-            if (o == null) {
-                for (int i = 0; i < a.length; i++)
-                    if (a[i] == null)
-                        return i;
-            } else {
-                for (int i = 0; i < a.length; i++)
-                    if (o.equals(a[i]))
-                        return i;
-            }
-            return -1;
+            return Arrays.indexOf(o, a, 0, a.length);
         }
 
         @Override
         public boolean contains(Object o) {
-            return indexOf(o) >= 0;
+            return Arrays.indexOf(o, a, 0, a.length) >= 0;
         }
 
         @Override
