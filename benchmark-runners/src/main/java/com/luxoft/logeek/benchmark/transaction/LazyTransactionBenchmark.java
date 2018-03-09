@@ -10,25 +10,17 @@ import org.openjdk.jmh.infra.Blackhole;
 import java.util.concurrent.TimeUnit;
 
 @BenchmarkMode(Mode.AverageTime)
-@OutputTimeUnit(TimeUnit.MICROSECONDS)
+@OutputTimeUnit(TimeUnit.NANOSECONDS)
 public class LazyTransactionBenchmark {
 
     @Benchmark
-    public void measureLazyTransaction(Blackhole bh, Data data) {
-        try {
-            bh.consume(data.lazyService.createCashFlow(data.dto));
-        } catch (Exception e) {
-            bh.consume(e);
-        }
+    public long measureLazyTransaction(Data data) {
+        return data.lazyService.createCashFlow(data.dto);
     }
 
     @Benchmark
-    public void measureEagerTransaction(Blackhole bh, Data data) {
-        try {
-            bh.consume(data.eagerService.createCashFlow(data.dto));
-        } catch (Exception e) {
-            bh.consume(e);
-        }
+    public long measureEagerTransaction(Data data) {
+        return data.eagerService.createCashFlow(data.dto);
     }
 
     @State(Scope.Thread)
