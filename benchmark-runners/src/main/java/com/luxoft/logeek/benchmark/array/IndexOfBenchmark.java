@@ -12,12 +12,12 @@ public class IndexOfBenchmark {
 
     @Benchmark
     public int effectiveIndexOf(ArrayHolder holder) {
-        return ArrayUtilRt.find(holder.array, holder.integer);
+        return ArrayUtilRt.indexOf(holder.array, holder.integer);
     }
 
     @Benchmark
     public int ineffectiveIndexOf(ArrayHolder holder) {
-        return ArrayUtilRt._find(holder.array, holder.integer);
+        return ArrayUtilRt._indexOf(holder.array, holder.integer);
     }
 
     @State(Scope.Thread)
@@ -26,7 +26,7 @@ public class IndexOfBenchmark {
 
         Integer integer;
 
-        @Param({"1000"})
+        @Param({"10", "100", "1000"})
         int length;
 
         @Param({"true", "false"})

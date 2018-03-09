@@ -9,7 +9,7 @@ public class ArrayUtilRt {
      * {@code equals} of arrays elements to compare {@code obj} with
      * these elements.
      */
-    public static <T> int find(final T[] src, final T o) {
+    public static <T> int indexOf(final T[] src, final T o) {
         if (o == null) {
             for (int i = 0; i < src.length; i++)
                 if (src[i] == null)
@@ -28,9 +28,9 @@ public class ArrayUtilRt {
      * @return index of {@code obj} in the {@code src} array.
      * Returns {@code -1} if passed object isn't found. This method uses
      * {@code equals} of arrays elements to compare {@code obj} with
-     * these elements.
+     * these elements. This is method is likely to be less effective than {@code indexOf}
      */
-    public static <T> int _find(final T[] src, final T obj) {
+    public static <T> int _indexOf(final T[] src, final T obj) {
         for (int i = 0; i < src.length; i++) {
             final T o = src[i];
             if (o == null) {
