@@ -12,17 +12,6 @@ import java.util.stream.IntStream;
 @Fork(jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms1g", "-Xmx1g"})
 public class SubArrayBenchmark {
 
-    /**
-     * todo investigate why this is faster than empty
-     * Report: Array.asList().subList()
-     * (new ArrayList()).subList().toArray();
-     */
-    @Benchmark
-    public Integer[] subArrayBySubList_sizedArray(Data data) {
-        List<Integer> subList = Arrays.asList(data.array).subList(0, data.to);
-        return subList.toArray(new Integer[subList.size()]);
-    }
-
     @Benchmark
     public Integer[] subArrayBySubList_emptyArray(Data data) {
         List<Integer> subList = Arrays.asList(data.array).subList(0, data.to);
