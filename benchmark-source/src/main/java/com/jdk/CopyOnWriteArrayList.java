@@ -1187,12 +1187,16 @@ public class CopyOnWriteArrayList<E>
         public boolean remove(Object o) {
             synchronized (l.lock) {
                 checkForComodification();
-                int index = indexOf(o);//todo inherited from AbstList
+                int index = indexOf(o);
                 if (index == -1)
                     return false;
                 remove(index);
                 return true;
             }
+        }
+
+        public int indexOf(Object o) {
+            return Arrays.indexOf(o, expectedArray, offset, size);
         }
 
         public Iterator<E> iterator() {
