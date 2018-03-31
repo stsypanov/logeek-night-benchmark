@@ -1,14 +1,14 @@
-#Список бенчмарков с краткими пояснениями
+# Список бенчмарков с краткими пояснениями
 
 К сожалению, бенчмарки, связанные с enterprise-технологиями (Spring, Hibernate) пока реализованы только для "восьмёрки".
 
-###ArrayVsAsListIterationBenchmark
+### ArrayVsAsListIterationBenchmark
 Показывает разницу между проходом по "голому" массиву и массиву, обёрнутому в список.
 
 См. [IDEA-184240 Unnecessary array-to-collection wrapping should be detected](https://youtrack.jetbrains.com/v2/issue/IDEA-184240)
 
 
-###SubListToArrayBenchmark
+### SubListToArrayBenchmark
 Показывает разницу между 
 
 ```java
@@ -23,7 +23,7 @@ ArrayList.subList(0, size()).toArray(new T[0])
 
 См. [JDK-8196207 Inefficient ArrayList.subList().toArray()](https://bugs.openjdk.java.net/browse/JDK-8196207)
 
-###BulkOperationBenchmark
+### BulkOperationBenchmark
 Показывает разницу между тремя способами заполнения коллекции:
 
 1\.
@@ -45,7 +45,7 @@ Collection<Integer> newCollection = new ArrayList(items);
 
 См. [IDEA-165942 Inspection to replace method call in a loop with bulk operation](https://youtrack.jetbrains.com/issue/IDEA-165942)
 
-###SubArrayBenchmark
+### SubArrayBenchmark
 Показывает разницу между 
 
 ```java
@@ -58,7 +58,7 @@ Arrays.copyOf(array, to);
 
 См. [IDEA-182206 Simplification for Arrays.asList().sublist().toArray()](https://youtrack.jetbrains.com/issue/IDEA-182206)
 
-###LazyTransactionBenchmark
+### LazyTransactionBenchmark
 Показывает разницу между
 
 ```java
