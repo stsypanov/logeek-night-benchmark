@@ -3,10 +3,25 @@
 К сожалению, бенчмарки, связанные с enterprise-технологиями (Spring, Hibernate) пока реализованы только для "восьмёрки".
 
 ### ArrayVsAsListIterationBenchmark
-Показывает разницу между проходом по "голому" массиву и массиву, обёрнутому в список.
+Показывает разницу между проходом по "голому" массиву
 
-См. [IDEA-184240 Unnecessary array-to-collection wrapping should be detected](https://youtrack.jetbrains.com/v2/issue/IDEA-184240)
+```java
+Integer[] array = holder.array;
+for (Integer integer : array) {
+  bh.consume(integer);
+}
+```
+и проходом по массиву, завёрнутому в `Arrays.asList`
+```java
+List<Integer> integers = Arrays.asList(array);
+for (Integer integer : integers) {
+  bh.consume(integer);
+}
+```
 
+Итоги замеров см. в results/ArrayVsAsListIterationBenchmark.md
+
+Также см. [IDEA-184240 Unnecessary array-to-collection wrapping should be detected](https://youtrack.jetbrains.com/issue/IDEA-184240)
 
 ### SubListToArrayBenchmark
 Показывает разницу между 
@@ -56,7 +71,9 @@ Arrays.asList(array).subList(0, to).toArray(new Integer[0])
 Arrays.copyOf(array, to);
 ```
 
-См. [IDEA-182206 Simplification for Arrays.asList().sublist().toArray()](https://youtrack.jetbrains.com/issue/IDEA-182206)
+Итоги замеров см. в results/SubArrayBenchmark.md
+
+Также см. [IDEA-182206 Simplification for Arrays.asList().sublist().toArray()](https://youtrack.jetbrains.com/issue/IDEA-182206)
 
 ### LazyTransactionBenchmark
 Показывает разницу между
@@ -87,3 +104,49 @@ public long createCashFlow(CashFlowDto dto) {
 ```
 
 Иными словами, показывает стоимость "холостой" транзакции.
+
+### IteratorFromStreamBenchmark
+Показывает разницу между тремя способами перебора элементов стрима
+
+1\)
+```java
+Iterator<String> iterator = items.stream()
+  .map(Object::toString)
+  .collect(toList())//todo add case for toSet()
+  .iterator();
+
+while (iterator.hasNext())
+  bh.consume(iterator.next());
+```
+2\)
+```java
+Iterator<String> iterator = items.stream()
+  .map(Object::toString)
+  .iterator();
+
+while (iterator.hasNext())
+  bh.consume(iterator.next());
+```
+3\)
+```java
+items.stream()
+  .map(Object::toString)
+  .forEach(bh::consume);
+```
+
+Итоги замеров см. в results/iteratorFromStream.txt
+
+### AllMatchVsContainsAllBenchmark
+Показывает разницу между 
+
+```java
+set.stream().allMatch(data.collection::contains);
+```
+и
+```java
+collection.containsAll(data.set);
+```
+
+Итоги замеров см. в results/ArrayVsAsListIterationBenchmark.md
+
+Также см. [IDEA-187623 Arrays.stream.anyMatch can be simplified](https://youtrack.jetbrains.com/issue/IDEA-187623)
