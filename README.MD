@@ -150,3 +150,8 @@ collection.containsAll(data.set);
 Итоги замеров см. в results/ArrayVsAsListIterationBenchmark.md
 
 Также см. [IDEA-187623 Arrays.stream.anyMatch can be simplified](https://youtrack.jetbrains.com/issue/IDEA-187623)
+
+### LoopVsSingleCallBenchmark
+Бенчмарк, показывающий разницу между вызовом `JpaRepository.findOne` в цикле и единичным вызовом `JpaRepository.findAll`
+
+См. [IDEA-165730 Warn about inefficient usages of JpaRepository](https://youtrack.jetbrains.com/issue/IDEA-165730)
