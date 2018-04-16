@@ -157,3 +157,59 @@ collection.containsAll(data.set);
 Бенчмарк, показывающий разницу между вызовом `JpaRepository.findOne` в цикле и единичным вызовом `JpaRepository.findAll`
 
 См. [IDEA-165730 Warn about inefficient usages of JpaRepository](https://youtrack.jetbrains.com/issue/IDEA-165730)
+
+### RemoveFromArrayListBenchmark
+Показывает разницу между удалением из `ArrayList-а` тремя способами
+
+- прямой проход (наименее производительный)
+```java
+for (int i = from; i < to; i++) {
+  arrayList.remove(from);
+}
+```
+
+- обратный проход (движение в сторону меньших индексов)
+```java
+for (int i = to - 1; i >= from; i--) {
+  arrayList.remove(i);
+}
+```
+
+- обратный проход с разворотом списка (позволяет сохранить порядок удаления и даёт доступ к порядковому номеру удаляемого элемента)
+```java
+public removeInReverseOrder() {
+  reverse(arrayList);
+  for (int i = to - 1; i >= from; i--) {
+    arrayList.remove(i);
+  }
+}
+
+private static <T> void reverse(ArrayList<T> list) {
+  int i = 0;
+  int j = list.size() - 1;
+
+  while (i < j) {
+    swap(list, i, j);
+    i++;
+    j--;
+  }
+}
+
+private static <T> void swap(ArrayList<T> list, int i, int j) {
+  T tmp = list.get(i);
+  list.set(i, list.get(j));
+  list.set(j, tmp);
+}
+```
+
+- очистка подсписка (наиболее производительный)
+```java
+arrayList.subList(from, to).clear();
+```
+
+См. [IDEA-177466 Detect list.remove(int index) called in a loop](https://youtrack.jetbrains.com/issue/IDEA-177466)
+
+### FormatterBenchmark
+Показывает разницу между преобразованием в строку `java.util.Date` и `java.time.LocalDate`,
+а также их сранвнение с промежуточным способом: превращение `java.util.Date` в `java.time.LocalDate`
+и преобразование `java.time.LocalDate` с помощью `java.time.format.DateTimeFormatter`
