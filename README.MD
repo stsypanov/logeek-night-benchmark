@@ -213,3 +213,27 @@ arrayList.subList(from, to).clear();
 Показывает разницу между преобразованием в строку `java.util.Date` и `java.time.LocalDate`,
 а также их сранвнение с промежуточным способом: превращение `java.util.Date` в `java.time.LocalDate`
 и преобразование `java.time.LocalDate` с помощью `java.time.format.DateTimeFormatter`
+
+### BoxingBenchmark
+
+Показывает проседание кода, использующего обёртку там, где достаточно обойтись простым типом
+```java
+Long accumulator = 0L;
+for (Long aLong : data.longs) {
+  accumulator += aLong == null ? 0 : aLong;
+}
+return accumulator;
+```
+в цикле проиходит создание ненужных сущностей `java.lang.Long` при вычислении суммы.
+Лучше так:
+```java
+long accumulator = 0L;
+for (Long aLong : data.longs) {
+  accumulator += aLong == null ? 0 : aLong;
+}
+return accumulator;
+```
+
+Итоги замеров см. в results/BoxingBenchmark.md
+
+Также см. [IDEA-189336 New inspection 'Wrapper type may be primitive'](https://youtrack.jetbrains.com/v2/issue/IDEA-189336)

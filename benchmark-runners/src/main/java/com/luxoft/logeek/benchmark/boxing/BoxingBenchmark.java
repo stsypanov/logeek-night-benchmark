@@ -26,7 +26,7 @@ public class BoxingBenchmark {
     public Long wrapper(Data data) {
         Long accumulator = 0L;
         for (Long aLong : data.longs) {
-            accumulator += aLong == null ? 0 : aLong;
+            accumulator += aLong == null ? 0 : aLong; // проверить, создаёт ли новый Long добавление 0 + BigDecimal
         }
         return accumulator;
     }
