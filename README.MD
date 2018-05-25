@@ -237,3 +237,18 @@ return accumulator;
 Итоги замеров см. в results/BoxingBenchmark.md
 
 Также см. [IDEA-189336 New inspection 'Wrapper type may be primitive'](https://youtrack.jetbrains.com/v2/issue/IDEA-189336)
+
+### AnyMatchVsContainsBenchmark
+
+Показывает разницу между вызовом
+```java
+Arrays.asList().stream().anyMatch()
+```
+и 
+```java
+Arrays.asList().contains();
+```
+
+Итоги замеров см. в results/AnyMatchVsContainsAllBenchmark.md.md
+
+См. [Arrays.stream.anyMatch can be simplified](https://youtrack.jetbrains.com/issue/IDEA-187623)
