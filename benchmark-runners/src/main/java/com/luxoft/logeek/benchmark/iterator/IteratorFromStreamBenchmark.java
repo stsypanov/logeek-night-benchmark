@@ -11,15 +11,15 @@ import static java.util.stream.Collectors.toList;
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
-@Fork(jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms1g", "-Xmx1g"})
+@Fork(jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms2g", "-Xmx2g", "-XX:+UnlockDiagnosticVMOptions", "-XX:+DebugNonSafepoints"})
 @SuppressWarnings({"SimplifyStreamApiCallChains", "WhileLoopReplaceableByForEach"})
 public class IteratorFromStreamBenchmark {
 
     @Benchmark
     public void iteratorFromCollectedList(Data data, Blackhole bh) {
         Collection<Integer> items = data.items;
-        Iterator<String> iterator = items.stream()
-                .map(Object::toString)
+        Iterator<Long> iterator = items.stream()
+                .map(Long::valueOf)
                 .collect(toList())//todo add case for toSet()
                 .iterator();
 
@@ -30,8 +30,8 @@ public class IteratorFromStreamBenchmark {
     @Benchmark
     public void iteratorFromStream(Data data, Blackhole bh) {
         Collection<Integer> items = data.items;
-        Iterator<String> iterator = items.stream()
-                .map(Object::toString)
+        Iterator<Long> iterator = items.stream()
+                .map(Long::valueOf)
                 .iterator();
 
         while (iterator.hasNext())
@@ -42,7 +42,7 @@ public class IteratorFromStreamBenchmark {
     public void forEach(Data data, Blackhole bh) {
         Collection<Integer> items = data.items;
         items.stream()
-                .map(Object::toString)
+                .map(Long::valueOf)
                 .forEach(bh::consume);
     }
 
