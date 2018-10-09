@@ -251,4 +251,4 @@ Arrays.asList().contains();
 
 Итоги замеров см. в results/AnyMatchVsContainsAllBenchmark.md.md
 
-См. [Arrays.stream.anyMatch can be simplified](https://youtrack.jetbrains.com/issue/IDEA-187623)
+См. [IDEA-187623 Arrays.stream.anyMatch can be simplified](https://youtrack.jetbrains.com/issue/IDEA-187623)
