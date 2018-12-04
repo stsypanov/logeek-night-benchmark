@@ -39,7 +39,7 @@ public class ForEachRemoveVsRemoveAllBenchmark {
         private static final String COPY_ON_WRITE_ARRAY_LIST = "CopyOnWriteArrayList";
         private static final String CONCURRENT_LINKED_DEQUE = "ConcurrentLinkedDeque";
 
-        Integer array[];
+        Integer[] array;
 
         List<Integer> toBeRemoved;
 

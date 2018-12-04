@@ -35,7 +35,7 @@ public class CollectionsAddAllVsAddAllBenchmark {
         private static final String COPY_ON_WRITE_ARRAY_LIST = "CopyOnWriteArrayList";
         private static final String CONCURRENT_LINKED_DEQUE = "ConcurrentLinkedDeque";
 
-        Integer array[];
+        Integer[] array;
 
         @Param({ARRAY_LIST, HASH_SET, ARRAY_DEQUE, COPY_ON_WRITE_ARRAY_LIST, CONCURRENT_LINKED_DEQUE})
         String collection;
