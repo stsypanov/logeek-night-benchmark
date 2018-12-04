@@ -1,5 +1,6 @@
 package com.luxoft.logeek.utils;
 
+import com.jdk.Arrays;
 import org.junit.Before;
 import org.junit.Test;
 
