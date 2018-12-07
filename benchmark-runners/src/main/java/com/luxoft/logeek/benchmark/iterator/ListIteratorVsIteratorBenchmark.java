@@ -12,7 +12,6 @@ import java.util.stream.IntStream;
 @State(Scope.Thread)
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
-@Fork(jvmArgsAppend = {"-XX:+UseParallelGC", "-Xms1g", "-Xmx1g"})
 public class ListIteratorVsIteratorBenchmark {
 
     @Param({"10", "100", "1000", "10000"})
