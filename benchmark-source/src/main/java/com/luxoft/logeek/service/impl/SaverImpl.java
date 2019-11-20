@@ -26,7 +26,7 @@ public class SaverImpl implements Saver {
             result.add(auditTrail);
 			result.addAll(auditTrail.getChildren());
         });
-        repository.save(result);
+        repository.saveAll(result);
     }
 
 }

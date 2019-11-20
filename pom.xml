@@ -11,12 +11,6 @@
 	<packaging>pom</packaging>
 	<name>Benchmarks for Luxoft Logeek Night report</name>
 
-	<parent>
-		<groupId>io.spring.platform</groupId>
-		<artifactId>platform-bom</artifactId>
-		<version>2.0.8.RELEASE</version>
-	</parent>
-	
 	<modules>
 		<module>benchmark-source</module>
 		<module>benchmark-runners</module>

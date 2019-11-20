@@ -15,14 +15,14 @@ public class SavingServiceImpl implements SavingService {
 
     @Override
     public SimpleEntity modifyWithoutCallingSave(Long id, String newName) {
-        SimpleEntity entity = simpleRepository.findOne(id);
+        SimpleEntity entity = simpleRepository.findById(id).orElseThrow(NullPointerException::new);
         entity.setName(newName);
         return entity;
     }
 
     @Override
     public SimpleEntity modifyCallingSave(Long id, String newName) {
-        SimpleEntity entity = simpleRepository.findOne(id);
+        SimpleEntity entity = simpleRepository.findById(id).orElseThrow(NullPointerException::new);
         entity.setName(newName);
         return simpleRepository.save(entity);
     }

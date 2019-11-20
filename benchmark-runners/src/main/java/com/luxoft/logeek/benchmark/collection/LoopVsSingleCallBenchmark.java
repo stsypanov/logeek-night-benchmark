@@ -79,7 +79,7 @@ public class LoopVsSingleCallBenchmark {
                 users.add(user);
             }
 
-            repository.save(users);
+            repository.saveAll(users);
         }
     }
 }

@@ -56,6 +56,6 @@ public class SequenceBenchmark extends ContextAwareBenchmarkBase {
 			);
 			items.add(entity);
 		}
-		contractRepository.save(items);
+		contractRepository.saveAll(items);
 	}
 }

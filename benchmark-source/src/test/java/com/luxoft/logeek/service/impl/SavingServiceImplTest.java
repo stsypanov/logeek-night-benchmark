@@ -57,6 +57,6 @@ public class SavingServiceImplTest {
 
     @AfterTransaction
     public void afterTransaction() {
-        assertThat(repository.findOne(id).getName(), is(newName));
+        assertThat(repository.findById(id).orElseThrow(NullPointerException::new).getName(), is(newName));
     }
 }

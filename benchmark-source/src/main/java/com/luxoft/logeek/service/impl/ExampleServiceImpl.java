@@ -22,7 +22,7 @@ public class ExampleServiceImpl implements ExampleService {
 		this.jpaRepository = jpaRepository;
 
 		this.hasGoodRatingPredicate = id -> {
-			SomeEntity entity = jpaRepository.findOne(id);
+			SomeEntity entity = jpaRepository.findById(id).orElseThrow(NullPointerException::new);
 			return entity.getChildEntity().getRatingEntity().hasGoodRating();
 		};
 		this.moreEffectiveRatingPredicate = id -> {
@@ -32,7 +32,7 @@ public class ExampleServiceImpl implements ExampleService {
 
 	@Override
 	public long doIneffectively(Long id, Dto dto) {
-		SomeEntity entity = jpaRepository.findOne(id);
+		SomeEntity entity = jpaRepository.findById(id).orElseThrow(NullPointerException::new);
 
 		boolean hasGoodRating = entity.getChildEntity().getRatingEntity().hasGoodRating();
 		boolean isValid = dto.isValid();

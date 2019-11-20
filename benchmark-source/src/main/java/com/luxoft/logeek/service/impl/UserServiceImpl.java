@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -27,7 +28,8 @@ public class UserServiceImpl implements UserService {
 	public Set<User> findInLoop(List<UserDto> userDtos) {
 		return userDtos.stream()
 				.map(UserDto::getUserId)
-				.map(userRepository::findOne)
+				.map(userRepository::findById)
+				.map(Optional::get)
 				.collect(Collectors.toSet());
 	}
 
@@ -37,7 +39,7 @@ public class UserServiceImpl implements UserService {
 				.map(UserDto::getUserId)
 				.collect(Collectors.toList());
 
-		return userRepository.findAll(ids);  //todo check if it returns unique values
+		return userRepository.findAllById(ids);  //todo check if it returns unique values
 	}
 
 	@SuppressWarnings("ALL")
