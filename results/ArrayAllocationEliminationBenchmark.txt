@@ -1,0 +1,35 @@
+Benchmark                                                      Mode  Cnt     Score     Error   Units
+baseline                                                       avgt   25     2,470 ±   0,156   ns/op
+baseline:·gc.alloc.rate                                        avgt   25     1,179 ±   2,194  MB/sec
+baseline:·gc.alloc.rate.norm                                   avgt   25     0,005 ±   0,008    B/op
+baseline:·gc.count                                             avgt   25       ≈ 0            counts
+
+baselineClone                                                  avgt   25    13,086 ±   1,059   ns/op
+baselineClone:·gc.alloc.rate                                   avgt   25  5493,144 ± 344,344  MB/sec
+baselineClone:·gc.alloc.rate.norm                              avgt   25   112,113 ±   0,115    B/op
+baselineClone:·gc.churn.PS_Eden_Space                          avgt   25  5508,157 ± 448,489  MB/sec
+baselineClone:·gc.churn.PS_Eden_Space.norm                     avgt   25   112,346 ±   5,058    B/op
+baselineClone:·gc.churn.PS_Survivor_Space                      avgt   25     0,065 ±   0,019  MB/sec
+baselineClone:·gc.churn.PS_Survivor_Space.norm                 avgt   25     0,001 ±   0,001    B/op
+baselineClone:·gc.count                                        avgt   25   153,000            counts
+baselineClone:·gc.time                                         avgt   25   156,000                ms
+
+cloneArrayFromEqualsMethod                                     avgt   25     8,147 ±   0,241   ns/op
+cloneArrayFromEqualsMethod:·gc.alloc.rate                      avgt   25  1876,293 ±  52,254  MB/sec
+cloneArrayFromEqualsMethod:·gc.alloc.rate.norm                 avgt   25    24,013 ±   0,016    B/op
+cloneArrayFromEqualsMethod:·gc.churn.PS_Eden_Space             avgt   25  1858,646 ± 102,770  MB/sec
+cloneArrayFromEqualsMethod:·gc.churn.PS_Eden_Space.norm        avgt   25    23,821 ±   1,507    B/op
+cloneArrayFromEqualsMethod:·gc.churn.PS_Survivor_Space         avgt   25     0,027 ±   0,020  MB/sec
+cloneArrayFromEqualsMethod:·gc.churn.PS_Survivor_Space.norm    avgt   25    ≈ 10⁻³              B/op
+cloneArrayFromEqualsMethod:·gc.count                           avgt   25    77,000            counts
+cloneArrayFromEqualsMethod:·gc.time                            avgt   25    81,000                ms
+
+cloneArrayFromToStringMethod                                   avgt   25     7,756 ±   0,214   ns/op
+cloneArrayFromToStringMethod:·gc.alloc.rate                    avgt   25  1314,063 ±  34,182  MB/sec
+cloneArrayFromToStringMethod:·gc.alloc.rate.norm               avgt   25    16,011 ±   0,022    B/op
+cloneArrayFromToStringMethod:·gc.churn.PS_Eden_Space           avgt   25  1277,007 ± 130,550  MB/sec
+cloneArrayFromToStringMethod:·gc.churn.PS_Eden_Space.norm      avgt   25    15,559 ±   1,554    B/op
+cloneArrayFromToStringMethod:·gc.churn.PS_Survivor_Space       avgt   25     0,029 ±   0,018  MB/sec
+cloneArrayFromToStringMethod:·gc.churn.PS_Survivor_Space.norm  avgt   25    ≈ 10⁻³              B/op
+cloneArrayFromToStringMethod:·gc.count                         avgt   25    71,000            counts
+cloneArrayFromToStringMethod:·gc.time                          avgt   25    71,000                ms
